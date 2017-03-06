@@ -1,0 +1,26 @@
+﻿@model POC_MVC_Biblioteca.ViewModels.CreateUserViewModel
+
+<div id="cadastro-usuario-partial">
+  @Html.Label("Buscar por Login:")
+  @Html.TextBox("SamAccountName")
+
+  @using (@Html.BeginForm("CreateUser", "Usuario"))
+  {
+      @Html.Label("Código/Id:")
+      @Html.TextBox("IdSmart")
+
+      @Html.Label("Nome:")
+      @Html.TextBox("Nome")
+
+      @Html.Label("E-Mail:")
+      @Html.TextBox("Email")
+
+      @Html.Label("Area/Departamento:")
+      @Html.TextBox("AreaDepartamento")
+
+      @Html.Label("Gerente:")
+      @Html.TextBox("Gerente")
+      <input type="submit" value="Finalizar">
+  }
+
+</div>

@@ -1,0 +1,76 @@
+﻿<script type="text/javascript" >
+  $(document).ready(function () {
+    $("#id_da_div").click(function () {
+      partial = "history";
+      $("#partialTab").load('@Url.Action("LoadHistory", "Training")')
+    });
+  });
+</script>
+<section id="acervo">
+  <h3>Acervo</h3>
+  <div id="container" class="container-fluid">
+
+    <div id="navegacao_acervo" class="row acervo-navegacao">
+      <ul class="nav navbar-nav">
+        <li><button>Cadastrar</button></li>
+        <li><button>Consultar</button></li>
+        <li><button>Reservas</button></li>
+        <li><button>Livros Emprestados</button></li>
+        <li><button>Entregas</button></li>
+      </ul>
+    </div>
+
+    <div id="separador" class="row acervo-separador">
+
+      <div id="menuLateralEsquerdo" class="col-lg-3 acervo-menu-esquerda">
+
+        <div id="reservaLocacao" class="container acervo-reserva-locacao">
+          <div id="tituloLocacao" class="row">
+            <label id="lblTituloLocacao">Reserva de locação</label>
+          </div>
+          <div id="containerLocacao" class="row">
+            <form class="form-horizontal">
+              <input type="text" title="E-mail" />
+              <input type="text" title="Password" />
+
+              <a>Forgot your password</a>
+              <button>Sign In</button>
+              @Html.ActionLink("Sign up", "Index", "Usuario")
+            </form>
+          </div>
+        </div>
+
+        <div id="categorias" class="container acervo-categorias">
+          <div id="tituloCategorias" class="row">
+            <label>Categorias</label>
+          </div>
+          <div id="containerCategorias" class="row">
+            <ul>
+              <li><a>Auto Ajuda</a></li>
+              <li><a>Ciência</a></li>
+              <li><a>Culinária/Gastronomia</a></li>
+              <li><a>Esoterismo</a></li>
+              <li><a>Ficção</a></li>
+              <li><a>Filosofia</a></li>
+              <li><a>História</a></li>
+              <li><a>Literatura</a></li>
+              <li><a>Música</a></li>
+              <li><a>Negócios</a></li>
+              <li><a>Política</a></li>
+              <li><a>Psicologia</a></li>
+              <li><a>Quadrinhos</a></li>
+              <li><a>Religião</a></li>
+              <li><a>Romance</a></li>
+              <li><a>Saúde</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
+        @{
+            Html.RenderPartial("_CadastroLivros");
+        }
+      </div>
+    </div>
+  </div>
+</section>
