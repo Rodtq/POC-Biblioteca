@@ -49,7 +49,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 Gerente = user.Gerente
             };
             _um.AddUser(usuário);
-            string teste = "aas";
+            string teste = "aas1";
             return View();
         }
 
