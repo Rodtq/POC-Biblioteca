@@ -19,6 +19,7 @@ namespace POC_MVC_Biblioteca.Models
         public string eMail { get; set; }
         public string Gerente { get; set; }
         public string Funcao { get; set; }
+        public string AreaDepartamento { get; set; }
         public string Ramal { get; set; }
         public virtual HashSet<Role> Roles { get; set; }
     }

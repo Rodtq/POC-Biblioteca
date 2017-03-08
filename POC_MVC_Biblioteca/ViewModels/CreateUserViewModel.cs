@@ -13,5 +13,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         public string Email { get; set; }
         public string AreaDepartamento { get; set; }
         public string Gerente { get; set; }
+        public string Funcao { get; set; }
+        public string Ramal { get; set; }
     }
 }

@@ -46,10 +46,12 @@ namespace POC_MVC_Biblioteca.Controllers
                 IdSmart = user.IdSmart,
                 Nome = user.Nome,
                 eMail = user.Email,
-                Gerente = user.Gerente
+                AreaDepartamento = user.AreaDepartamento,
+                Gerente = user.Gerente,
+                Funcao = user.Funcao,
+                Ramal = user.Ramal
             };
             _um.AddUser(usuário);
-            string teste = "aas1";
             return View();
         }
 
