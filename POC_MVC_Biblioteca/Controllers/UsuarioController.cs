@@ -51,6 +51,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 Funcao = user.Funcao,
                 Ramal = user.Ramal
             };
+            
             _um.AddUser(usuário);
             return View();
         }

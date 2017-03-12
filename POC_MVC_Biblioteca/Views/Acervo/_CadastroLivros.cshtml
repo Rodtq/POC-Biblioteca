@@ -1,2 +1,40 @@
-﻿
-olá
+﻿@model POC_MVC_Biblioteca.ViewModels.CreateBookViewModel
+<div id="cadastro-Livros-partial">
+    <h3>Cadastro de livros</h3>
+
+    @using (@Html.BeginForm("CadastrarLivros", "Acervo"))
+    {
+        @Html.Label("ISBN:")
+        @Html.TextBox("ISBN")
+
+        @Html.Label("Titulo da obra:")
+        @Html.TextBox("TituloDaObra")
+
+        @Html.Label("Autor:")
+        @Html.TextBox("Autor")
+
+        @Html.Label("Ano do livro:")
+        @Html.TextBox("AnoLivro")
+
+        @Html.Label("Categoria:")
+        @Html.TextBox("Categoria")
+
+        @Html.Label("Editora:")
+        @Html.TextBox("Editora")
+
+        @Html.Label("Quantidade:")
+        @Html.TextBox("Quantidade")
+
+        @Html.Label("Descricao:")
+        @Html.TextBox("Descricao")
+
+        @Html.Label("Observacao:")
+        @Html.TextBox("Observacao")
+
+        @Html.Label("Localização:")
+        @Html.TextBox("EstanteLocalizacao")
+
+        <input type="submit" value="Finalizar">
+    }
+
+</div>

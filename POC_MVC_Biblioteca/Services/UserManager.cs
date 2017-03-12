@@ -1,5 +1,6 @@
 ﻿using POC_MVC_Biblioteca.Data;
 using POC_MVC_Biblioteca.Models;
+using POC_MVC_Biblioteca.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -88,7 +89,7 @@ namespace POC_MVC_Biblioteca.Services
             Usuario usuario = new Usuario();
             using (POC_Database db = new POC_Database())
             {
-                usuario = db.Usuarios.SingleOrDefault(u=>u.Id == Id);
+                usuario = db.Usuarios.SingleOrDefault(u => u.Id == Id);
             }
             return usuario;
         }
@@ -103,6 +104,5 @@ namespace POC_MVC_Biblioteca.Services
             }
             return usuario;
         }
-
     }
 }
