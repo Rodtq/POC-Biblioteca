@@ -2,11 +2,11 @@
 <div id="cadastro-Livros-partial">
     <h3>Cadastro de livros</h3>
 
-    @using (@Html.BeginForm("CadastrarLivros", "Acervo"))
+    @using (@Html.BeginForm("CreateBook", "Acervo"))
     {
         @Html.Label("ISBN:")
         @Html.TextBox("ISBN")
-
+      
         @Html.Label("Titulo da obra:")
         @Html.TextBox("TituloDaObra")
 

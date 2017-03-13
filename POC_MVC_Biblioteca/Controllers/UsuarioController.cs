@@ -53,7 +53,7 @@ namespace POC_MVC_Biblioteca.Controllers
             };
             
             _um.AddUser(usuário);
-            return View();
+            return RedirectToAction("Index");
         }
 
     }

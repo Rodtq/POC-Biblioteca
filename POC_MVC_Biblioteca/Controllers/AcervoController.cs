@@ -24,7 +24,7 @@ namespace POC_MVC_Biblioteca.Controllers
         }
 
 
-        public ActionResult CadastrarLivros(CreateBookViewModel livro)
+        public ActionResult CreateBook(CreateBookViewModel livro)
         {
             Catalogacao catalogação = new Catalogacao()
             {
@@ -40,7 +40,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 EstanteLocalizacao = livro.EstanteLocalizacao
             };
             _as.AddCatalogacao(catalogação);
-            return PartialView("");
+            return RedirectToAction("Index");
         }
     }
 }

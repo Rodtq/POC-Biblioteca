@@ -23,7 +23,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 else
                 {
-                    db.Catalogacao.Add(catalogacao)
+                    db.Catalogacao.Add(catalogacao);
                 }
                 db.SaveChanges();
             }
