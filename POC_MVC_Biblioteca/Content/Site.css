@@ -1,14 +1,14 @@
 ﻿
 
 body {
-    background:gray;
+    background: gray;
     padding-top: 60px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    background:white;
+    background: white;
     padding-left: 50px;
     padding-right: 15px;
 }
@@ -31,48 +31,41 @@ textarea {
 /*ACERVO*/
 /*======================================================================================*/
 /*======================================================================================*/
-.acervo-separador
-{
-    border:solid 1px black;
-    margin-right:15px;
-}
-.acervo-menu-esquerda
-{
-border:solid 1px black;
-}
-.acervo-menu-direita
-{
-border:solid 1px black;
-height:460px;
+.acervo-separador {
+    border: solid 1px black;
+    margin-right: 15px;
 }
 
-.acervo-reserva-locacao{
-    border:solid 1px black;
+.acervo-menu-esquerda {
+    border: solid 1px black;
 }
 
-.acervo-navegacao{
-    border:solid 1px black;
-    margin-right:15px;
-    margin-bottom:5px;
-    padding:10px;
+.acervo-menu-direita {
+    border: solid 1px black;
+    height: 460px;
+}
+
+.acervo-reserva-locacao {
+    border: solid 1px black;
+}
+
+.acervo-navegacao {
+    border: solid 1px black;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 
 
-.acervo-reserva-locacao{
-    border:solid 1px black;
-    padding:25px;
+.acervo-reserva-locacao {
+    border: solid 1px black;
+    padding: 25px;
 }
 
-.acervo-categorias{
-    border:solid 1px black;
-    padding:25px;
+.acervo-categorias {
+    border: solid 1px black;
+    padding: 25px;
 }
-/*======================================================================================*/
-/*======================================================================================*/
-/*======================================================================================*/
-/*======================================================================================*/
-
-
 
 /*======================================================================================*/
 /*======================================================================================*/
@@ -80,13 +73,22 @@ height:460px;
 /*======================================================================================*/
 /*======================================================================================*/
 
+.cadastro-Livros-partial {
+    background: #4f4f4f;
+    padding: 10px;
+    font: 12px arial, verdana, helvetica, sans-serif;
+    border-top: 8px solid #cfcfcf;
+    border-left: 8px solid #cfcfcf;
+    border-right: 8px solid #696969;
+    border-bottom: 8px solid #696969;
+    border-collapse: collapse;
+    color: #cfcfcf;
+}
 
-
-/*======================================================================================*/
-/*======================================================================================*/
-/*======================================================================================*/
-/*======================================================================================*/
-
+.cadastro-Livros-partial input[type=text] {
+    margin-bottom:10px;
+    width:600px;
+}
 
 /*======================================================================================*/
 /*======================================================================================*/
@@ -94,9 +96,19 @@ height:460px;
 /*======================================================================================*/
 /*======================================================================================*/
 
+.cadastro-usuario-partial {
+    background: #4f4f4f;
+    padding: 10px;
+    font: 12px arial, verdana, helvetica, sans-serif;
+    border-top: 8px solid #cfcfcf;
+    border-left: 8px solid #cfcfcf;
+    border-right: 8px solid #696969;
+    border-bottom: 8px solid #696969;
+    border-collapse: collapse;
+    color: #cfcfcf;
+}
 
-
-/*======================================================================================*/
-/*======================================================================================*/
-/*======================================================================================*/
-/*======================================================================================*/
+.cadastro-usuario-partial input[type=text] {
+    margin-bottom:10px;
+    width:600px;    
+}

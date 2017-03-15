@@ -1,32 +1,112 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.CreateUserViewModel
 
-<div id="cadastro-usuario-partial">
-  @Html.Label("Buscar por Login:")
-  @Html.TextBox("SamAccountName")
+<div id="cadastro-usuario-partial" class="cadastro-usuario-partial">
 
-  @using (@Html.BeginForm("CreateUser", "Usuario"))
-  {
-      @Html.Label("Código/Id:")
-      @Html.TextBox("IdSmart")
+    <div id="cadastro-usuario-partial-container" class="container-fluid">
+        <div id="BuscarLoginDiv" class="row">
+            <div class="col-lg-2">
+                @Html.Label("Buscar por Login:")
+            </div>
+            <div class="col-lg-10">
+                @Html.TextBox("SamAccountName")
+            </div>
+        </div>
+        @using (@Html.BeginForm("CreateUser", "Usuario"))
+        {
+            <div id="IdSmartDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("Código/Id:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("IdSmart")
+                </div>
+            </div>
+            <div id="NomeDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("Nome:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("Nome")
+                </div>
+            </div>
+            <div id="EmailDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("E-Mail:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("Email")
+                </div>
+            </div>
+            <div id="AreaDepartamentoDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("Area/Departamento:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("AreaDepartamento")
+                </div>
+            </div>
+            <div id="FuncaoDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("Função:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("Funcao")
+                </div>
+            </div>
+            <div id="RamalDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("Ramal:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("Ramal")
+                </div>
+            </div>
+            <div id="GerenteDiv" class="row">
+                <div class="col-lg-2">
+                    @Html.Label("Gerente:")
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBox("Gerente")
+                </div>
+            </div>
+            <input type="submit" value="Finalizar">
+        }
 
-      @Html.Label("Nome:")
-      @Html.TextBox("Nome")
+    </div>
 
-      @Html.Label("E-Mail:")
-      @Html.TextBox("Email")
 
-      @Html.Label("Area/Departamento:")
-      @Html.TextBox("AreaDepartamento")
 
-      @Html.Label("Função:")
-      @Html.TextBox("Funcao")
 
-      @Html.Label("Ramal:")
-      @Html.TextBox("Ramal")
 
-      @Html.Label("Gerente:")
-      @Html.TextBox("Gerente")
-      <input type="submit" value="Finalizar">
-  }
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
