@@ -1,0 +1,59 @@
+﻿@model POC_MVC_Biblioteca.ViewModels.ConsultaLivroViewModel
+<div id="consulta-Livros-partial">
+  <h3>Consulta de livros</h3>
+  @using (Html.BeginForm("GetBooks", "Acervo"))
+  {
+      <div id="consulta-filtros">
+        <div>
+          <label>Filtros:</label>
+        </div>
+        <label>Titulo:</label>
+        @Html.TextBoxFor(model => model.FiltroTitulo)
+        <label>Autor:</label>
+        @Html.TextBoxFor(model => model.FiltroAutor)
+        <label>Editora:</label>
+        @Html.TextBoxFor(model => model.FiltroEditora)
+        @* @Html.DropDownListFor(model => model.FiltroCategoria, Model.ListaCategorias, "-- Selecione --");*@
+        <input type="submit" value="consultar" />
+      </div>
+      
+  }
+  <div id="lista-livros">
+    <table>
+      <tr>
+        <th><b>Titulo</b></th>
+        <th><b>Autor</b></th>
+        <th><b>Editora</b></th>
+        <th><b>Categoria</b></th>
+        <th><b>Data de publicação</b></th>
+      </tr>
+
+      @foreach (var item in Model.ListaLivros)
+      {
+          <tr>
+            <td>
+              <label>@item.TituloDaObra</label>
+            </td>
+            <td>
+              <label>@item.Autor</label>
+            </td>
+            <td>
+              <label>@item.Editora</label>
+            </td>
+            <td>
+              <label>@item.Categoria</label>
+            </td>
+            <td>
+              <label>@item.AnoLivro</label>
+            </td>
+          </tr>
+      }
+
+    </table>
+  </div>
+
+</div>
+
+
+
+

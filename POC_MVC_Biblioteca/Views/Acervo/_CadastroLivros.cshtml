@@ -1,92 +1,92 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.CreateBookViewModel
 <div id="cadastro-Livros-partial" class="cadastro-Livros-partial">
-    <h3>Cadastro de livros</h3>
-   
-                                    @using (@Html.BeginForm("CreateBook", "Acervo"))
-            {
-                                        <div id="cadastro-Livros-partial-container" class="container-fluid">
-                                            <div id="isbnDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("ISBN:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("ISBN")
-                                                </div>
-                                            </div>
-                                            <div id="TituloDaObraDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Titulo da obra:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("TituloDaObra")
-                                                </div>
-                                            </div>
-                                            <div id="AutorDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Autor:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("Autor")
-                                                </div>
-                                            </div>
-                                            <div id="AnoLivroDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Ano do livro:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("AnoLivro")
-                                                </div>
-                                            </div>
-                                            <div id="CategoriaDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Categoria:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("Categoria")
-                                                </div>
-                                            </div>
-                                            <div id="EditoraDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Editora:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("Editora")
-                                                </div>
-                                            </div>
-                                            <div id="QuantidadeDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Quantidade:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("Quantidade")
-                                                </div>
-                                            </div>
-                                            <div id="DescricaoDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Descricao:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("Descricao")
-                                                </div>
-                                            </div>
-                                            <div id="ObservacaoDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Observacao:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("Observacao")
-                                                </div>
-                                            </div>
-                                            <div id="LocalizacaoDiv" class="row">
-                                                <div class="col-lg-2">
-                                                    @Html.Label("Localização:")
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    @Html.TextBox("EstanteLocalizacao")
-                                                </div>
-                                            </div>
-                                            <input type="submit" value="Finalizar">
-                                        </div>
-                                    }
+  <h3>Cadastro de livros</h3>
 
-                                            </div>
+  @using (@Html.BeginForm("CreateBook", "Acervo"))
+            {
+      <div id="cadastro-Livros-partial-container" class="container-fluid">
+        <div id="isbnDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("ISBN:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("ISBN")
+          </div>
+        </div>
+        <div id="TituloDaObraDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Titulo da obra:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("TituloDaObra")
+          </div>
+        </div>
+        <div id="AutorDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Autor:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("Autor")
+          </div>
+        </div>
+        <div id="AnoLivroDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Ano do livro:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("AnoLivro")
+          </div>
+        </div>
+        <div id="CategoriaDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Categoria:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("Categoria")
+          </div>
+        </div>
+        <div id="EditoraDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Editora:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("Editora")
+          </div>
+        </div>
+        <div id="QuantidadeDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Quantidade:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("Quantidade")
+          </div>
+        </div>
+        <div id="DescricaoDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Descricao:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("Descricao")
+          </div>
+        </div>
+        <div id="ObservacaoDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Observacao:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("Observacao")
+          </div>
+        </div>
+        <div id="LocalizacaoDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Localização:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("EstanteLocalizacao")
+          </div>
+        </div>
+        <input type="submit" value="Finalizar">
+      </div>
+  }
+
+</div>

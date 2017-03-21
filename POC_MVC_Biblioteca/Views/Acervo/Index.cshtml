@@ -1,4 +1,5 @@
-﻿<script type="text/javascript" >
+﻿@model POC_MVC_Biblioteca.ViewModels.AcervoViewModel
+<script type="text/javascript" >
   $(document).ready(function () {
     $("#id_da_div").click(function () {
       partial = "history";
@@ -61,14 +62,15 @@
               <li><a>Quadrinhos</a></li>
               <li><a>Religião</a></li>
               <li><a>Romance</a></li>
-              <li><a>Saúde</a></li>
+              <li><a>Saúde </a></li>
             </ul>
           </div>
         </div>
       </div>
       <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
         @{
-            Html.RenderPartial("_CadastroLivros");
+
+            Html.RenderPartial("_CadastroLivros",Model.abaCadastro);
         }
       </div>
     </div>

@@ -6,6 +6,7 @@ using POC_MVC_Biblioteca.Models;
 using POC_MVC_Biblioteca.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
+using POC_MVC_Biblioteca.ViewModels;
 
 namespace POC_MVC_Biblioteca.Services
 {
@@ -27,6 +28,16 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 db.SaveChanges();
             }
+        }
+
+        public IEnumerable<Catalogacao> GetCatalogacao(ConsultaLivroViewModel filtros =null)
+        {
+            IEnumerable<Catalogacao> result = null;
+            using (POC_Database db = new POC_Database())
+            {
+                result = db.Catalogacao.ToList();
+            }
+            return result;
         }
     }
 }
