@@ -1,9 +1,18 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.AcervoViewModel
-<script type="text/javascript" >
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
   $(document).ready(function () {
-    $("#id_da_div").click(function () {
-      partial = "history";
-      $("#partialTab").load('@Url.Action("LoadHistory", "Training")')
+    $("button").click(function (e) {
+      var partialName = $(this).data('navigation-partial');
+      console.log($(this.target));
+      var partial = "";
+      $.ajax({
+        url: "/Acervo/AcervoNavigation?partialViewName=" + partialName + "",
+        data: "",
+        success: function (data) {
+          $("#conteudoDireita").html(data);
+        }
+      });
     });
   });
 </script>
@@ -13,11 +22,11 @@
 
     <div id="navegacao_acervo" class="row acervo-navegacao">
       <ul class="nav navbar-nav">
-        <li><button>Cadastrar</button></li>
-        <li><button>Consultar</button></li>
-        <li><button>Reservas</button></li>
-        <li><button>Livros Emprestados</button></li>
-        <li><button>Entregas</button></li>
+        <li><button id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</button></li>
+        <li><button id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</button></li>
+        <li><button id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</button></li>
+        <li><button id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</button></li>
+        <li><button id="EntregasLivros"data-navigation-partial="_EntregaLivros">Entregas</button></li>
       </ul>
     </div>
 
@@ -70,7 +79,7 @@
       <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
         @{
 
-            Html.RenderPartial("_CadastroLivros",Model.abaCadastro);
+            Html.RenderPartial("_CadastroLivros", Model.abaCadastro);
         }
       </div>
     </div>

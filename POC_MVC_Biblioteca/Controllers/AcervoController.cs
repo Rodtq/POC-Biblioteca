@@ -29,12 +29,33 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 result.ListaLivros = new List<Catalogacao>();
             }
-            livros.ToList().ForEach(livro => {
+            livros.ToList().ForEach(livro =>
+            {
                 parseList.Add(livro);
             });
             result.ListaLivros = parseList;
             model.abaConsulta = result;
             return View(model);
+        }
+
+        public ActionResult AcervoNavigation(string partialViewName)
+        {
+            switch (partialViewName)
+            {
+                case "_CadastroLivros":
+                    return PartialView(partialViewName, new CreateBookViewModel());
+                case "_ConsultaLivros":
+                    return RedirectToAction("GetBooks", new ConsultaLivroViewModel());
+                case "_ReservaLivros":
+                    return PartialView(partialViewName);
+                case "_EmprestimoLivros":
+                    return PartialView(partialViewName);
+                case "_EntregaLivros":
+                    return PartialView(partialViewName);
+                default:
+                    return null;
+            }
+
         }
 
 
@@ -54,8 +75,11 @@ namespace POC_MVC_Biblioteca.Controllers
                 EstanteLocalizacao = livro.EstanteLocalizacao
             };
             _as.AddCatalogacao(catalogação);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new CreateBookViewModel());
         }
+
+
+
 
         public ActionResult GetBooks(ConsultaLivroViewModel filtros)
         {
@@ -66,11 +90,12 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 result.ListaLivros = new List<Catalogacao>();
             }
-            livros.ToList().ForEach(livro => {
+            livros.ToList().ForEach(livro =>
+            {
                 parseList.Add(livro);
             });
             result.ListaLivros = parseList;
-            return PartialView("_ConsultaLivros",result);
+            return PartialView("_ConsultaLivros", result);
         }
 
     }

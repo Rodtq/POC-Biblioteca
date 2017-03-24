@@ -231,6 +231,9 @@
     <Content Include="Views\Acervo\_CadastroLivros.cshtml" />
     <Content Include="Views\Usuario\_ListaDeUsuarios.cshtml" />
     <Content Include="Views\Acervo\_ConsultaLivros.cshtml" />
+    <Content Include="Views\Acervo\_ReservaLivros.cshtml" />
+    <Content Include="Views\Acervo\_EmprestimoLivros.cshtml" />
+    <Content Include="Views\Acervo\_EntregaLivros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
