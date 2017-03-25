@@ -36,6 +36,22 @@ namespace POC_MVC_Biblioteca.Services
             using (POC_Database db = new POC_Database())
             {
                 result = db.Catalogacao.ToList();
+                if (filtros.FiltroAutor !=null && !filtros.FiltroAutor.Equals(""))
+                {
+                    result = result.Where(l => l.Autor.ToLowerInvariant().Contains(filtros.FiltroAutor.ToLowerInvariant()));
+                }
+                if (filtros.FiltroCategoria != null && !filtros.FiltroCategoria.Equals(""))
+                {
+                    result = result.Where(l => l.Categoria.ToLowerInvariant().Contains(filtros.FiltroCategoria.ToLowerInvariant()));
+                }
+                if (filtros.FiltroEditora != null && !filtros.FiltroEditora.Equals(""))
+                {
+                    result = result.Where(l => l.Editora.ToLowerInvariant().Contains(filtros.FiltroEditora.ToLowerInvariant()));
+                }
+                if (filtros.FiltroTitulo != null && !filtros.FiltroTitulo.Equals(""))
+                {
+                    result = result.Where(l => l.TituloDaObra.ToLowerInvariant().Contains(filtros.FiltroTitulo.ToLowerInvariant()));
+                }
             }
             return result;
         }
