@@ -26,7 +26,7 @@
         <li><a id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</a></li>
         <li><a id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</a></li>
         <li><a id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</a></li>
-        <li><a id="EntregasLivros"data-navigation-partial="_EntregaLivros">Entregas</a></li>
+        <li><a id="EntregasLivros" data-navigation-partial="_EntregaLivros">Entregas</a></li>
       </ul>
     </div>
 
@@ -42,11 +42,14 @@
             <form class="form-horizontal">
               <input type="text" title="E-mail" />
               <input type="text" title="Password" />
-
-              <a>Forgot your password</a>
-              <button>Sign In</button>
-              @Html.ActionLink("Sign up", "Index", "Usuario")
+              <div>
+                <input type="submit" value="Sign In">
+                @Html.ActionLink("Sign up", "Index", "Usuario")
+              </div>
             </form>
+            <div>
+              <a>Forgot your password</a>
+            </div>
           </div>
         </div>
 
