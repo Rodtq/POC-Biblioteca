@@ -2,7 +2,7 @@
 @Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
   $(document).ready(function () {
-    $("button").click(function (e) {
+    $("a").click(function (e) {
       var partialName = $(this).data('navigation-partial');
       console.log($(this.target));
       var partial = "";
@@ -21,12 +21,12 @@
   <div id="container" class="container-fluid">
 
     <div id="navegacao_acervo" class="row acervo-navegacao">
-      <ul class="nav navbar-nav">
-        <li><button id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</button></li>
-        <li><button id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</button></li>
-        <li><button id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</button></li>
-        <li><button id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</button></li>
-        <li><button id="EntregasLivros"data-navigation-partial="_EntregaLivros">Entregas</button></li>
+      <ul class="nav nav-pills">
+        <li><a id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</a></li>
+        <li><a id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</a></li>
+        <li><a id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</a></li>
+        <li><a id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</a></li>
+        <li><a id="EntregasLivros"data-navigation-partial="_EntregaLivros">Entregas</a></li>
       </ul>
     </div>
 
