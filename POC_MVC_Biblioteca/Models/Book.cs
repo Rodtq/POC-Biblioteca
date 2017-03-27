@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace POC_MVC_Biblioteca.ViewModels
+namespace POC_MVC_Biblioteca.Models
 {
-    public class CreateBookViewModel
+    //a many-to-many relationship is a type of cardinality that refers to the relationship between two entities[1] A and B
+    //in which A may contain a parent instance for which there are many children in B and vice versa.
+    public class Book
     {
+        [Key]
         public int ISBN { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

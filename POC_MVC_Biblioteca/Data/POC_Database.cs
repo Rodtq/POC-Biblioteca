@@ -15,34 +15,34 @@ namespace POC_MVC_Biblioteca.Data
         {
             
         }
-        private DbSet<Usuario> _usuarios;
-        private DbSet<Catalogacao> _catalogacao;
+        private DbSet<User> _users;
+        private DbSet<Book> _booksCatalog;
         private DbSet<Role> _roles;
-        private DbSet<Locacao> _locacoes;
+        private DbSet<Loan> _rents;
 
-        public DbSet<Usuario> Usuarios
+        public DbSet<User> Users
         {
             get
             {
-                return _usuarios;
+                return _users;
             }
 
             set
             {
-                _usuarios = value;
+                _users = value;
             }
         }
 
-        public DbSet<Catalogacao> Catalogacao
+        public DbSet<Book> BooksCatalog
         {
             get
             {
-                return _catalogacao;
+                return _booksCatalog;
             }
 
             set
             {
-                _catalogacao = value;
+                _booksCatalog = value;
             }
         }
 
@@ -59,16 +59,16 @@ namespace POC_MVC_Biblioteca.Data
             }
         }
 
-        public DbSet<Locacao> Locacoes
+        public DbSet<Loan> Rents
         {
             get
             {
-                return _locacoes;
+                return _rents;
             }
 
             set
             {
-                _locacoes = value;
+                _rents = value;
             }
         }
     }

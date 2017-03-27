@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<section id="Usuario">
+  <div>
+    <h2>Clientes</h2>
+  </div>
+
+  <div id="cliente-navegacao" class="container-fluid">
+    <h3>Cadastro de Usuários</h3>
+    <div class="row">
+      <ul class="nav navbar-nav">
+        <li><button>Novo</button></li>
+        <li><button>Alterar</button></li>
+        <li><button>Excluir</button></li>
+        <li><button>Listar Usuários</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="container-partials">
+    @{
+        Html.RenderPartial("_CadastroUsuarios");
+    }
+  </div>
+</section>

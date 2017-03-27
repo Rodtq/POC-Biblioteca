@@ -1,0 +1,90 @@
+﻿@model POC_MVC_Biblioteca.ViewModels.BooksCatalogViewModel
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("a").click(function (e) {
+      var partialName = $(this).data('navigation-partial');
+      console.log($(this.target));
+      var partial = "";
+      $.ajax({
+        url: "/BooksCatalog/BooksCatalogNavigation?partialViewName=" + partialName + "",
+        data: "",
+        success: function (data) {
+          $("#conteudoDireita").html(data);
+        }
+      });
+    });
+  });
+</script>
+<section id="acervo">
+  <h3>Acervo</h3>
+  <div id="container" class="container-fluid">
+
+    <div id="navegacao_acervo" class="row acervo-navegacao">
+      <ul class="nav nav-pills">
+        <li><a id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</a></li>
+        <li><a id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</a></li>
+        <li><a id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</a></li>
+        <li><a id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</a></li>
+        <li><a id="EntregasLivros" data-navigation-partial="_EntregaLivros">Entregas</a></li>
+      </ul>
+    </div>
+
+    <div id="separador" class="row acervo-separador">
+
+      <div id="menuLateralEsquerdo" class="col-lg-3 acervo-menu-esquerda">
+
+        <div id="reservaLocacao" class="container acervo-reserva-locacao">
+          <div id="tituloLocacao" class="row">
+            <label id="lblTituloLocacao">Reserva de locação</label>
+          </div>
+          <div id="containerLocacao" class="row">
+            <form class="form-horizontal">
+              <input type="text" title="E-mail" />
+              <input type="text" title="Password" />
+              <div>
+                <input type="submit" value="Sign In">
+                @Html.ActionLink("Sign up", "Index", "User")
+              </div>
+            </form>
+            <div>
+              <a>Forgot your password</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="categorias" class="container acervo-categorias">
+          <div id="tituloCategorias" class="row">
+            <label>Categorias</label>
+          </div>
+          <div id="containerCategorias" class="row">
+            <ul>
+              <li><a>Auto Ajuda</a></li>
+              <li><a>Ciência</a></li>
+              <li><a>Culinária/Gastronomia</a></li>
+              <li><a>Esoterismo</a></li>
+              <li><a>Ficção</a></li>
+              <li><a>Filosofia</a></li>
+              <li><a>História</a></li>
+              <li><a>Literatura</a></li>
+              <li><a>Música</a></li>
+              <li><a>Negócios</a></li>
+              <li><a>Política</a></li>
+              <li><a>Psicologia</a></li>
+              <li><a>Quadrinhos</a></li>
+              <li><a>Religião</a></li>
+              <li><a>Romance</a></li>
+              <li><a>Saúde </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
+        @{
+
+            Html.RenderPartial("_CadastroLivros", Model.RegisterTab);
+        }
+      </div>
+    </div>
+  </div>
+</section>

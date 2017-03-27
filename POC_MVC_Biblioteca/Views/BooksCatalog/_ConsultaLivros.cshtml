@@ -1,18 +1,18 @@
-﻿@model POC_MVC_Biblioteca.ViewModels.ConsultaLivroViewModel
+﻿@model POC_MVC_Biblioteca.ViewModels.BooksConsultViewModel
 <div id="consulta-Livros-partial">
   <h3>Consulta de livros</h3>
-  @using (Html.BeginForm("GetBooks", "Acervo", FormMethod.Post, new { id = "QueryBooksfrm" }))
+  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooksfrm" }))
   {
       <div id="consulta-filtros">
         <div>
           <label>Filtros:</label>
         </div>
         <label>Titulo:</label>
-        @Html.TextBoxFor(model => model.FiltroTitulo)
+        @Html.TextBoxFor(model => model.TitleFilter)
         <label>Autor:</label>
-        @Html.TextBoxFor(model => model.FiltroAutor)
+        @Html.TextBoxFor(model => model.AuthorFilter)
         <label>Editora:</label>
-        @Html.TextBoxFor(model => model.FiltroEditora)
+        @Html.TextBoxFor(model => model.EditorFilter)
         @* @Html.DropDownListFor(model => model.FiltroCategoria, Model.ListaCategorias, "-- Selecione --");*@
         <input type="submit" value="consultar" />
       </div>
@@ -28,23 +28,23 @@
         <th><b>Data de publicação</b></th>
       </tr>
 
-      @foreach (var item in Model.ListaLivros)
+      @foreach (var item in Model.BooksList)
       {
           <tr>
             <td>
-              <label>@item.TituloDaObra</label>
+              <label>@item.Title</label>
             </td>
             <td>
-              <label>@item.Autor</label>
+              <label>@item.Author</label>
             </td>
             <td>
-              <label>@item.Editora</label>
+              <label>@item.Editor</label>
             </td>
             <td>
-              <label>@item.Categoria</label>
+              <label>@item.Category</label>
             </td>
             <td>
-              <label>@item.AnoLivro</label>
+              <label>@item.BookYear</label>
             </td>
           </tr>
       }

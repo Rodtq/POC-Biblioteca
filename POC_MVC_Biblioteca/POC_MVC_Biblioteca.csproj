@@ -164,27 +164,27 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AcervoController.cs" />
+    <Compile Include="Controllers\BooksCatalogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\POC_Database.cs" />
     <Compile Include="Data\POC_DatabaseInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Locacao.cs" />
-    <Compile Include="Models\Reserva.cs" />
-    <Compile Include="Models\Usuario.cs" />
-    <Compile Include="Models\Catalogacao.cs" />
+    <Compile Include="Models\Loan.cs" />
+    <Compile Include="Models\Reserve.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AcervoManager.cs" />
+    <Compile Include="Services\BooksCatalogManager.cs" />
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\UserManager.cs" />
-    <Compile Include="ViewModels\AcervoViewModel.cs" />
+    <Compile Include="ViewModels\BooksCatalogViewModel.cs" />
     <Compile Include="ViewModels\AllUsersViewModel.cs" />
-    <Compile Include="ViewModels\ConsultaLivroViewModel.cs" />
+    <Compile Include="ViewModels\BooksConsultViewModel.cs" />
     <Compile Include="ViewModels\CreateBookViewModel.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -210,7 +210,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -225,15 +227,15 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Usuario\_CadastroUsuarios.cshtml" />
-    <Content Include="Views\Acervo\Index.cshtml" />
-    <Content Include="Views\Acervo\_CadastroLivros.cshtml" />
-    <Content Include="Views\Usuario\_ListaDeUsuarios.cshtml" />
-    <Content Include="Views\Acervo\_ConsultaLivros.cshtml" />
-    <Content Include="Views\Acervo\_ReservaLivros.cshtml" />
-    <Content Include="Views\Acervo\_EmprestimoLivros.cshtml" />
-    <Content Include="Views\Acervo\_EntregaLivros.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_CadastroUsuarios.cshtml" />
+    <Content Include="Views\BooksCatalog\Index.cshtml" />
+    <Content Include="Views\BooksCatalog\_CadastroLivros.cshtml" />
+    <Content Include="Views\User\_ListaDeUsuarios.cshtml" />
+    <Content Include="Views\BooksCatalog\_ConsultaLivros.cshtml" />
+    <Content Include="Views\BooksCatalog\_ReservaLivros.cshtml" />
+    <Content Include="Views\BooksCatalog\_EmprestimoLivros.cshtml" />
+    <Content Include="Views\BooksCatalog\_EntregaLivros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

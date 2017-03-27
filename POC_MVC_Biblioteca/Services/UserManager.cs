@@ -13,7 +13,7 @@ namespace POC_MVC_Biblioteca.Services
     public class UserManager
     {
 
-        public void AddUser(Usuario user)
+        public void AddUser(User user)
         {
             using (POC_Database db = new POC_Database())
             {
@@ -24,13 +24,13 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 else
                 {
-                    db.Usuarios.Add(user);
+                    db.Users.Add(user);
                 }
                 db.SaveChanges();
             }
         }
 
-        public void DeleteUser(Usuario user)
+        public void DeleteUser(User user)
         {
             using (POC_Database db = new POC_Database())
             {
@@ -41,8 +41,8 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 else
                 {
-                    db.Usuarios.Attach(user);
-                    db.Usuarios.Remove(user);
+                    db.Users.Attach(user);
+                    db.Users.Remove(user);
                 }
                 db.SaveChanges();
             }
@@ -50,25 +50,25 @@ namespace POC_MVC_Biblioteca.Services
 
         public void DeleteBySmartId(int Id)
         {
-            Usuario user = new Usuario();
+            User user = new User();
             using (POC_Database db = new POC_Database())
             {
-                user = db.Usuarios.SingleOrDefault(u => u.IdSmart == Id);
-                db.Usuarios.Remove(user);
+                user = db.Users.SingleOrDefault(u => u.IdSmart == Id);
+                db.Users.Remove(user);
                 db.SaveChanges();
             }
         }
 
 
-        public Usuario UpdateUser(Usuario user)
+        public User UpdateUser(User user)
         {
-            Usuario updatedUser = new Usuario();
+            User updatedUser = new User();
             using (POC_Database db = new POC_Database())
             {
                 DbEntityEntry dbEntityEntry = db.Entry(user);
                 if (dbEntityEntry.State == EntityState.Detached)
                 {
-                    db.Usuarios.Attach(user);
+                    db.Users.Attach(user);
                 }
                 dbEntityEntry.State = EntityState.Modified;
                 db.SaveChanges();
@@ -77,30 +77,30 @@ namespace POC_MVC_Biblioteca.Services
             return updatedUser;
         }
 
-        public IEnumerable<Usuario> GetAllUser()
+        public IEnumerable<User> GetAllUser()
         {
             POC_Database db = new POC_Database();
-            return db.Usuarios;
+            return db.Users;
         }
 
 
-        public Usuario GetById(int Id)
+        public User GetById(int Id)
         {
-            Usuario usuario = new Usuario();
+            User usuario = new User();
             using (POC_Database db = new POC_Database())
             {
-                usuario = db.Usuarios.SingleOrDefault(u => u.Id == Id);
+                usuario = db.Users.SingleOrDefault(u => u.Id == Id);
             }
             return usuario;
         }
 
 
-        public Usuario GetByIdSmart(int IdSmart)
+        public User GetByIdSmart(int IdSmart)
         {
-            Usuario usuario = new Usuario();
+            User usuario = new User();
             using (POC_Database db = new POC_Database())
             {
-                usuario = db.Usuarios.SingleOrDefault(u => u.IdSmart == IdSmart);
+                usuario = db.Users.SingleOrDefault(u => u.IdSmart == IdSmart);
             }
             return usuario;
         }

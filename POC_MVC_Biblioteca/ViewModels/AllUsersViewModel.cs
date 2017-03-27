@@ -8,6 +8,6 @@ namespace POC_MVC_Biblioteca.ViewModels
 {
     public class AllUsersViewModel
     {
-        public IEnumerable<Usuario> UserList { get; set; }
+        public IEnumerable<User> UserList { get; set; }
     }
 }
