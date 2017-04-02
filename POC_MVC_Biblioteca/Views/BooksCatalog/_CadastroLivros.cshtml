@@ -1,5 +1,24 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.CreateBookViewModel
-
+<script type="text/javascript">
+  $(function () { // will trigger when the document is ready
+    $('.datepicker').datepicker(); //Initialise any date pickers
+  });
+  $(document).ready(function () {
+    var form = $("#register-fmr");
+    var htmlReplacementElement = $("#conteudoDireita");
+    form.on("submit", function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: form.attr('action'),
+        data: form.serialize(), // serializes the form's elements.
+        success: function (data) {
+          htmlReplacementElement.html(data);
+        }
+      });
+    });
+  });
+</script>
 <div id="cadastro-Livros-partial" class="cadastro-Livros-partial">
   <h3>Cadastro de livros</h3>
 
@@ -43,7 +62,7 @@
             @Html.Label("Categoria:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(mbox=>mbox.Category, new { @Value = "" })
+            @Html.TextBoxFor(mbox => mbox.Category, new { @Value = "" })
           </div>
         </div>
         <div id="EditoraDiv" class="row">
@@ -51,7 +70,7 @@
             @Html.Label("Editora:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Editor, new { @Value = "" })
+            @Html.TextBoxFor(m => m.Editor, new { @Value = "" })
           </div>
         </div>
         <div id="QuantidadeDiv" class="row">
@@ -59,7 +78,7 @@
             @Html.Label("Quantidade:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Quantity, new { @Value = "" })
+            @Html.TextBoxFor(m => m.Quantity, new { @Value = "" })
           </div>
         </div>
         <div id="DescricaoDiv" class="row">
@@ -67,7 +86,7 @@
             @Html.Label("Descricao:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Description, new { @Value = "" })
+            @Html.TextBoxFor(m => m.Description, new { @Value = "" })
           </div>
         </div>
         <div id="ObservacaoDiv" class="row">
@@ -75,7 +94,7 @@
             @Html.Label("Observacao:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Observation, new { @Value = "" })
+            @Html.TextBoxFor(m => m.Observation, new { @Value = "" })
           </div>
         </div>
         <div id="LocalizacaoDiv" class="row">
@@ -83,7 +102,7 @@
             @Html.Label("Localização:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.LocalizationShelf, new { @Value = "" })
+            @Html.TextBoxFor(m => m.LocalizationShelf, new { @Value = "" })
           </div>
         </div>
         <input type="submit" value="Finalizar">
@@ -91,23 +110,3 @@
   }
 
 </div>
-<script type="text/javascript">
-  var form = $("#register-fmr");
-  var htmlReplacementElement = $("#conteudoDireita");
-  form.on("submit", function (e) {
-    e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: form.attr('action'),
-      data: form.serialize(), // serializes the form's elements.
-      success: function (data) {
-        htmlReplacementElement.html(data);
-      }
-    });
-
-    $(function () { // will trigger when the document is ready
-      $('.datepicker').datepicker(); //Initialise any date pickers
-    });
-  });
-
-</script>

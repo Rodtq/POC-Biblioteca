@@ -26,6 +26,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+
+
 /*======================================================================================*/
 /*======================================================================================*/
 /*ACERVO*/
@@ -37,16 +42,20 @@ textarea {
 }
 
 .acervo-menu-esquerda {
-    border: solid 1px black;
+    
+    padding-left:0px;
 }
 
 .acervo-menu-direita {
-    border: solid 1px black;
+    
     height: 460px;
+    
 }
 
 .acervo-reserva-locacao {
-    border: solid 1px black;
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    padding: 25px;
 }
 
 .acervo-navegacao {
@@ -56,14 +65,8 @@ textarea {
     padding: 10px;
 }
 
-
-.acervo-reserva-locacao {
-    border: solid 1px black;
-    padding: 25px;
-}
-
 .acervo-categorias {
-    border: solid 1px black;
+    border-right: solid 1px black;
     padding: 25px;
 }
 
@@ -85,9 +88,28 @@ textarea {
     color: #cfcfcf;
 }
 
-.cadastro-Livros-partial input[type=text] {
-    margin-bottom:10px;
-    width:600px;
+    .cadastro-Livros-partial input[type=text] {
+        margin-bottom: 10px;
+        width: 600px;
+    }
+/*======================================================================================*/
+/*======================================================================================*/
+/*Consulta DE Livros*/
+/*======================================================================================*/
+/*======================================================================================*/
+.book-partial .book-table {
+    display: block;
+    
+}
+
+.book-filter {
+   
+}
+
+.books-list {
+    height:400px;
+    overflow-y: scroll;
+  
 }
 
 /*======================================================================================*/
@@ -108,7 +130,7 @@ textarea {
     color: #cfcfcf;
 }
 
-.cadastro-usuario-partial input[type=text] {
-    margin-bottom:10px;
-    width:600px;    
-}
+    .cadastro-usuario-partial input[type=text] {
+        margin-bottom: 10px;
+        width: 600px;
+    }

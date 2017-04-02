@@ -1,9 +1,9 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksConsultViewModel
-<div id="consulta-Livros-partial">
+<div id="consulta-Livros-partial" class="book-partial">
   <h3>Consulta de livros</h3>
   @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooksfrm" }))
   {
-      <div id="consulta-filtros">
+      <div id="consulta-filtros" class="book-filter">
         <div>
           <label>Filtros:</label>
         </div>
@@ -18,46 +18,53 @@
       </div>
 
   }
-  <div id="lista-livros">
-    <table>
-      <tr>
-        <th><b>Titulo</b></th>
-        <th><b>Autor</b></th>
-        <th><b>Editora</b></th>
-        <th><b>Categoria</b></th>
-        <th><b>Data de publicação</b></th>
-      </tr>
-      @if (!Model.BooksList.Any())
-      {
-          <tr>
-            <td>
-              <p>Nao existem Livros cadastrados</p>
-            </td>
-          </tr>
-      }
-
-      @foreach (var item in Model.BooksList)
-      {
-          <tr>
-            <td>
-              <label>@item.Title</label>
-            </td>
-            <td>
-              <label>@item.Author</label>
-            </td>
-            <td>
-              <label>@item.Editor</label>
-            </td>
-            <td>
-              <label>@item.Category</label>
-            </td>
-            <td>
-              <label>@item.BookYear</label>
-            </td>
-          </tr>
-      }
-
+  <div id="lista-livros" class="book-table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><b>Titulo</b></th>
+          <th><b>Autor</b></th>
+          <th><b>Editora</b></th>
+          <th><b>Categoria</b></th>
+          <th><b>Data de publicação</b></th>
+        </tr>
+      </thead>
     </table>
+    <div class="container books-list">
+      <table class="table table-striped table-bordered">
+        <tbody>
+          @if (!Model.BooksList.Any())
+          {
+              <tr>
+                <td>
+                  <p>Nao existem Livros cadastrados</p>
+                </td>
+              </tr>
+          }
+
+          @foreach (var item in Model.BooksList)
+          {
+              <tr>
+                <td>
+                  <label>@item.Title</label>
+                </td>
+                <td>
+                  <label>@item.Author</label>
+                </td>
+                <td>
+                  <label>@item.Editor</label>
+                </td>
+                <td>
+                  <label>@item.Category</label>
+                </td>
+                <td>
+                  <label>@item.BookYear</label>
+                </td>
+              </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>
