@@ -27,6 +27,14 @@
         <th><b>Categoria</b></th>
         <th><b>Data de publicação</b></th>
       </tr>
+      @if (!Model.BooksList.Any())
+      {
+          <tr>
+            <td>
+              <p>Nao existem Livros cadastrados</p>
+            </td>
+          </tr>
+      }
 
       @foreach (var item in Model.BooksList)
       {
@@ -55,7 +63,7 @@
 </div>
 <script type="text/javascript">
   var form = $("#QueryBooksfrm");
-  var htmlReplacementElement = $("#consulta-Livros-partial");
+  var htmlReplacementElement = $("#conteudoDireita");
   form.on("submit", function (e) {
     e.preventDefault();
     $.ajax({

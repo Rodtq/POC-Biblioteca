@@ -10,7 +10,7 @@ namespace POC_MVC_Biblioteca.ViewModels
     public class LoginViewModel
     {
         [Required, AllowHtml]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [AllowHtml]

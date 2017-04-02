@@ -1,8 +1,9 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.CreateBookViewModel
+
 <div id="cadastro-Livros-partial" class="cadastro-Livros-partial">
   <h3>Cadastro de livros</h3>
 
-  @using (@Html.BeginForm("CreateBook", "BooksCatalog",FormMethod.Post,new {id="register-fmr" }))
+  @using (@Html.BeginForm("CreateBook", "BooksCatalog", FormMethod.Post, new { id = "register-fmr" }))
   {
       <div id="cadastro-Livros-partial-container" class="container-fluid">
         <div id="isbnDiv" class="row">
@@ -10,7 +11,7 @@
             @Html.Label("ISBN:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.ISBN)
+            @Html.TextBoxFor(m => m.ISBN, new { Value = "" })
           </div>
         </div>
         <div id="TituloDaObraDiv" class="row">
@@ -18,7 +19,7 @@
             @Html.Label("Titulo da obra:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Title)
+            @Html.TextBoxFor(m => m.Title, new { Value = "" })
           </div>
         </div>
         <div id="AutorDiv" class="row">
@@ -26,7 +27,7 @@
             @Html.Label("Autor:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Author)
+            @Html.TextBoxFor(m => m.Author, new { Value = "" })
           </div>
         </div>
         <div id="AnoLivroDiv" class="row">
@@ -34,7 +35,7 @@
             @Html.Label("Ano do livro:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.BookYear)
+            @Html.TextBox("BookYear", DateTime.Now.ToShortDateString(), new { @class = "datepicker" })
           </div>
         </div>
         <div id="CategoriaDiv" class="row">
@@ -42,7 +43,7 @@
             @Html.Label("Categoria:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(mbox=>mbox.Category)
+            @Html.TextBoxFor(mbox=>mbox.Category, new { @Value = "" })
           </div>
         </div>
         <div id="EditoraDiv" class="row">
@@ -50,7 +51,7 @@
             @Html.Label("Editora:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Editor)
+            @Html.TextBoxFor(m=>m.Editor, new { @Value = "" })
           </div>
         </div>
         <div id="QuantidadeDiv" class="row">
@@ -58,7 +59,7 @@
             @Html.Label("Quantidade:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Quantity)
+            @Html.TextBoxFor(m=>m.Quantity, new { @Value = "" })
           </div>
         </div>
         <div id="DescricaoDiv" class="row">
@@ -66,7 +67,7 @@
             @Html.Label("Descricao:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Description)
+            @Html.TextBoxFor(m=>m.Description, new { @Value = "" })
           </div>
         </div>
         <div id="ObservacaoDiv" class="row">
@@ -74,7 +75,7 @@
             @Html.Label("Observacao:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.Observation)
+            @Html.TextBoxFor(m=>m.Observation, new { @Value = "" })
           </div>
         </div>
         <div id="LocalizacaoDiv" class="row">
@@ -82,7 +83,7 @@
             @Html.Label("Localização:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m=>m.LocalizationShelf)
+            @Html.TextBoxFor(m=>m.LocalizationShelf, new { @Value = "" })
           </div>
         </div>
         <input type="submit" value="Finalizar">
@@ -90,3 +91,23 @@
   }
 
 </div>
+<script type="text/javascript">
+  var form = $("#register-fmr");
+  var htmlReplacementElement = $("#conteudoDireita");
+  form.on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: form.attr('action'),
+      data: form.serialize(), // serializes the form's elements.
+      success: function (data) {
+        htmlReplacementElement.html(data);
+      }
+    });
+
+    $(function () { // will trigger when the document is ready
+      $('.datepicker').datepicker(); //Initialise any date pickers
+    });
+  });
+
+</script>

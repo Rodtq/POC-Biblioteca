@@ -30,7 +30,7 @@ namespace POC_MVC_Biblioteca.Controllers
 
             var authService = new LoginService(authenticationManager);
             
-            var authenticationResult = authService.SignIn(model.Username, model.Password);
+            var authenticationResult = authService.SignIn(model.UserName, model.Password);
 
             if(authenticationResult.IsSuccess)
             {

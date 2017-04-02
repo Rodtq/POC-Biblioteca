@@ -4,7 +4,14 @@
   <tr>
     <th></th>
   </tr>
-
+  @if (!Model.UserList.Any())
+  {
+      <tr>
+        <td>
+          <p>Nao existem usuarios cadastrados</p>
+        </td>
+      </tr>
+  }
   @foreach (var item in Model.UserList)
   {
       <tr>

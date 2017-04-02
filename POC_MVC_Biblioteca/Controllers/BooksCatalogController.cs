@@ -75,7 +75,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 LocalizationShelf = livro.LocalizationShelf
             };
             _as.AddBook(catalogação);
-            return RedirectToAction("Index", new CreateBookViewModel());
+            return PartialView("_CadastroLivros", new CreateBookViewModel());
         }
 
 

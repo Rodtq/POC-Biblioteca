@@ -2,18 +2,34 @@
 @Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
   $(document).ready(function () {
-    $("a").click(function (e) {
+    $("a[data-navigation-partial]").click(function (e) {
       var partialName = $(this).data('navigation-partial');
       console.log($(this.target));
       var partial = "";
       $.ajax({
-        url: "/BooksCatalog/BooksCatalogNavigation?partialViewName=" + partialName + "",
+        url: "/BooksCatalog/BooksCatalogNavigation?partialViewName=" + partialName,
         data: "",
         success: function (data) {
           $("#conteudoDireita").html(data);
         }
       });
     });
+
+    $("[name='LoginViewModel']").on("submit", function (e) {
+      e.preventDefault();
+      var frmUrl = $(this).attr("Action");
+      var frmData = $(this).serialize();
+      $.ajax({
+        method: "POST",
+        url: frmUrl,
+        data: frmData,
+        success: function (data) {
+          alert("Logado!");
+        }
+      });
+    });
+
+
   });
 </script>
 <section id="acervo">
@@ -22,8 +38,8 @@
 
     <div id="navegacao_acervo" class="row acervo-navegacao">
       <ul class="nav nav-pills">
-        <li><a id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</a></li>
         <li><a id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</a></li>
+        <li><a id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</a></li>
         <li><a id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</a></li>
         <li><a id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</a></li>
         <li><a id="EntregasLivros" data-navigation-partial="_EntregaLivros">Entregas</a></li>
@@ -39,14 +55,17 @@
             <label id="lblTituloLocacao">Reserva de locação</label>
           </div>
           <div id="containerLocacao" class="row">
-            <form class="form-horizontal">
-              <input type="text" title="E-mail" />
-              <input type="text" title="Password" />
-              <div>
-                <input type="submit" value="Sign In">
-                @Html.ActionLink("Sign up", "Index", "User")
-              </div>
-            </form>
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { name = "Index" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="text" title="Login" name="UserName" />
+                <input type="text" title="Password" name="Password" />
+
+                <div>
+                  <input type="submit" value="Sign In" id="login">
+                  @Html.ActionLink("Sign up", "Index", "User")
+                </div>
+            }
             <div>
               <a>Forgot your password</a>
             </div>
@@ -82,7 +101,7 @@
       <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
         @{
 
-            Html.RenderPartial("_CadastroLivros", Model.RegisterTab);
+            Html.RenderPartial("_ConsultaLivros", Model.ConsultTab);
         }
       </div>
     </div>
