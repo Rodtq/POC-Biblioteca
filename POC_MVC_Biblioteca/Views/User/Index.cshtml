@@ -1,4 +1,5 @@
-﻿@{
+﻿@using POC_MVC_Biblioteca.ViewModels
+@{
     ViewBag.Title = "Index";
 }
 <section id="Usuario">
@@ -10,17 +11,35 @@
     <h3>Cadastro de Usuários</h3>
     <div class="row">
       <ul class="nav navbar-nav">
-        <li><button>Novo</button></li>
-        <li><button>Alterar</button></li>
-        <li><button>Excluir</button></li>
-        <li><button>Listar Usuários</button></li>
+        <li><a data-navigation-partial="_UserList">Listar Usuários </a></li>
+        <li><a data-navigation-partial="_UserRegister">Cadastrar Usuarios</a></li>
+        <li><a data-navigation-partial="_UserEdit">Editar Usuarios</a></li>
+        <li><a data-navigation-partial="_UserDelete">Deletar Usuario</a></li>
       </ul>
     </div>
   </div>
 
   <div id="container-partials">
     @{
-        Html.RenderPartial("_CadastroUsuarios");
+        Html.RenderPartial("_UserRegister");
     }
   </div>
 </section>
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("a").click(function (e) {
+      var partialName = $(this).data('navigation-partial');
+      console.log($(this.target));
+      var partial = "";
+      $.ajax({
+        url: "/User/UserNavigation?partialViewName=" + partialName + "",
+        data: "",
+        success: function (data) {
+          $("#container-partials").html(data);
+        }
+      });
+    });
+  });
+</script>

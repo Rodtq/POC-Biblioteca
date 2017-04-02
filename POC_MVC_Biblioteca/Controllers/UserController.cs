@@ -23,7 +23,7 @@ namespace POC_MVC_Biblioteca.Controllers
             UserManager um = new UserManager();
             AllUsersViewModel response = new AllUsersViewModel
             {
-                UserList = um.GetAllUser()
+                UserList = um.GetAllUsers()
             };
             return View();
         }
@@ -33,9 +33,9 @@ namespace POC_MVC_Biblioteca.Controllers
             UserManager um = new UserManager();
             AllUsersViewModel response = new AllUsersViewModel
             {
-                UserList = um.GetAllUser()
+                UserList = um.GetAllUsers()
             };
-            return View(response);
+            return PartialView("_UserList",response);
         }
 
         public ActionResult CreateUser(CreateUserViewModel user)
@@ -54,6 +54,24 @@ namespace POC_MVC_Biblioteca.Controllers
             
             _um.AddUser(usuário);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult UserNavigation(string partialViewName)
+        {
+            switch (partialViewName)
+            {
+                case "_UserRegister":
+                    return PartialView(partialViewName, new CreateUserViewModel());
+                case "_UserList":
+                    return RedirectToAction("GetAllUsers");
+                case "_UserEdit":
+                    return PartialView(partialViewName);
+                case "_UserDelete":
+                    return PartialView(partialViewName);
+                default:
+                    return null;
+            }
+
         }
 
     }

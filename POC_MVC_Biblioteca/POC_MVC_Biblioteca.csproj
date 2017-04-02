@@ -228,14 +228,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\_CadastroUsuarios.cshtml" />
+    <Content Include="Views\User\_UserRegister.cshtml" />
     <Content Include="Views\BooksCatalog\Index.cshtml" />
     <Content Include="Views\BooksCatalog\_CadastroLivros.cshtml" />
-    <Content Include="Views\User\_ListaDeUsuarios.cshtml" />
+    <Content Include="Views\User\_UserList.cshtml" />
     <Content Include="Views\BooksCatalog\_ConsultaLivros.cshtml" />
     <Content Include="Views\BooksCatalog\_ReservaLivros.cshtml" />
     <Content Include="Views\BooksCatalog\_EmprestimoLivros.cshtml" />
     <Content Include="Views\BooksCatalog\_EntregaLivros.cshtml" />
+    <Content Include="Views\User\_UserDelete.cshtml" />
+    <Content Include="Views\User\_UserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

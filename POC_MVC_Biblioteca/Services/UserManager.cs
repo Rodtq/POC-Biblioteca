@@ -77,7 +77,7 @@ namespace POC_MVC_Biblioteca.Services
             return updatedUser;
         }
 
-        public IEnumerable<User> GetAllUser()
+        public IEnumerable<User> GetAllUsers()
         {
             POC_Database db = new POC_Database();
             return db.Users;
