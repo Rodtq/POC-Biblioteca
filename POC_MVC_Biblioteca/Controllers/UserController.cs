@@ -16,7 +16,7 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             _um = new UserManager();
         }
-        
+
         // GET: Usuario
         public ActionResult Index()
         {
@@ -35,23 +35,23 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 UserList = um.GetAllUsers()
             };
-            return PartialView("_UserList",response);
+            return PartialView("_UserList", response);
         }
 
-        public ActionResult CreateUser(CreateUserViewModel user)
+        public ActionResult CreateUser(UserViewModel user)
         {
             User usuário = new User
             {
                 Id = user.Id,
                 IdSmart = user.IdSmart,
-                Name = user.Nome,
+                Name = user.Name,
                 eMail = user.Email,
-                AreaDepartament = user.AreaDepartamento,
-                Manager = user.Gerente,
-                Function = user.Funcao,
-                ExtensionLine = user.Ramal
+                AreaDepartament = user.AreaDepartament,
+                Manager = user.Manager,
+                Function = user.Funtion,
+                ExtensionLine = user.ExtensionLine
             };
-            
+
             _um.AddUser(usuário);
             return RedirectToAction("Index");
         }
@@ -61,7 +61,7 @@ namespace POC_MVC_Biblioteca.Controllers
             switch (partialViewName)
             {
                 case "_UserRegister":
-                    return PartialView(partialViewName, new CreateUserViewModel());
+                    return PartialView(partialViewName, new UserViewModel());
                 case "_UserList":
                     return RedirectToAction("GetAllUsers");
                 case "_UserEdit":
@@ -71,8 +71,26 @@ namespace POC_MVC_Biblioteca.Controllers
                 default:
                     return null;
             }
-
         }
 
+        public ActionResult EditUser(UserViewModel user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+            User usr = new User();
+            usr.AreaDepartament = user.AreaDepartament;
+            usr.eMail = user.Email;
+            usr.ExtensionLine = user.ExtensionLine;
+            usr.Function = user.Funtion;
+            usr.Id = usr.Id;
+            usr.IdSmart = user.IdSmart;
+            usr.Manager = user.Manager;
+            usr.Name = user.Name;
+            usr.Roles = null;
+            _um.UpdateUser(usr);
+            return PartialView("_UserEdit", user);
+        }
     }
 }
