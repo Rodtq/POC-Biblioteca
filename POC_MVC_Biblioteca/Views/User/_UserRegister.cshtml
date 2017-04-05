@@ -1,97 +1,77 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.UserViewModel
-
+<h3>Cadastro de Usuários</h3>
 <div id="cadastro-usuario-partial" class="cadastro-usuario-partial">
-
-    <div id="cadastro-usuario-partial-container" class="container-fluid">
-        <div id="BuscarLoginDiv" class="row">
-            <div class="col-lg-2">
-                @Html.Label("Buscar por Login:")
-            </div>
-            <div class="col-lg-10">
-                @Html.TextBox("SamAccountName")
-            </div>
+  <div id="cadastro-usuario-partial-container" class="container-fluid">
+    <div id="BuscarLoginDiv" class="row">
+      <div class="col-lg-2">
+        @Html.Label("Buscar por Login:")
+      </div>
+      <div class="col-lg-10">
+        @Html.TextBox("SamAccountName")
+      </div>
+    </div>
+    @using (@Html.BeginForm("CreateUser", "User"))
+    {
+        <div id="IdSmartDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Código/Id:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBox("IdSmart")
+          </div>
         </div>
-        @using (@Html.BeginForm("CreateUser", "User"))
-        {
-            <div id="IdSmartDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("Código/Id:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("IdSmart")
-                </div>
-            </div>
             <div id="NomeDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("Nome:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("Name")
-                </div>
+              <div class="col-lg-2">
+                @Html.Label("Nome:")
+              </div>
+              <div class="col-lg-10">
+                @Html.TextBox("Name")
+              </div>
             </div>
             <div id="EmailDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("E-Mail:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("Email")
-                </div>
+              <div class="col-lg-2">
+                @Html.Label("E-Mail:")
+              </div>
+              <div class="col-lg-10">
+                @Html.TextBox("Email")
+              </div>
             </div>
             <div id="AreaDepartamentoDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("Area/Departamento:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("AreaDepartament")
-                </div>
+              <div class="col-lg-2">
+                @Html.Label("Area/Departamento:")
+              </div>
+              <div class="col-lg-10">
+                @Html.TextBox("AreaDepartament")
+              </div>
             </div>
             <div id="FuncaoDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("Função:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("Function")
-                </div>
+              <div class="col-lg-2">
+                @Html.Label("Função:")
+              </div>
+              <div class="col-lg-10">
+                @Html.TextBox("Function")
+              </div>
             </div>
             <div id="RamalDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("Ramal:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("ExtensionLine")
-                </div>
+              <div class="col-lg-2">
+                @Html.Label("Ramal:")
+              </div>
+              <div class="col-lg-10">
+                @Html.TextBox("ExtensionLine")
+              </div>
             </div>
             <div id="GerenteDiv" class="row">
-                <div class="col-lg-2">
-                    @Html.Label("Gerente:")
-                </div>
-                <div class="col-lg-10">
-                    @Html.TextBox("Manager")
-                </div>
+              <div class="col-lg-2">
+                @Html.Label("Gerente:")
+              </div>
+              <div class="col-lg-10">
+                @Html.TextBox("Manager")
+              </div>
             </div>
             <input type="submit" value="Finalizar">
-        }
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+  </div>
+</div>
 
 
 

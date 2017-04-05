@@ -1,9 +1,10 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.CreateBookViewModel
 <script type="text/javascript">
-  $(function () { // will trigger when the document is ready
-    $('.datepicker').datepicker(); //Initialise any date pickers
-  });
+
   $(document).ready(function () {
+    $(function () { // will trigger when the document is ready
+      $('.datepicker').datepicker(); //Initialise any date pickers
+    });
     var form = $("#register-fmr");
     var htmlReplacementElement = $("#conteudoDireita");
     form.on("submit", function (e) {
@@ -21,7 +22,6 @@
 </script>
 <div id="cadastro-Livros-partial" class="cadastro-Livros-partial">
   <h3>Cadastro de livros</h3>
-
   @using (@Html.BeginForm("CreateBook", "BooksCatalog", FormMethod.Post, new { id = "register-fmr" }))
   {
       <div id="cadastro-Livros-partial-container" class="container-fluid">
@@ -108,5 +108,4 @@
         <input type="submit" value="Finalizar">
       </div>
   }
-
 </div>
