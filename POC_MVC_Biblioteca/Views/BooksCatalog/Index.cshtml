@@ -101,7 +101,7 @@
       <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
         @{
 
-            Html.RenderPartial("_ConsultaLivros", Model.ConsultTab);
+            Html.RenderAction("GetBooks", "BooksCatalog");
         }
       </div>
     </div>

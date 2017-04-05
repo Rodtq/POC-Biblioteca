@@ -1,9 +1,9 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.AllUsersViewModel
 <h3>Lista de Usuários</h3>
-<div id="user-list" class="user-list">
+<div id="user-list">
   <div class="container">
     <div class="row">
-      <table class="table table-fixed table-striped">
+      <table class="table table-striped user-table">
         <thead>
           <tr>
             <th class="col-lg-3"><b>Nome</b></th>
@@ -14,7 +14,6 @@
           </tr>
         </thead>
         <tbody>
-
           @if (!Model.UserList.Any())
           {
               <tr>
@@ -25,7 +24,11 @@
           }
         </tbody>
       </table>
-      <table class="table table-fixed table-striped">
+    </div>
+  </div>
+  <div class="container">
+    <div class="row user-list">
+      <table class="table table-striped table-bordered">
         <tbody>
           @foreach (var item in Model.UserList)
             {
@@ -49,8 +52,6 @@
           }
         </tbody>
       </table>
-
     </div>
-
   </div>
 </div>
