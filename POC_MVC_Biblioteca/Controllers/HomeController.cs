@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace POC_MVC_Biblioteca.Controllers
 {
-    [Authorize(Roles = "Teste")]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
