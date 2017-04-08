@@ -11,10 +11,10 @@
     
     <div class="row">
       <ul class="nav navbar-nav">
-        <li><a data-navigation-partial="_UserList">Listar Usuários </a></li>
-        <li><a data-navigation-partial="_UserRegister">Cadastrar Usuarios</a></li>
-        <li><a data-navigation-partial="_UserEdit">Editar Usuarios</a></li>
-        <li><a data-navigation-partial="_UserDelete">Deletar Usuario</a></li>
+        <li><a data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserList" })">Listar Usuários </a></li>
+        <li><a data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserRegister" })">Cadastrar Usuarios</a></li>
+        <li><a data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserEdit" })">Editar Usuarios</a></li>
+        <li><a data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserDelete" })">Deletar Usuario</a></li>
       </ul>
     </div>
   </div>
@@ -31,10 +31,9 @@
   $(document).ready(function () {
     $("a").click(function (e) {
       var partialName = $(this).data('navigation-partial');
-      console.log($(this.target));
-      var partial = "";
       $.ajax({
-        url: "/User/UserNavigation?partialViewName=" + partialName + "",
+        method: "GET",
+        url: partialName,
         data: "",
         success: function (data) {
           $("#container-partials").html(data);

@@ -5,9 +5,9 @@
     $("a[data-navigation-partial]").click(function (e) {
       var partialName = $(this).data('navigation-partial');
       console.log($(this.target));
-      var partial = "";
       $.ajax({
-        url: "/BooksCatalog/BooksCatalogNavigation?partialViewName=" + partialName,
+        method: "GET",
+        url: partialName,
         data: "",
         success: function (data) {
           $("#conteudoDireita").html(data);
@@ -38,11 +38,11 @@
 
     <div id="navegacao_acervo" class="row acervo-navegacao">
       <ul class="nav nav-pills navbar-nav">
-        <li><a id="Consultas" data-navigation-partial="_ConsultaLivros">Consultar</a></li>
-        <li><a id="Cadastro" data-navigation-partial="_CadastroLivros">Cadastrar</a></li>
-        <li><a id="Reservas" data-navigation-partial="_ReservaLivros">Reservas</a></li>
-        <li><a id="LivrosEmprestados" data-navigation-partial="_EmprestimoLivros">Livros Emprestados</a></li>
-        <li><a id="EntregasLivros" data-navigation-partial="_EntregaLivros">Entregas</a></li>
+        <li><a id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
+        <li><a id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+        <li><a id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
+        <li><a id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
+        <li><a id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>
       </ul>
     </div>
 
