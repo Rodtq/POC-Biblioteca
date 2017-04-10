@@ -30,30 +30,32 @@ namespace POC_MVC_Biblioteca.Services
             }
         }
 
-        public IEnumerable<Book> GetBooks(BooksConsultViewModel filtros =null)
+        public IEnumerable<Book> GetBooks(BooksConsultViewModel filtros = null)
         {
-            IEnumerable<Book> result = null;
+            IEnumerable<Book> Result = new List<Book>();
+            IQueryable<Book> Query = null;
             using (POC_Database db = new POC_Database())
             {
-                result = db.BooksCatalog.ToList();
-                if (filtros.AuthorFilter !=null && !filtros.AuthorFilter.Equals(""))
+                Query = db.BooksCatalog;
+                if (!string.IsNullOrEmpty(filtros.AuthorFilter))
                 {
-                    result = result.Where(l => l.Author.ToLowerInvariant().Contains(filtros.AuthorFilter.ToLowerInvariant()));
+                    Query = Query.Where(l => l.Author.Contains(filtros.AuthorFilter));
                 }
-                if (filtros.CategroryFilter != null && !filtros.CategroryFilter.Equals(""))
+                if (!string.IsNullOrEmpty(filtros.CategroryFilter))
                 {
-                    result = result.Where(l => l.Category.ToLowerInvariant().Contains(filtros.CategroryFilter.ToLowerInvariant()));
+                    Query = Query.Where(l => l.Category.Contains(filtros.CategroryFilter));
                 }
-                if (filtros.EditorFilter != null && !filtros.EditorFilter.Equals(""))
+                if (!string.IsNullOrEmpty(filtros.EditorFilter))
                 {
-                    result = result.Where(l => l.Editor.ToLowerInvariant().Contains(filtros.EditorFilter.ToLowerInvariant()));
+                    Query = Query.Where(l => l.Editor.Contains(filtros.EditorFilter));
                 }
-                if (filtros.TitleFilter != null && !filtros.TitleFilter.Equals(""))
+                if (!string.IsNullOrEmpty(filtros.TitleFilter))
                 {
-                    result = result.Where(l => l.Title.ToLowerInvariant().Contains(filtros.TitleFilter.ToLowerInvariant()));
+                    Query = Query.Where(l => l.Title.Contains(filtros.TitleFilter));
                 }
+                Result = Query.ToList();
             }
-            return result;
+            return Result;
         }
     }
 }

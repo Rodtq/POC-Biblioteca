@@ -1,41 +1,7 @@
-﻿@model POC_MVC_Biblioteca.ViewModels.BooksCatalogViewModel
-@Scripts.Render("~/bundles/jquery")
-<script type="text/javascript">
-  $(document).ready(function () {
-    $("a[data-navigation-partial]").click(function (e) {
-      var partialName = $(this).data('navigation-partial');
-      console.log($(this.target));
-      $.ajax({
-        method: "GET",
-        url: partialName,
-        data: "",
-        success: function (data) {
-          $("#conteudoDireita").html(data);
-        }
-      });
-    });
-
-    $("[name='LoginViewModel']").on("submit", function (e) {
-      e.preventDefault();
-      var frmUrl = $(this).attr("Action");
-      var frmData = $(this).serialize();
-      $.ajax({
-        method: "POST",
-        url: frmUrl,
-        data: frmData,
-        success: function (data) {
-          alert("Logado!");
-        }
-      });
-    });
-
-
-  });
-</script>
+﻿@Scripts.Render("~/bundles/jquery")
 <section id="acervo">
   <h3>Acervo</h3>
   <div id="container" class="container-fluid">
-
     <div id="navegacao_acervo" class="row acervo-navegacao">
       <ul class="nav nav-pills navbar-nav">
         <li><a id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
@@ -45,11 +11,8 @@
         <li><a id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>
       </ul>
     </div>
-
     <div id="separador" class="row acervo-separador">
-
       <div id="menuLateralEsquerdo" class="col-lg-3 acervo-menu-esquerda">
-
         <div id="reservaLocacao" class="container acervo-reserva-locacao">
           <div id="tituloLocacao" class="row">
             <label id="lblTituloLocacao">Reserva de locação</label>
@@ -60,7 +23,6 @@
                 @Html.AntiForgeryToken()
                 <input type="text" title="Login" name="UserName" />
                 <input type="text" title="Password" name="Password" />
-
                 <div>
                   <input type="submit" value="Sign In" id="login">
                   @Html.ActionLink("Sign up", "Index", "User")
@@ -71,7 +33,6 @@
             </div>
           </div>
         </div>
-
         <div id="categorias" class="container acervo-categorias">
           <div id="tituloCategorias" class="row">
             <label>Categorias</label>
@@ -100,10 +61,14 @@
       </div>
       <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
         @{
-
             Html.RenderAction("GetBooks", "BooksCatalog");
         }
       </div>
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $(document).ready(function () {
+    Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));
+  });
+</script>

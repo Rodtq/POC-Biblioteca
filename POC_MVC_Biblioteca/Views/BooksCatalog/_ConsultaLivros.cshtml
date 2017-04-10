@@ -1,7 +1,7 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksConsultViewModel
 <div id="consulta-Livros-partial" class="book-partial">
   <h3>Consulta de livros</h3>
-  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooksfrm" }))
+  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm" }))
   {
       <div id="consulta-filtros" class="book-filter">
         <div>
@@ -39,11 +39,10 @@
           {
               <tr>
                 <td>
-                  <p>Nao existem Livros cadastrados</p>
+                  <label>Nao existem Livros cadastrados</label>
                 </td>
               </tr>
           }
-
           @foreach (var item in Model.BooksList)
           {
               <tr>
@@ -60,7 +59,7 @@
                   <label>@item.Category</label>
                 </td>
                 <td class="col-lg-2">
-                  <label>@item.BookYear</label>
+                  <label>@item.BookYear.ToShortDateString()</label>
                 </td>
               </tr>
           }
@@ -69,23 +68,10 @@
     </div>
   </div>
 
-
 </div>
 <script type="text/javascript">
-  var form = $("#QueryBooksfrm");
-  var htmlReplacementElement = $("#conteudoDireita");
-  form.on("submit", function (e) {
-    e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: form.attr('action'),
-      data: form.serialize(), // serializes the form's elements.
-      success: function (data) {
-        htmlReplacementElement.html(data);
-      }
-    });
+  $(document).ready(function () {
+    GenericPostHandler($("#QueryBooks-frm"), $("#conteudoDireita"));
   });
-
 </script>
-
 
