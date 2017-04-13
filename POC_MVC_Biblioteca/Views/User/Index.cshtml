@@ -6,9 +6,8 @@
   <div>
     <h2>Clientes</h2>
   </div>
-
   <div id="cliente-navegacao" class="container-fluid">
-    
+
     <div class="row">
       <ul class="nav navbar-nav">
         <li><a data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserList" })">Listar Usuários </a></li>
@@ -18,27 +17,17 @@
       </ul>
     </div>
   </div>
-
   <div id="container-partials">
     @{
         Html.RenderAction("GetAllUsers", "User");
     }
   </div>
 </section>
-
 @Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
   $(document).ready(function () {
-    $("a").click(function (e) {
-      var partialName = $(this).data('navigation-partial');
-      $.ajax({
-        method: "GET",
-        url: partialName,
-        data: "",
-        success: function (data) {
-          $("#container-partials").html(data);
-        }
-      });
-    });
+    Navigation($("a[data-navigation-partial]"), $("#container-partials"));
   });
 </script>
+
+

@@ -28,8 +28,8 @@ textarea {
 }
 
 
-tbody td{
-    font-size:10px
+tbody td {
+    font-size: 10px;
 }
 
 
@@ -99,12 +99,18 @@ tbody td{
 .book-table {
     margin-bottom: 0px;
     border-spacing: 0px;
+    width: 100%;
 }
+
 .books-list {
     height: 400px;
     overflow-y: scroll;
-    margin-left:0px;
-    margin-right:0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.book-filter {
+    padding-bottom:10px;
 }
 
 /*======================================================================================*/
@@ -138,8 +144,8 @@ tbody td{
     margin-bottom: 0px;
     border-spacing: 0px;
 }
+
 .user-list {
     height: 400px;
     overflow-y: scroll;
 }
-

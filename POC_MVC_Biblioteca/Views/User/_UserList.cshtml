@@ -1,5 +1,23 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.AllUsersViewModel
 <h3>Lista de Usuários</h3>
+
+@*@using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm" }))
+{
+    <div id="consulta-filtros" class="book-filter">
+      <div>
+        <label>Filtros:</label>
+      </div>
+      <label>Titulo:</label>
+      @Html.TextBoxFor(model => model.TitleFilter)
+      <label>Autor:</label>
+      @Html.TextBoxFor(model => model.AuthorFilter)
+      <label>Editora:</label>
+      @Html.TextBoxFor(model => model.EditorFilter)
+      @* @Html.DropDownListFor(model => model.FiltroCategoria, Model.ListaCategorias, "-- Selecione --");*@
+      <input type="submit" value="consultar" />
+    </div>
+}*@
+
 <div id="user-list">
   <div class="container">
     <div class="row">

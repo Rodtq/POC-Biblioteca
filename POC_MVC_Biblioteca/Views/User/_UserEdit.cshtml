@@ -1,35 +1,5 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.UserViewModel
-<script type="text/javascript">
-  $(function () { // will trigger when the document is ready
-    $('.datepicker').datepicker(); //Initialise any date pickers
-  });
-  $(document).ready(function () {
-    var form = $("#editUser-fmr");
-    var htmlReplacementElement = $("#container-partials");
-    form.on("submit", function (e) {
-      e.preventDefault();
-      $.ajax({
-        type: "POST",
-        url: form.attr('action'),
-        data: form.serialize(), // serializes the form's elements.
-        success: function (data) {
-          htmlReplacementElement.html(data);
-        }
-      });
-    });
-  });
-</script>
-< id="edit-user-partial" class="edit-user-partial">
-
 <div id="edit-user-partial-container" class="container-fluid">
-  @*<div id="EditFindUser" class="row">
-      <div class="col-lg-2">
-        @Html.Label("Buscar por Login:")
-      </div>
-      <div class="col-lg-10">
-        @Html.TextBox("SamAccountName")
-      </div>
-    </div>*@
   @using (@Html.BeginForm("EditUser", "User"))
   {
       <div id="IdSmartDiv" class="row">
@@ -45,7 +15,7 @@
           @Html.Label("Nome:")
         </div>
         <div class="col-lg-10">
-          @Html.TextBoxFor(m=>m.Name)
+          @Html.TextBoxFor(m => m.Name)
         </div>
       </div>
       <div id="EmailDiv" class="row">
@@ -56,44 +26,46 @@
           @Html.TextBoxFor(m => m.Email)
         </div>
       </div>
-        <div id="AreaDepartamentoDiv" class="row">
-          <div class="col-lg-2">
-            @Html.Label("Area/Departamento:")
-          </div>
-          <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.AreaDepartament)
-          </div>
+      <div id="AreaDepartamentoDiv" class="row">
+        <div class="col-lg-2">
+          @Html.Label("Area/Departamento:")
         </div>
-            <div id="FuncaoDiv" class="row">
-              <div class="col-lg-2">
-                @Html.Label("Função:")
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBoxFor(m => m.Funtion)
-              </div>
-            </div>
-            <div id="RamalDiv" class="row">
-              <div class="col-lg-2">
-                @Html.Label("Ramal:")
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBoxFor(m => m.ExtensionLine)
-              </div>
-            </div>
-            <div id="GerenteDiv" class="row">
-              <div class="col-lg-2">
-                @Html.Label("Gerente:")
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBoxFor(m => m.Manager)
-              </div>
-            </div>
-            <input type="submit" value="Finalizar">
+        <div class="col-lg-10">
+          @Html.TextBoxFor(m => m.AreaDepartament)
+        </div>
+      </div>
+      <div id="FuncaoDiv" class="row">
+        <div class="col-lg-2">
+          @Html.Label("Função:")
+        </div>
+        <div class="col-lg-10">
+          @Html.TextBoxFor(m => m.Funtion)
+        </div>
+      </div>
+      <div id="RamalDiv" class="row">
+        <div class="col-lg-2">
+          @Html.Label("Ramal:")
+        </div>
+        <div class="col-lg-10">
+          @Html.TextBoxFor(m => m.ExtensionLine)
+        </div>
+      </div>
+      <div id="GerenteDiv" class="row">
+        <div class="col-lg-2">
+          @Html.Label("Gerente:")
+        </div>
+        <div class="col-lg-10">
+          @Html.TextBoxFor(m => m.Manager)
+        </div>
+      </div>
+      <input type="submit" value="Finalizar">
   }
 </div>
-
-
-
+<script type="text/javascript">
+  $(document).ready(function () {
+    GenericPostHandler($("#editUser-fmr"), $("#container-partials"))
+  });
+</script>
 
 
 

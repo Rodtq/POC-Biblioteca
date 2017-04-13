@@ -20,22 +20,7 @@ namespace POC_MVC_Biblioteca.Controllers
         // GET: Acervo
         public ActionResult Index()
         {
-            BooksCatalogViewModel model = new BooksCatalogViewModel();
-            model.RegisterTab = new CreateBookViewModel();
-            IEnumerable<Book> livros = _as.GetBooks(new BooksConsultViewModel());
-            BooksConsultViewModel result = new BooksConsultViewModel();
-            IList<Book> parseList = new List<Book>();
-            if (result.BooksList == null)
-            {
-                result.BooksList = new List<Book>();
-            }
-            livros.ToList().ForEach(livro =>
-            {
-                parseList.Add(livro);
-            });
-            result.BooksList = parseList;
-            model.ConsultTab = result;
-            return View(model);
+            return View();
         }
 
         public ActionResult BooksCatalogNavigation(string partialViewName)
@@ -83,7 +68,8 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult GetBooks(BooksConsultViewModel filtros)
         {
-            IEnumerable<Book> livros = _as.GetBooks(filtros);
+            var teste = new BooksCatalogManager();
+            IEnumerable<Book> livros = teste.GetBooks(filtros);
             BooksConsultViewModel result = new BooksConsultViewModel();
             IList<Book> parseList = new List<Book>();
             if (result.BooksList == null)

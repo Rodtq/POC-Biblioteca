@@ -10,38 +10,38 @@
         @Html.TextBox("SamAccountName")
       </div>
     </div>
-    @using (@Html.BeginForm("CreateUser", "User"))
+    @using (@Html.BeginForm("CreateUser", "User", FormMethod.Post, new { id = "userRegister-fmr" }))
     {
         <div id="IdSmartDiv" class="row">
           <div class="col-lg-2">
             @Html.Label("Código/Id:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBox("IdSmart")
+            @Html.TextBoxFor(m => m.IdSmart, new { Value = "" })
           </div>
         </div>
-            <div id="NomeDiv" class="row">
-              <div class="col-lg-2">
-                @Html.Label("Nome:")
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBox("Name")
-              </div>
-            </div>
-            <div id="EmailDiv" class="row">
-              <div class="col-lg-2">
-                @Html.Label("E-Mail:")
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBox("Email")
-              </div>
-            </div>
+        <div id="NomeDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Nome:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.Name, new { Value = "" })
+          </div>
+        </div>
+        <div id="EmailDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("E-Mail:")
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.Email, new { Value = "" })
+          </div>
+        </div>
             <div id="AreaDepartamentoDiv" class="row">
               <div class="col-lg-2">
                 @Html.Label("Area/Departamento:")
               </div>
               <div class="col-lg-10">
-                @Html.TextBox("AreaDepartament")
+                @Html.TextBoxFor(m => m.AreaDepartament, new { Value = "" })
               </div>
             </div>
             <div id="FuncaoDiv" class="row">
@@ -49,7 +49,7 @@
                 @Html.Label("Função:")
               </div>
               <div class="col-lg-10">
-                @Html.TextBox("Function")
+                @Html.TextBoxFor(m => m.Funtion, new { Value = "" })
               </div>
             </div>
             <div id="RamalDiv" class="row">
@@ -57,7 +57,7 @@
                 @Html.Label("Ramal:")
               </div>
               <div class="col-lg-10">
-                @Html.TextBox("ExtensionLine")
+                @Html.TextBoxFor(m => m.ExtensionLine, new { Value = "" })
               </div>
             </div>
             <div id="GerenteDiv" class="row">
@@ -65,23 +65,18 @@
                 @Html.Label("Gerente:")
               </div>
               <div class="col-lg-10">
-                @Html.TextBox("Manager")
+                @Html.TextBoxFor(m => m.Manager, new { Value = "" })
               </div>
             </div>
             <input type="submit" value="Finalizar">
     }
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
+<script type="text/javascript">
+  $(document).ready(function () {
+    GenericPostHandler($("#userRegister-fmr"), $("#container-partials"));
+  });
+</script>
 
 
 

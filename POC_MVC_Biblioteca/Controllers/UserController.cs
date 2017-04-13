@@ -20,11 +20,6 @@ namespace POC_MVC_Biblioteca.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            UserManager um = new UserManager();
-            AllUsersViewModel response = new AllUsersViewModel
-            {
-                UserList = um.GetAllUsers()
-            };
             return View();
         }
 
@@ -53,7 +48,7 @@ namespace POC_MVC_Biblioteca.Controllers
             };
 
             _um.AddUser(usuário);
-            return RedirectToAction("Index");
+            return PartialView("_UserRegister", new UserViewModel());
         }
 
         public ActionResult UserNavigation(string partialViewName)
