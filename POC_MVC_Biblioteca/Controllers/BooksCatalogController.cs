@@ -18,6 +18,7 @@ namespace POC_MVC_Biblioteca.Controllers
         }
 
         // GET: Acervo
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -34,16 +35,15 @@ namespace POC_MVC_Biblioteca.Controllers
                 case "_ReservaLivros":
                     return PartialView(partialViewName);
                 case "_EmprestimoLivros":
-                    return PartialView(partialViewName);
+                    return PartialView(partialViewName); 
                 case "_EntregaLivros":
                     return PartialView(partialViewName);
                 default:
                     return null;
             }
-
         }
 
-
+        //[Authorize(Roles = "Administrator")]
         public ActionResult CreateBook(CreateBookViewModel livro)
         {
             Book catalogação = new Book()
