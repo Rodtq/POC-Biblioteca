@@ -22,7 +22,7 @@
             {
                 @Html.AntiForgeryToken()
                 <input type="text" title="Login" name="UserName" />
-                <input type="text" title="Password" name="Password" />
+                <input type="password" title="Password" name="Password" />
                 <div>
                   <input type="submit" value="Sign In" id="login">
                   @Html.ActionLink("Sign up", "Index", "User")

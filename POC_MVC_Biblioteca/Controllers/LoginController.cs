@@ -46,7 +46,7 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "BooksCatalog");
         }
         [ValidateAntiForgeryToken]
         public virtual ActionResult Logoff()
