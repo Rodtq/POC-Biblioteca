@@ -308,13 +308,14 @@ table {
 html {
   font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-align:center;
 }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
+  color: darkolivegreen;
   background-color: #ffffff;
 }
 
@@ -401,7 +402,7 @@ hr {
 }
 
 p {
-  margin: 0 0 10px;
+  margin: 0 0 50px 0;
 }
 
 .lead {
@@ -500,6 +501,7 @@ h2,
 h3 {
   margin-top: 20px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 h4,
@@ -1999,17 +2001,17 @@ textarea.input-lg {
 
 .btn {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 6px 20px;
   margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 16px;
+  font-weight: bold;
   line-height: 1.428571429;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 60px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -2049,9 +2051,9 @@ fieldset[disabled] .btn {
 }
 
 .btn-default {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
+  color: #fff;
+  background-color: steelblue;
+  border-color: #428bca;
 }
 
 .btn-default:hover,
@@ -2059,9 +2061,9 @@ fieldset[disabled] .btn {
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #333333;
-  background-color: #ebebeb;
-  border-color: #adadad;
+  color: #fff;
+  background-color:dodgerblue;
+  border-color: #285e8e;
 }
 
 .btn-default:active,
@@ -2092,7 +2094,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary {
   color: #ffffff;
   background-color: #428bca;
-  border-color: #357ebd;
+  border-color: dodgerblue;
 }
 
 .btn-primary:hover,
@@ -2101,7 +2103,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #3276b1;
+  background-color: dodgerblue;
   border-color: #285e8e;
 }
 
@@ -2333,10 +2335,10 @@ fieldset[disabled] .btn-link:focus {
 }
 
 .btn-lg {
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 6px;
+  padding: 10px 140px;
+  font-size: 28px;
+  line-height: 1.70;
+  border-radius: 60px;
 }
 
 .btn-sm,
@@ -4961,6 +4963,9 @@ a.list-group-item.active > .badge,
   }
   .jumbotron h1 {
     font-size: 63px;
+    text-align:center;
+    color:dodgerblue;
+    text-shadow:10px 8px 8px #333;
   }
 }
 
