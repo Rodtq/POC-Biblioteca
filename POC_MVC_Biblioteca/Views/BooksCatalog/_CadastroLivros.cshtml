@@ -9,7 +9,7 @@
             @Html.Label("ISBN:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.ISBN, new { Value = "" })
+            @Html.TextBoxFor(m => m.ISBN, new { Value = "", type = "number", min = "0" })
           </div>
         </div>
         <div id="TituloDaObraDiv" class="row">
@@ -57,7 +57,7 @@
             @Html.Label("Quantidade:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Quantity, new { @Value = "" })
+            @Html.TextBoxFor(m => m.Quantity, new { @Value = "", type = "number", min = "0" })
           </div>
         </div>
         <div id="DescricaoDiv" class="row">

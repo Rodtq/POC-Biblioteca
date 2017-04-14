@@ -1,23 +1,20 @@
-﻿@model POC_MVC_Biblioteca.ViewModels.AllUsersViewModel
+﻿@model POC_MVC_Biblioteca.ViewModels.UserViewModel
 <h3>Lista de Usuários</h3>
-
-@*@using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm" }))
+@using (Html.BeginForm("GetUsers", "User", FormMethod.Post, new { id = "QueryUsers-frm" }))
 {
-    <div id="consulta-filtros" class="book-filter">
+    <div id="consulta-filtros" class="user-filter">
       <div>
         <label>Filtros:</label>
       </div>
-      <label>Titulo:</label>
-      @Html.TextBoxFor(model => model.TitleFilter)
-      <label>Autor:</label>
-      @Html.TextBoxFor(model => model.AuthorFilter)
-      <label>Editora:</label>
-      @Html.TextBoxFor(model => model.EditorFilter)
-      @* @Html.DropDownListFor(model => model.FiltroCategoria, Model.ListaCategorias, "-- Selecione --");
+      <label>Nome:</label>
+      @Html.TextBoxFor(model => model.Name)
+      <label>IdSmart:</label>
+      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0" })
+      <label>Departamento:</label>
+      @Html.TextBoxFor(model => model.AreaDepartament)
       <input type="submit" value="consultar" />
     </div>
-}*@
-
+}
 <div id="user-list">
   <div class="container">
     <div class="row">
@@ -61,7 +58,7 @@
                   <label>@item.ExtensionLine</label>
                 </td>
                 <td class="col-lg-3">
-                  <label>@item.eMail</label>
+                  <label>@item.Email</label>
                 </td>
                 <td class="col-lg-3">
                   <label>@item.AreaDepartament</label>
@@ -73,3 +70,9 @@
     </div>
   </div>
 </div>
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+  $(document).ready(function () {
+    GenericPostHandler($("#QueryUsers-frm"), $("#container-partials"));
+  });
+</script>

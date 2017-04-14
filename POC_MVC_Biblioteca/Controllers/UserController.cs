@@ -23,12 +23,12 @@ namespace POC_MVC_Biblioteca.Controllers
             return View();
         }
 
-        public ActionResult GetAllUsers()
+        public ActionResult GetUsers(UserViewModel filtros)
         {
-            UserManager um = new UserManager();
-            AllUsersViewModel response = new AllUsersViewModel
+
+            UserViewModel response = new UserViewModel
             {
-                UserList = um.GetAllUsers()
+                UserList = _um.GetAllUsers(filtros).UserList
             };
             return PartialView("_UserList", response);
         }
@@ -58,7 +58,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 case "_UserRegister":
                     return PartialView(partialViewName, new UserViewModel());
                 case "_UserList":
-                    return RedirectToAction("GetAllUsers");
+                    return RedirectToAction("GetUsers");
                 case "_UserEdit":
                     return PartialView(partialViewName);
                 case "_UserDelete":

@@ -77,10 +77,38 @@ namespace POC_MVC_Biblioteca.Services
             return updatedUser;
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public UserViewModel GetAllUsers(UserViewModel filtros)
         {
-            POC_Database db = new POC_Database();
-            return db.Users;
+            UserViewModel Result = new UserViewModel();
+            IQueryable<User> Query = null;
+            using (POC_Database db = new POC_Database())
+            {
+                Query = db.Users;
+                if (filtros.IdSmart > 0)
+                {
+                    Query = Query.Where(l => l.IdSmart == filtros.IdSmart);
+                }
+                if (!string.IsNullOrEmpty(filtros.Name))
+                {
+                    Query = Query.Where(l => l.Name.Contains(filtros.Name));
+                }
+                if (!string.IsNullOrEmpty(filtros.AreaDepartament))
+                {
+                    Query = Query.Where(l => l.AreaDepartament.Contains(filtros.AreaDepartament));
+                }
+                Result.UserList = Query.ToList().Select(u => new UserViewModel()
+                {
+                    Email = u.eMail,
+                    AreaDepartament = u.AreaDepartament,
+                    ExtensionLine = u.ExtensionLine,
+                    Funtion = u.Function,
+                    Id = u.Id,
+                    IdSmart = u.IdSmart,
+                    Manager = u.Manager,
+                    Name = u.Manager
+                });
+            }
+            return Result;
         }
 
 

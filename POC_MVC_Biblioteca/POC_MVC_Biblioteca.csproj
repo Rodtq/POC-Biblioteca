@@ -183,7 +183,6 @@
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\UserManager.cs" />
     <Compile Include="ViewModels\BooksCatalogViewModel.cs" />
-    <Compile Include="ViewModels\AllUsersViewModel.cs" />
     <Compile Include="ViewModels\BooksConsultViewModel.cs" />
     <Compile Include="ViewModels\CreateBookViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

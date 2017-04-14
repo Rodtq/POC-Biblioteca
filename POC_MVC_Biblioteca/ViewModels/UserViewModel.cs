@@ -7,6 +7,7 @@ namespace POC_MVC_Biblioteca.ViewModels
 {
     public class UserViewModel
     {
+        public IEnumerable<UserViewModel> UserList { get; set; }
         public int Id { get; set; }
         public int IdSmart { get; set; }
         public string Name { get; set; }
