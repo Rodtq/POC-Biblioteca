@@ -28,7 +28,7 @@ namespace POC_MVC_Biblioteca.Controllers
 
             UserViewModel response = new UserViewModel
             {
-                UserList = _um.GetAllUsers(filtros).UserList
+                UserList = _um.GetUsers(filtros).UserList
             };
             return PartialView("_UserList", response);
         }
@@ -44,11 +44,15 @@ namespace POC_MVC_Biblioteca.Controllers
                 AreaDepartament = user.AreaDepartament,
                 Manager = user.Manager,
                 Function = user.Funtion,
-                ExtensionLine = user.ExtensionLine
+                ExtensionLine = user.ExtensionLine,
+                Roles = SetRoles(user.RolesId),
             };
-
+            UserViewModel result = new UserViewModel()
+            {
+                Roles = GetRoles(),
+            };
             _um.AddUser(usuário);
-            return PartialView("_UserRegister", new UserViewModel());
+            return PartialView("_UserRegister", result);
         }
 
         public ActionResult UserNavigation(string partialViewName)
@@ -56,6 +60,11 @@ namespace POC_MVC_Biblioteca.Controllers
             switch (partialViewName)
             {
                 case "_UserRegister":
+                    MultiSelectList rolesItem = GetRoles();
+                    if (rolesItem.Any())
+                    {
+                        return PartialView(partialViewName, new UserViewModel() { Roles = rolesItem });
+                    }
                     return PartialView(partialViewName, new UserViewModel());
                 case "_UserList":
                     return RedirectToAction("GetUsers");
@@ -86,6 +95,23 @@ namespace POC_MVC_Biblioteca.Controllers
             usr.Roles = null;
             _um.UpdateUser(usr);
             return PartialView("_UserEdit", user);
+        }
+
+
+        private HashSet<Role> SetRoles(int[] RoleIds)
+        {
+
+            HashSet<Role> roles = new HashSet<Role>((from int rId in RoleIds
+                                                     join Role role in _um.GetRoles()
+                                                     on rId equals role.Id
+                                                     select role));
+            return roles;
+        }
+
+        private MultiSelectList GetRoles()
+        {
+            MultiSelectList result = new MultiSelectList(_um.GetRoles(), "Id", "Name");
+            return result;
         }
     }
 }

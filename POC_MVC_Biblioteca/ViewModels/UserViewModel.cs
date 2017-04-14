@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace POC_MVC_Biblioteca.ViewModels
 {
@@ -16,5 +17,12 @@ namespace POC_MVC_Biblioteca.ViewModels
         public string Manager { get; set; }
         public string Funtion { get; set; }
         public string ExtensionLine { get; set; }
+        //Roles
+        public int[] RolesId { get; set; }
+        public MultiSelectList Roles { get; set; }
+
     }
+
+
+
 }

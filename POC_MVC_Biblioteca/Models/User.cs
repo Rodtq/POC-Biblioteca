@@ -14,6 +14,7 @@ namespace POC_MVC_Biblioteca.Models
             Roles = new HashSet<Role>();
         }
         public int Id { get; set; }
+        public string SamAccountName { get; set; }
         public int IdSmart { get; set; }
         public string Name { get; set; }
         public string eMail { get; set; }

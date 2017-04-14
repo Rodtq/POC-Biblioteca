@@ -17,16 +17,25 @@ namespace POC_MVC_Biblioteca.Services
         {
             using (POC_Database db = new POC_Database())
             {
-                DbEntityEntry dbEntityEntry = db.Entry(user);
-                if (dbEntityEntry.State != EntityState.Detached)
+                try
                 {
-                    dbEntityEntry.State = EntityState.Added;
+                    DbEntityEntry dbEntityEntry = db.Entry(user);
+                    if (dbEntityEntry.State != EntityState.Detached)
+                    {
+                        dbEntityEntry.State = EntityState.Added;
+                    }
+                    else
+                    {
+                        db.Users.Attach(user);
+                        db.Users.Add(user);
+                    }
+                    db.SaveChanges();
                 }
-                else
+                catch (Exception ex)
                 {
-                    db.Users.Add(user);
+                    throw ex;
+
                 }
-                db.SaveChanges();
             }
         }
 
@@ -77,7 +86,7 @@ namespace POC_MVC_Biblioteca.Services
             return updatedUser;
         }
 
-        public UserViewModel GetAllUsers(UserViewModel filtros)
+        public UserViewModel GetUsers(UserViewModel filtros)
         {
             UserViewModel Result = new UserViewModel();
             IQueryable<User> Query = null;
@@ -132,5 +141,30 @@ namespace POC_MVC_Biblioteca.Services
             }
             return usuario;
         }
+
+
+        public IEnumerable<Role> GetPrincipalRoles(string SamAccountName)
+        {
+            IEnumerable<Role> result = new List<Role>();
+            using (POC_Database db = new POC_Database())
+            {
+                User user = db.Users.SingleOrDefault(u => u.SamAccountName == SamAccountName);
+                result = user.Roles;
+            }
+            return result;
+        }
+
+
+        public IEnumerable<Role> GetRoles()
+        {
+            IEnumerable<Role> result = new List<Role>();
+            using (POC_Database db = new POC_Database())
+            {
+                IQueryable<Role> roles = db.Roles;
+                result = roles.ToList();
+            }
+            return result;
+        }
+
     }
 }

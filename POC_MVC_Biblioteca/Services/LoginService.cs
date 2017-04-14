@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using POC_MVC_Biblioteca.Models;
 
 namespace POC_MVC_Biblioteca.Services
 {
@@ -91,7 +92,13 @@ namespace POC_MVC_Biblioteca.Services
             identity.AddClaim(new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "Active Directory"));
             identity.AddClaim(new Claim(ClaimTypes.Name, userPrincipal.SamAccountName));
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userPrincipal.SamAccountName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "Teste"));
+
+            UserManager um = new UserManager();
+            IEnumerable<Role> roles = um.GetPrincipalRoles(userPrincipal.SamAccountName);
+            roles.ToList().ForEach(r => {
+                identity.AddClaim(new Claim(ClaimTypes.Role, r.Name));
+            });
+            
             if (!String.IsNullOrEmpty(userPrincipal.EmailAddress))
             {
                 identity.AddClaim(new Claim(ClaimTypes.Email, userPrincipal.EmailAddress));

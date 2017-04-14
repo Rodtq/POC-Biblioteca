@@ -68,6 +68,15 @@
                 @Html.TextBoxFor(m => m.Manager, new { Value = "" })
               </div>
             </div>
+            <div id="Role" class="row">
+              <div class="col-lg-2">
+                @Html.Label("Perfil:")
+              </div>
+              <div class="col-lg-10">
+                @Html.ListBoxFor(m => m.RolesId, Model.Roles)
+              </div>
+            </div>
+
             <input type="submit" value="Finalizar">
     }
   </div>
