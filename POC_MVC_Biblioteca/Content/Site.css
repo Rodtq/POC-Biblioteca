@@ -85,15 +85,15 @@ tbody td {
     text-align: center;
 }
 
-.logo{
+.logo-small{
     float:left;
     padding-top:8px;
     padding-right:20px;
     margin-left:20px;
 }
 
-.navigation{
-
+.logo-large{
+    padding-bottom:30px;
 }
 
 
