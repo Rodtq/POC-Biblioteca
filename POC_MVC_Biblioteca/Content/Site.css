@@ -46,7 +46,7 @@ tbody td {
 /*======================================================================================*/
 /*======================================================================================*/
 .acervo-separador {
-    border: solid 1px black;
+    border: solid 1px lightgray;
     margin-right: 15px;
 }
 
@@ -59,20 +59,20 @@ tbody td {
 }
 
 .acervo-reserva-locacao {
-    border-right: solid 1px black;
-    border-bottom: solid 1px black;
+    border-right: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
     padding: 25px;
 }
 
 .acervo-navegacao {
-    border: solid 1px black;
+    border: solid 1px lightgray;
     margin-right: 15px;
     margin-bottom: 5px;
     padding: 10px;
 }
 
 .acervo-categorias {
-    border-right: solid 1px black;
+    border-right: solid 1px lightgray;
     padding: 25px;
 }
 
@@ -85,15 +85,15 @@ tbody td {
     text-align: center;
 }
 
-.logo-small{
-    float:left;
-    padding-top:8px;
-    padding-right:20px;
-    margin-left:20px;
+.logo-small {
+    float: left;
+    padding-top: 8px;
+    padding-right: 20px;
+    margin-left: 20px;
 }
 
-.logo-large{
-    padding-bottom:30px;
+.logo-large {
+    padding-bottom: 30px;
 }
 
 
@@ -181,11 +181,14 @@ tbody td {
 .user-list {
     height: 400px;
     overflow-y: scroll;
+    border:solid 1px lightgray;
 }
 
 
 .user-filter {
     padding-bottom: 10px;
+    border: solid 1px lightgray;
+    margin-bottom:10px;
 }
 
     .user-filter div label {
