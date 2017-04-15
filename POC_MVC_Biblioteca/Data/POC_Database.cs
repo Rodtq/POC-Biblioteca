@@ -13,12 +13,14 @@ namespace POC_MVC_Biblioteca.Data
         public POC_Database(string databaseName = "POCDatabase")
             : base(databaseName)
         {
-            
+
         }
         private DbSet<User> _users;
-        private DbSet<Book> _booksCatalog;
+        private DbSet<Book> _books;
         private DbSet<Role> _roles;
-        private DbSet<Loan> _rents;
+        private DbSet<Loan> _loan;
+        private DbSet<BookCategory> _bookCategory;
+        private DbSet<Reserve> _reserve;
 
         public DbSet<User> Users
         {
@@ -33,16 +35,16 @@ namespace POC_MVC_Biblioteca.Data
             }
         }
 
-        public DbSet<Book> BooksCatalog
+        public DbSet<Book> Books
         {
             get
             {
-                return _booksCatalog;
+                return _books;
             }
 
             set
             {
-                _booksCatalog = value;
+                _books = value;
             }
         }
 
@@ -59,16 +61,40 @@ namespace POC_MVC_Biblioteca.Data
             }
         }
 
-        public DbSet<Loan> Rents
+        public DbSet<Loan> Loan
         {
             get
             {
-                return _rents;
+                return _loan;
             }
 
             set
             {
-                _rents = value;
+                _loan = value;
+            }
+        }
+        public DbSet<BookCategory> BookCategory
+        {
+            get
+            {
+                return _bookCategory;
+            }
+            set
+            {
+                _bookCategory = value;
+            }
+        }
+
+        public DbSet<Reserve> Reserve
+        {
+            get
+            {
+                return _reserve;
+            }
+
+            set
+            {
+                _reserve = value;
             }
         }
     }

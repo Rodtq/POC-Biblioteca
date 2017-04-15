@@ -24,7 +24,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 else
                 {
-                    db.BooksCatalog.Add(catalogacao);
+                    db.Books.Add(catalogacao);
                 }
                 db.SaveChanges();
             }
@@ -36,14 +36,14 @@ namespace POC_MVC_Biblioteca.Services
             IQueryable<Book> Query = null;
             using (POC_Database db = new POC_Database())
             {
-                Query = db.BooksCatalog;
+                Query = db.Books;
                 if (!string.IsNullOrEmpty(filtros.AuthorFilter))
                 {
                     Query = Query.Where(l => l.Author.Contains(filtros.AuthorFilter));
                 }
                 if (!string.IsNullOrEmpty(filtros.CategroryFilter))
                 {
-                    Query = Query.Where(l => l.Category.Contains(filtros.CategroryFilter));
+                    //Query = Query.Where(l => l.Category.Contains(filtros.CategroryFilter));
                 }
                 if (!string.IsNullOrEmpty(filtros.EditorFilter))
                 {

@@ -52,7 +52,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 Title = livro.Title,
                 Author = livro.Author,
                 BookYear = livro.BookYear,
-                Category = livro.Category,
+                //Category = livro.Category,
                 Editor = livro.Editor,
                 Quantity = livro.Quantity,
                 Description = livro.Description,
