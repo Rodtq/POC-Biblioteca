@@ -1,4 +1,4 @@
-﻿@Scripts.Render("~/bundles/jquery")
+﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <section id="acervo">
   <h3>Acervo</h3>
   <div id="container" class="container-fluid">
@@ -39,23 +39,10 @@
           </div>
           <div id="containerCategorias" class="row">
             <ul>
-              <li><a>Auto Ajuda</a></li>
-              <li><a>Ciência</a></li>
-              <li><a>Culinária/Gastronomia</a></li>
-              <li><a>Esoterismo</a></li>
-              <li><a>Ficção</a></li>
-              <li><a>Filosofia</a></li>
-              <li><a>História</a></li>
-              <li><a>Informática</a></li>  
-              <li><a>Literatura</a></li>
-              <li><a>Música</a></li>
-              <li><a>Negócios</a></li>
-              <li><a>Política</a></li>
-              <li><a>Psicologia</a></li>
-              <li><a>Quadrinhos</a></li>
-              <li><a>Religião</a></li>
-              <li><a>Romance</a></li>
-              <li><a>Saúde </a></li>
+              @foreach (var category in Model.CataegoriesList)
+              {
+                  <li><a>@category.Name</a></li>
+              }
             </ul>
           </div>
         </div>
@@ -68,6 +55,7 @@
     </div>
   </div>
 </section>
+@Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
   $(document).ready(function () {
     Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));

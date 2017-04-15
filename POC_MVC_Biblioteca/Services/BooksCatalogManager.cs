@@ -57,5 +57,16 @@ namespace POC_MVC_Biblioteca.Services
             }
             return Result;
         }
+
+        public IEnumerable<BookCategory> GetBookCategories()
+        {
+            IEnumerable<BookCategory> result = new List<BookCategory>();
+            using (POC_Database db = new POC_Database())
+            {
+                result = db.BookCategory.ToList();
+            }
+            return result;
+        }
+
     }
 }

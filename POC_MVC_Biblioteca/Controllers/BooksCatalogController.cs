@@ -21,7 +21,11 @@ namespace POC_MVC_Biblioteca.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View();
+            BooksViewModel model = new BooksViewModel()
+            {
+                CataegoriesList = _as.GetBookCategories()
+            };
+            return View(model);
         }
 
         public ActionResult BooksCatalogNavigation(string partialViewName)
@@ -68,9 +72,10 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult GetBooks(BooksConsultViewModel filtros)
         {
-            var teste = new BooksCatalogManager();
-            IEnumerable<Book> livros = teste.GetBooks(filtros);
+            
+            IEnumerable<Book> livros = _as.GetBooks(filtros);
             BooksConsultViewModel result = new BooksConsultViewModel();
+            result.CataegoriesList = _as.GetBookCategories();
             IList<Book> parseList = new List<Book>();
             if (result.BooksList == null)
             {

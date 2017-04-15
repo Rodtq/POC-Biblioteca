@@ -13,7 +13,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         public int Quantidade { get; set; }
         public string TitleFilter { get; set; }
         public string AuthorFilter { get; set; }
-        public IEnumerable<SelectListItem> CataegoriesList { get; set; }
+        public IEnumerable<BookCategory> CataegoriesList { get; set; }
         public string CategroryFilter { get; set; }
         public string EditorFilter { get; set; }
     }
