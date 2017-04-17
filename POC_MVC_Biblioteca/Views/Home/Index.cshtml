@@ -3,9 +3,9 @@
 }
 
 <div class="jumbotron home-alignment">
-  <img src="~/Content/images/smartlogo.png" class="logo-large"/>
-    <h1>BIBLIOTECA SMART  SMARTBOOKS</h1>
-    <p class="lead">Página em construção, para saber mais contacte o RH.</p>
+  <img src="~/Content/images/smartlogo.png" class="logo-large" />
+  <h1>BIBLIOTECA SMART  SMARTBOOKS</h1>
+  <p class="lead">Página em construção, para saber mais contacte o RH.</p>
 </div>
 
 <!--@{
@@ -16,25 +16,25 @@
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>-->
 <div class="home-alignment">
-    <p><a href="http://" class="btn btn-primary btn-lg home-alignment">Doe um livro </a></p>
+  <p>@Html.ActionLink("Doe um livro", "Contact", "Home", null, new { @class = "btn btn-primary btn-lg home-alignment"})</p>
 </div>
 
 <div class="row home-alignment">
-    <div class="col-md-4 home-alignment">
-        <h2 class="home-alignment">SMARTBOOKS</h2>
-        <p>
-            Consulte nosso acervo e conheça os títulos disponíveis para locação!
-        </p>
-        <p><a class="btn btn-default home-alignment" href="http://">Encontre um livro </a></p>
-    </div>
-    <div class="col-md-4 home-alignment">
-        <h2 class="home-alignment">Livros mais procurados!</h2>
-        <p>Saiba quais são os livros mais procurados em nosso acervo!</p>
-        <p><a class="btn btn-default" href="http://">Mais lidos </a></p>
-    </div>
-    <div class="col-md-4 home-alignment">
-        <h2 class="home-alignment">Sugestões!</h2>
-        <p>Títulos a serem comprados ou melhorias que você gostaria de ver em nossa biblioteca!</p>
-        <p><a class="btn btn-default" href="http://">Dê sua opinião </a></p>
-    </div>
+  <div class="col-md-4 home-alignment">
+    <h2 class="home-alignment">SMARTBOOKS</h2>
+    <p>
+      Consulte nosso acervo e conheça os títulos disponíveis para locação!
+    </p>
+    <p>@Html.ActionLink("Encontre um livro", "Index", "BooksCatalog", null, new { @class = "btn btn-default" })</p>
+  </div>
+  <div class="col-md-4 home-alignment">
+    <h2 class="home-alignment">Livros mais procurados!</h2>
+    <p>Saiba quais são os livros mais procurados em nosso acervo!</p>
+    <p>@Html.ActionLink("Mais lidos", "Index", "BooksCatalog", null, new { @class = "btn btn-default" })</p>
+  </div>
+  <div class="col-md-4 home-alignment">
+    <h2 class="home-alignment">Sugestões!</h2>
+    <p>Títulos a serem comprados ou melhorias que você gostaria de ver em nossa biblioteca!</p>
+    <p>@Html.ActionLink("Sugestões", "About", "Home", new { @class = "btn btn-default" })</p>
+  </div>
 </div>
