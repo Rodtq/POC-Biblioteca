@@ -24,6 +24,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 else
                 {
+                    db.Books.Attach(catalogacao);
                     db.Books.Add(catalogacao);
                 }
                 db.SaveChanges();

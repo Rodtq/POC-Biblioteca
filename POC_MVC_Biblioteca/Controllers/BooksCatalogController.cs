@@ -33,13 +33,14 @@ namespace POC_MVC_Biblioteca.Controllers
             switch (partialViewName)
             {
                 case "_CadastroLivros":
-                    return PartialView(partialViewName, new CreateBookViewModel());
+                    CreateBookViewModel model = new CreateBookViewModel() { BookCategories = GetBookCategories() };
+                    return PartialView(partialViewName, model);
                 case "_ConsultaLivros":
                     return RedirectToAction("GetBooks", new BooksConsultViewModel());
                 case "_ReservaLivros":
                     return PartialView(partialViewName);
                 case "_EmprestimoLivros":
-                    return PartialView(partialViewName); 
+                    return PartialView(partialViewName);
                 case "_EntregaLivros":
                     return PartialView(partialViewName);
                 default:
@@ -56,7 +57,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 Title = livro.Title,
                 Author = livro.Author,
                 BookYear = livro.BookYear,
-                //Category = livro.Category,
+                Category = _as.GetBookCategories().SingleOrDefault(b => b.Id == Convert.ToInt32(livro.CategoryId)),
                 Editor = livro.Editor,
                 Quantity = livro.Quantity,
                 Description = livro.Description,
@@ -64,15 +65,13 @@ namespace POC_MVC_Biblioteca.Controllers
                 LocalizationShelf = livro.LocalizationShelf
             };
             _as.AddBook(catalogação);
-            return PartialView("_CadastroLivros", new CreateBookViewModel());
+            return PartialView("_CadastroLivros", new CreateBookViewModel() {BookCategories = GetBookCategories() });
         }
-
-
 
 
         public ActionResult GetBooks(BooksConsultViewModel filtros)
         {
-            
+
             IEnumerable<Book> livros = _as.GetBooks(filtros);
             BooksConsultViewModel result = new BooksConsultViewModel();
             result.CataegoriesList = _as.GetBookCategories();
@@ -88,6 +87,13 @@ namespace POC_MVC_Biblioteca.Controllers
             result.BooksList = parseList;
             return PartialView("_ConsultaLivros", result);
         }
+
+
+        private IEnumerable<SelectListItem> GetBookCategories()
+        {
+            return _as.GetBookCategories().Select(bc => new SelectListItem { Value = bc.Id.ToString(), Text = bc.Name });
+        }
+
 
     }
 }

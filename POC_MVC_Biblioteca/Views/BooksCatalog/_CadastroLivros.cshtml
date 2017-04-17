@@ -41,7 +41,7 @@
             @Html.Label("Categoria:")
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(mbox => mbox.Category, new { @Value = "" })
+            @Html.DropDownListFor(m => m.CategoryId, Model.BookCategories, "--Selecione--")
           </div>
         </div>
         <div id="EditoraDiv" class="row">
@@ -88,9 +88,11 @@
       </div>
   }
 </div>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     datepickerInitializer();
-    GenericPostHandler($("#register-fmr"), $("#conteudoDireita"));
+    GenericPostHandler($("#bookRegister-fmr"), $("#conteudoDireita"));
   });
 </script>
+

@@ -29,7 +29,7 @@ function GenericPostHandler(form, htmlReplacementElement) {
 }
 
 function datepickerInitializer() { // will trigger when the document is ready
-    $('.datepicker').datepicker(); //Initialise any date pickers
+    $('.datepicker').datepicker({ format: 'dd/mm/yyyy' }); //Initialise any date pickers
 };
 
 

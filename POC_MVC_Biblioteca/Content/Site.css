@@ -115,7 +115,7 @@ tbody td {
     color: #cfcfcf;
 }
 
-    .cadastro-Livros-partial input[type=text] {
+    .cadastro-Livros-partial input[type=text], input[type=number], select {
         margin-bottom: 10px;
         width: 600px;
     }
@@ -159,15 +159,11 @@ tbody td {
     color: #cfcfcf;
 }
 
-    .cadastro-usuario-partial input[type=text] {
+    .cadastro-usuario-partial input[type=text], select {
         margin-bottom: 10px;
         width: 600px;
     }
 
-    .cadastro-usuario-partial select {
-        margin-bottom: 10px;
-        width: 600px;
-    }
 /*======================================================================================*/
 /*======================================================================================*/
 /*LISTA DE USUARIOS*/
@@ -181,14 +177,14 @@ tbody td {
 .user-list {
     height: 400px;
     overflow-y: scroll;
-    border:solid 1px lightgray;
+    border: solid 1px lightgray;
 }
 
 
 .user-filter {
     padding-bottom: 10px;
     border: solid 1px lightgray;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
     .user-filter div label {
