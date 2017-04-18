@@ -24,9 +24,7 @@ namespace POC_MVC_Biblioteca
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/bootstrap-datepicker.css",
-                      "~/Content/site.css"));
+                      "~/Content/*.css"));
         }
     }
 }

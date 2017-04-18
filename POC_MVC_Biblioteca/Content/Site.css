@@ -96,7 +96,35 @@ tbody td {
     padding-bottom: 30px;
 }
 
+.jumbotron h1 {
+    font-size: 63px;
+    text-align: center;
+    color: dodgerblue;
+    text-shadow: 10px 8px 8px #333;
+}
 
+
+
+.btn {
+    background-color: steelblue;
+    color: #fff;
+    border-radius: 60px;
+}
+
+.btn-lg {
+    font-size: 28px;
+    width: 40%;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+    background-color: dodgerblue;
+    color: #fff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .active.btn-default, .open .btn-default.dropdown-toggle {
+    background-color: dodgerblue;
+    color: #fff;
+}
 /*======================================================================================*/
 /*======================================================================================*/
 /*CADASTRO DE LIVROS*/
