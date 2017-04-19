@@ -24,7 +24,7 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 PartialName = model.PartialName,
                 SamAccountName = model.SamAccountName
-                
+
             };
             if (string.IsNullOrEmpty(result.PartialName))
             {
@@ -45,6 +45,11 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult CreateUser(UserViewModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                user.Roles = GetRoles();
+                return PartialView("_UserRegister", user);
+            }
             User usuário = new User
             {
                 Id = user.Id,
@@ -115,7 +120,10 @@ namespace POC_MVC_Biblioteca.Controllers
 
         private HashSet<Role> SetRoles(int[] RoleIds)
         {
-
+            if (RoleIds == null)
+            {
+                return new HashSet<Role>(_um.GetRoles().Where(r=>r.Name.Equals("User")));
+            }
             HashSet<Role> roles = new HashSet<Role>((from int rId in RoleIds
                                                      join Role role in _um.GetRoles()
                                                      on rId equals role.Id

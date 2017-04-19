@@ -19,6 +19,7 @@
           <div class="col-lg-10">
             @*@Html.TextBoxFor(m => m.SamAccountName, new { Value = "" })*@
             @Html.TextBoxFor(m => m.SamAccountName, new { Value = Model.SamAccountName })
+            @Html.ValidationMessageFor(model => model.SamAccountName)
           </div>
         </div>
 
@@ -28,6 +29,7 @@
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.IdSmart, new { Value = "" })
+            @Html.ValidationMessageFor(model => model.IdSmart)
           </div>
         </div>
         <div id="NomeDiv" class="row">
@@ -36,6 +38,7 @@
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Name, new { Value = "" })
+            @Html.ValidationMessageFor(model => model.Name)
           </div>
         </div>
         <div id="EmailDiv" class="row">
@@ -44,6 +47,7 @@
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Email, new { Value = "" })
+            @Html.ValidationMessageFor(model => model.Email)
           </div>
         </div>
             <div id="AreaDepartamentoDiv" class="row">
@@ -52,6 +56,7 @@
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.AreaDepartament, new { Value = "" })
+                @Html.ValidationMessageFor(model => model.AreaDepartament)
               </div>
             </div>
             <div id="FuncaoDiv" class="row">
@@ -60,6 +65,7 @@
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.Funtion, new { Value = "" })
+                @Html.ValidationMessageFor(model => model.Funtion)
               </div>
             </div>
             <div id="RamalDiv" class="row">
@@ -76,6 +82,7 @@
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.Manager, new { Value = "" })
+                @Html.ValidationMessageFor(model => model.Manager)
               </div>
             </div>
             <div id="Role" class="row">
@@ -84,6 +91,7 @@
               </div>
               <div class="col-lg-10">
                 @Html.ListBoxFor(m => m.RolesId, Model.Roles)
+                @Html.ValidationMessageFor(model => model.RolesId)
               </div>
             </div>
 
