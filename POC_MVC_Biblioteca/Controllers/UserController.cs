@@ -20,12 +20,17 @@ namespace POC_MVC_Biblioteca.Controllers
         // GET: Usuario
         public ActionResult Index(UserViewModel model)
         {
-             
-            if (string.IsNullOrEmpty(model.PartialName))
+            UserViewModel result = new UserViewModel()
             {
-                model = new UserViewModel() { PartialName = "_UserList" };
+                PartialName = model.PartialName,
+                SamAccountName = model.SamAccountName
+                
+            };
+            if (string.IsNullOrEmpty(result.PartialName))
+            {
+                result.PartialName = "_UserList";
             }
-            return View(model);
+            return View(result);
         }
 
         public ActionResult GetUsers(UserViewModel filtros)
