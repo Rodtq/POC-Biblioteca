@@ -1,4 +1,4 @@
-﻿@using POC_MVC_Biblioteca.ViewModels
+﻿@model POC_MVC_Biblioteca.ViewModels.UserViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -7,7 +7,6 @@
     <h2>Clientes</h2>
   </div>
   <div id="cliente-navegacao" class="container-fluid">
-
     <div class="row">
       <ul class="nav navbar-nav">
         <li><a data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserList" })">Listar Usuários </a></li>
@@ -19,7 +18,7 @@
   </div>
   <div id="container-partials">
     @{
-        Html.RenderAction("GetUsers", "User");
+        Html.RenderAction("UserNavigation", "User", new { partialViewName = Model.PartialName});
     }
   </div>
 </section>
@@ -30,5 +29,3 @@
     Navigation($("a[data-navigation-partial]"), $("#container-partials"));
   });
 </script>
-
-

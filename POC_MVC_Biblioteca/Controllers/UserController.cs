@@ -18,9 +18,14 @@ namespace POC_MVC_Biblioteca.Controllers
         }
 
         // GET: Usuario
-        public ActionResult Index()
+        public ActionResult Index(UserViewModel model)
         {
-            return View();
+             
+            if (string.IsNullOrEmpty(model.PartialName))
+            {
+                model = new UserViewModel() { PartialName = "_UserList" };
+            }
+            return View(model);
         }
 
         public ActionResult GetUsers(UserViewModel filtros)
@@ -38,6 +43,7 @@ namespace POC_MVC_Biblioteca.Controllers
             User usuário = new User
             {
                 Id = user.Id,
+                SamAccountName = user.SamAccountName,
                 IdSmart = user.IdSmart,
                 Name = user.Name,
                 eMail = user.Email,
@@ -67,7 +73,11 @@ namespace POC_MVC_Biblioteca.Controllers
                     }
                     return PartialView(partialViewName, new UserViewModel());
                 case "_UserList":
-                    return RedirectToAction("GetUsers");
+                    UserViewModel response = new UserViewModel
+                    {
+                        UserList = _um.GetUsers(new UserViewModel()).UserList
+                    };
+                    return PartialView("_UserList", response);
                 case "_UserEdit":
                     return PartialView(partialViewName);
                 case "_UserDelete":

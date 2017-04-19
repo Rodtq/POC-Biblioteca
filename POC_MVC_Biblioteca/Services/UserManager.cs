@@ -107,6 +107,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 Result.UserList = Query.ToList().Select(u => new UserViewModel()
                 {
+                    SamAccountName = u.SamAccountName,
                     Email = u.eMail,
                     AreaDepartament = u.AreaDepartament,
                     ExtensionLine = u.ExtensionLine,
@@ -114,7 +115,7 @@ namespace POC_MVC_Biblioteca.Services
                     Id = u.Id,
                     IdSmart = u.IdSmart,
                     Manager = u.Manager,
-                    Name = u.Manager
+                    Name = u.Name
                 });
             }
             return Result;
@@ -132,12 +133,12 @@ namespace POC_MVC_Biblioteca.Services
         }
 
 
-        public User GetByIdSmart(int IdSmart)
+        public User GetBySamAccountName(string SamAccountName)
         {
             User usuario = new User();
             using (POC_Database db = new POC_Database())
             {
-                usuario = db.Users.SingleOrDefault(u => u.IdSmart == IdSmart);
+                usuario = db.Users.SingleOrDefault(u => u.SamAccountName.Equals(SamAccountName));
             }
             return usuario;
         }

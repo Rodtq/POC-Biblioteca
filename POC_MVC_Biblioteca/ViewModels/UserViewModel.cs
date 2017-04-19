@@ -10,6 +10,7 @@ namespace POC_MVC_Biblioteca.ViewModels
     {
         public IEnumerable<UserViewModel> UserList { get; set; }
         public int Id { get; set; }
+        public string SamAccountName { get; set; }
         public int IdSmart { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -20,6 +21,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         //Roles
         public int[] RolesId { get; set; }
         public MultiSelectList Roles { get; set; }
+        public string PartialName { get; set; }
 
     }
 

@@ -5,8 +5,15 @@ function Navigation(elementWithInfo, htmlReplacementElement) {
         $.ajax({
             method: "GET",
             url: partialUrl,
-            success: function (data) {
+            success: function (data, textStatus, request) {
+                var req = JSON.parse(request.getResponseHeader('X-Responded-JSON'));
+                if (req !== null && req.status == 401) {
+                    alert("Not Authorized");
+                    return;
+                }
                 $(htmlReplacementElement).html(data);
+            }, error: function (xhr) {
+                alert("Error");
             }
         });
     });
@@ -31,5 +38,4 @@ function GenericPostHandler(form, htmlReplacementElement) {
 function datepickerInitializer() { // will trigger when the document is ready
     $('.datepicker').datepicker({ format: 'dd/mm/yyyy' }); //Initialise any date pickers
 };
-
 

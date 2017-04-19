@@ -27,14 +27,24 @@ namespace POC_MVC_Biblioteca.Controllers
                 return View(model);
             }
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
-
             var authService = new LoginService(authenticationManager);
-            
-            var authenticationResult = authService.SignIn(model.UserName, model.Password);
 
-            if(authenticationResult.IsSuccess)
+            UserManager um = new UserManager();
+            if (um.GetBySamAccountName(model.UserName) == null)
             {
-            return RedirectToLocal(returnUrl);
+                UserViewModel modelTo = new UserViewModel()
+                {
+                    PartialName = "_UserRegister",
+                    SamAccountName = model.UserName
+                };
+
+                return RedirectToAction("Index", "User", modelTo);
+            }
+
+            var authenticationResult = authService.SignIn(model.UserName, model.Password);
+            if (authenticationResult.IsSuccess)
+            {
+                return RedirectToLocal(returnUrl);
             }
             ModelState.AddModelError("", authenticationResult.ErrorMessage);
             return View(model);

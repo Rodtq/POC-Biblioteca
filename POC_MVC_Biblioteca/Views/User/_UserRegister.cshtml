@@ -12,6 +12,16 @@
     </div>
     @using (@Html.BeginForm("CreateUser", "User", FormMethod.Post, new { id = "userRegister-fmr" }))
     {
+        <div id="SamAccountNameDiv" class="row">
+          <div class="col-lg-2">
+            @Html.Label("Login:")
+          </div>
+          <div class="col-lg-10">
+            @*@Html.TextBoxFor(m => m.SamAccountName, new { Value = "" })*@
+            @Html.TextBoxFor(m => m.SamAccountName, new { Value = "" })
+          </div>
+        </div>
+
         <div id="IdSmartDiv" class="row">
           <div class="col-lg-2">
             @Html.Label("Código/Id:")
@@ -81,7 +91,7 @@
     }
   </div>
 </div>
-
+@Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
   $(document).ready(function () {
     GenericPostHandler($("#userRegister-fmr"), $("#container-partials"));
