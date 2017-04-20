@@ -12,7 +12,7 @@ namespace POC_MVC_Biblioteca.Models
         [Column(Order = 1)Key,ForeignKey("Tenant")]
         public int Id_User { get; set; }
         [Column(Order = 2)Key, ForeignKey("Book")]
-        public int ISBN { get; set; }
+        public int Id_Book { get; set; }
         public DateTime InitialDate { get; set; }
         public DateTime RenewingDate { get; set; }
         public DateTime ExpirationDate { get; set; }

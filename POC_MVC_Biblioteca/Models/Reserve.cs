@@ -12,7 +12,7 @@ namespace POC_MVC_Biblioteca.Models
         [Column(Order = 1) Key, ForeignKey("User")]
         public int Id_User { get; set; }
         [Column(Order = 2) Key, ForeignKey("Book")]
-        public int ISBN { get; set; }
+        public int Id_Book { get; set; }
         public virtual User User { get; set; }
         public virtual Book Book { get; set; }
     }

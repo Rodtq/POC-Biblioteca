@@ -11,6 +11,7 @@ namespace POC_MVC_Biblioteca.Models
     public class Book
     {
         [Key]
+        public int Id { get; set; }
         public int ISBN { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
@@ -21,5 +22,6 @@ namespace POC_MVC_Biblioteca.Models
         public string Description { get; set; }
         public string Observation { get; set; }
         public string LocalizationShelf { get; set; }
+        public byte[] Cover { get; set; }
     }
 }
