@@ -192,6 +192,16 @@ tbody td {
         width: 600px;
     }
 
+    .validation{
+        color:red;
+    }
+    .validationSelect{
+        float:right;
+        color:red;
+        margin-right:454px;
+        padding-top:24px;
+    }
+
 /*======================================================================================*/
 /*======================================================================================*/
 /*LISTA DE USUARIOS*/

@@ -14,63 +14,63 @@
     {
         <div id="SamAccountNameDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Login:")
+            @Html.LabelFor(model => model.SamAccountName)<span>:</span>
           </div>
           <div class="col-lg-10">
             @*@Html.TextBoxFor(m => m.SamAccountName, new { Value = "" })*@
             @Html.TextBoxFor(m => m.SamAccountName, new { Value = Model.SamAccountName })
-            @Html.ValidationMessageFor(model => model.SamAccountName)
+            @Html.ValidationMessageFor(model => model.SamAccountName ,null, new { @class= "validation" })
           </div>
         </div>
 
         <div id="IdSmartDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Código/Id:")
+            @Html.LabelFor(m => m.IdSmart)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.IdSmart, new { Value = "" })
-            @Html.ValidationMessageFor(model => model.IdSmart)
+            @Html.ValidationMessageFor(model => model.IdSmart,null, new { @class = "validation" })
           </div>
         </div>
         <div id="NomeDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Nome:")
+            @Html.LabelFor(m => m.Name)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Name, new { Value = "" })
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name, null, new { @class = "validation" })
           </div>
         </div>
         <div id="EmailDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("E-Mail:")
+            @Html.LabelFor(m => m.Email)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Email, new { Value = "" })
-            @Html.ValidationMessageFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "validation" })
           </div>
         </div>
             <div id="AreaDepartamentoDiv" class="row">
               <div class="col-lg-2">
-                @Html.Label("Area/Departamento:")
+                @Html.LabelFor(m => m.AreaDepartament)<span>:</span>
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.AreaDepartament, new { Value = "" })
-                @Html.ValidationMessageFor(model => model.AreaDepartament)
+                @Html.ValidationMessageFor(model => model.AreaDepartament, null, new { @class = "validation" })
               </div>
             </div>
             <div id="FuncaoDiv" class="row">
               <div class="col-lg-2">
-                @Html.Label("Função:")
+                @Html.LabelFor(m => m.Funtion)<span>:</span>
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.Funtion, new { Value = "" })
-                @Html.ValidationMessageFor(model => model.Funtion)
+                @Html.ValidationMessageFor(model => model.Funtion, null, new { @class = "validation" })
               </div>
             </div>
             <div id="RamalDiv" class="row">
               <div class="col-lg-2">
-                @Html.Label("Ramal:")
+                @Html.LabelFor(m => m.ExtensionLine)<span>:</span>
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.ExtensionLine, new { Value = "" })
@@ -78,20 +78,20 @@
             </div>
             <div id="GerenteDiv" class="row">
               <div class="col-lg-2">
-                @Html.Label("Gerente:")
+                @Html.LabelFor(m => m.Manager)<span>:</span>
               </div>
               <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.Manager, new { Value = "" })
-                @Html.ValidationMessageFor(model => model.Manager)
+                @Html.ValidationMessageFor(model => model.Manager, null, new { @class = "validation" })
               </div>
             </div>
             <div id="Role" class="row">
               <div class="col-lg-2">
-                @Html.Label("Perfil:")
+                @Html.LabelFor(m => m.RolesId)<span>:</span>
               </div>
               <div class="col-lg-10">
                 @Html.ListBoxFor(m => m.RolesId, Model.Roles)
-                @Html.ValidationMessageFor(model => model.RolesId)
+                @Html.ValidationMessageFor(model => model.RolesId, null, new { @class = "validationSelect" })
               </div>
             </div>
 

@@ -6,79 +6,88 @@
       <div id="cadastro-Livros-partial-container" class="container-fluid">
         <div id="isbnDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("ISBN:")
+            @Html.LabelFor(m => m.ISBN)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.ISBN, new { Value = "", type = "number", min = "0" })
+            @Html.ValidationMessageFor(m => m.ISBN, null, new { @class = "validation" })
           </div>
         </div>
         <div id="TituloDaObraDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Titulo da obra:")
+            @Html.LabelFor(m => m.Title)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Title, new { Value = "" })
+            @Html.ValidationMessageFor(m => m.Title, null, new { @class = "validation" })
           </div>
         </div>
         <div id="AutorDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Autor:")
+            @Html.LabelFor(m => m.Author)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Author, new { Value = "" })
+            @Html.ValidationMessageFor(m => m.Author, null, new { @class = "validation" })
           </div>
         </div>
         <div id="AnoLivroDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Ano do livro:")
+            @Html.LabelFor(model => model.BookYear)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBox("BookYear", DateTime.Now.ToShortDateString(), new { @class = "datepicker" })
+            @Html.TextBoxFor(m=>m.BookYear, DateTime.Now.ToShortDateString(), new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.BookYear, null, new { @class = "validation" })
           </div>
         </div>
         <div id="CategoriaDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Categoria:")
+            @Html.LabelFor(m => m.CategoryId)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.DropDownListFor(m => m.CategoryId, Model.BookCategories, "--Selecione--")
+            @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "validation" })
           </div>
         </div>
         <div id="EditoraDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Editora:")
+            @Html.LabelFor(m => m.Editor)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Editor, new { @Value = "" })
+            @Html.ValidationMessageFor(m => m.Editor, null, new { @class = "validation" })
           </div>
         </div>
         <div id="QuantidadeDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Quantidade:")
+            @Html.LabelFor(m => m.Quantity)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Quantity, new { @Value = "", type = "number", min = "0" })
+            @Html.ValidationMessageFor(m => m.Quantity, null, new { @class = "validation" })
           </div>
         </div>
         <div id="DescricaoDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Descricao:")
+            @Html.LabelFor(m => m.Description)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Description, new { @Value = "" })
+            @Html.ValidationMessageFor(m => m.Description, null, new { @class = "validation" })
           </div>
         </div>
         <div id="ObservacaoDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Observacao:")
+            @Html.LabelFor(m => m.Observation)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.Observation, new { @Value = "" })
+            @Html.ValidationMessageFor(m => m.Observation, null, new { @class = "validation" })
           </div>
         </div>
         <div id="LocalizacaoDiv" class="row">
           <div class="col-lg-2">
-            @Html.Label("Localização:")
+            @Html.LabelFor(m => m.LocalizationShelf)<span>:</span>
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.LocalizationShelf, new { @Value = "" })
