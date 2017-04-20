@@ -11,7 +11,7 @@ namespace POC_MVC_Biblioteca.ViewModels
     {
         public IEnumerable<UserViewModel> UserList { get; set; }
         public int Id { get; set; }
-        [StringLength(15)]
+        [StringLength(60)]
         [DataType(DataType.Text)]
         [Required]
         [Display(Name = "Login")]
@@ -23,26 +23,26 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Required]
         [Display(Name = "Nome")]
         public string Name { get; set; }
-        [StringLength(30)]
+        [StringLength(60)]
         [DataType(DataType.EmailAddress)]
         [Required]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
-        [StringLength(30)]
+        [StringLength(70)]
         [DataType(DataType.Text)]
         [Required]
         [Display(Name = "Area - Departamento")]
         public string AreaDepartament { get; set; }
-        [StringLength(30)]
+        [StringLength(60)]
         [DataType(DataType.Text)]
         [Display(Name = "Gerente")]
         public string Manager { get; set; }
-        [StringLength(30)]
+        [StringLength(60)]
         [DataType(DataType.Text)]
         [Required]
         [Display(Name = "Função")]
         public string Funtion { get; set; }
-        [StringLength(30)]
+        [StringLength(60)]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Ramal")]
         public string ExtensionLine { get; set; }
