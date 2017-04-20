@@ -27,7 +27,7 @@ namespace POC_MVC_Biblioteca.Controllers
             };
             return View(model);
         }
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult BooksCatalogNavigation(string partialViewName)
         {
             switch (partialViewName)
