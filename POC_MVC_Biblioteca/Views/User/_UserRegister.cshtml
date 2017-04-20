@@ -2,14 +2,14 @@
 <h3>Cadastro de Usuários</h3>
 <div id="cadastro-usuario-partial" class="cadastro-usuario-partial">
   <div id="cadastro-usuario-partial-container" class="container-fluid">
-    <div id="BuscarLoginDiv" class="row">
+    @*<div id="BuscarLoginDiv" class="row">
       <div class="col-lg-2">
         @Html.Label("Buscar por Login:")
       </div>
       <div class="col-lg-10">
         @Html.TextBox("SamAccountName")
       </div>
-    </div>
+    </div>*@
     @using (@Html.BeginForm("CreateUser", "User", FormMethod.Post, new { id = "userRegister-fmr" }))
     {
         <div id="SamAccountNameDiv" class="row">
