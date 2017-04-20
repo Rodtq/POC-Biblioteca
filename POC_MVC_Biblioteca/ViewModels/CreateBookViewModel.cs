@@ -35,7 +35,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Display(Name = "Editora")]
         public string Editor { get; set; }
         [Required]
-        [Display(Name = "Categoria")]
+        [Display(Name = "Quantidade")]
         public int Quantity { get; set; }
         [StringLength(100)]
         [DataType(DataType.MultilineText)]
