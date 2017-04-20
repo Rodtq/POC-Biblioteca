@@ -27,7 +27,7 @@ namespace POC_MVC_Biblioteca.Controllers
             };
             return View(model);
         }
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public ActionResult BooksCatalogNavigation(string partialViewName)
         {
             switch (partialViewName)
@@ -48,9 +48,14 @@ namespace POC_MVC_Biblioteca.Controllers
             }
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult CreateBook(CreateBookViewModel livro)
         {
+            if (!ModelState.IsValid)
+            {
+                livro.BookCategories = GetBookCategories(); 
+                return PartialView("_CadastroLivros", livro);
+            }
             Book catalogação = new Book()
             {
                 ISBN = livro.ISBN,
