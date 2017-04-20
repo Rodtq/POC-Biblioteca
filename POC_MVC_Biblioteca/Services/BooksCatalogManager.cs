@@ -37,7 +37,7 @@ namespace POC_MVC_Biblioteca.Services
             IQueryable<Book> Query = null;
             using (POC_Database db = new POC_Database())
             {
-                Query = db.Books;
+                Query = db.Books.Include("Category");
                 if (!string.IsNullOrEmpty(filtros.AuthorFilter))
                 {
                     Query = Query.Where(l => l.Author.Contains(filtros.AuthorFilter));
