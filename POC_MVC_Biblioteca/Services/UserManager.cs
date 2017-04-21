@@ -7,27 +7,44 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace POC_MVC_Biblioteca.Services
 {
     public class UserManager
     {
 
-        public void AddUser(User user)
+        public void AddUser(UserViewModel user)
         {
             using (POC_Database db = new POC_Database())
             {
+
+                User usr = new User
+                {
+                    Id = user.Id,
+                    SamAccountName = user.SamAccountName,
+                    IdSmart = user.IdSmart,
+                    Name = user.Name,
+                    eMail = user.Email,
+                    AreaDepartament = user.AreaDepartament,
+                    Manager = user.Manager,
+                    Function = user.Function,
+                    ExtensionLine = user.ExtensionLine,
+                    Roles = SetRoles(user.RolesId),
+                };
+
+
                 try
                 {
-                    DbEntityEntry dbEntityEntry = db.Entry(user);
+                    DbEntityEntry dbEntityEntry = db.Entry(usr);
                     if (dbEntityEntry.State != EntityState.Detached)
                     {
                         dbEntityEntry.State = EntityState.Added;
                     }
                     else
                     {
-                        db.Users.Attach(user);
-                        db.Users.Add(user);
+                        db.Users.Attach(usr);
+                        db.Users.Add(usr);
                     }
                     db.SaveChanges();
                 }
@@ -158,13 +175,50 @@ namespace POC_MVC_Biblioteca.Services
 
         public IEnumerable<Role> GetRoles()
         {
-            IEnumerable<Role> result = new List<Role>();
-            using (POC_Database db = new POC_Database())
+            try
             {
-                IQueryable<Role> roles = db.Roles;
-                result = roles.ToList();
+                IEnumerable<Role> result = new List<Role>();
+                IQueryable<Role> roles = null;
+                using (POC_Database db = new POC_Database())
+                {
+                    roles = db.Roles;
+                    result = roles.ToList();
+                }
+                return result;
             }
-            return result;
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public MultiSelectList GetParsedRoles()
+        {
+            try
+            {
+                MultiSelectList result = new MultiSelectList(GetRoles(), "Id", "Name");
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+        private HashSet<Role> SetRoles(int[] RoleIds)
+        {
+            if (RoleIds == null)
+            {
+                return new HashSet<Role>(GetRoles().Where(r => r.Name.Equals("User")));
+            }
+            HashSet<Role> roles = new HashSet<Role>((from int rId in RoleIds
+                                                     join Role role in GetRoles()
+                                                     on rId equals role.Id
+                                                     select role));
+            return roles;
         }
 
     }

@@ -2,14 +2,6 @@
 <h3>Cadastro de Usuários</h3>
 <div id="cadastro-usuario-partial" class="cadastro-usuario-partial">
   <div id="cadastro-usuario-partial-container" class="container-fluid">
-    @*<div id="BuscarLoginDiv" class="row">
-      <div class="col-lg-2">
-        @Html.Label("Buscar por Login:")
-      </div>
-      <div class="col-lg-10">
-        @Html.TextBox("SamAccountName")
-      </div>
-    </div>*@
     @using (@Html.BeginForm("CreateUser", "User", FormMethod.Post, new { id = "userRegister-fmr" }))
     {
         <div id="SamAccountNameDiv" class="row">
@@ -17,9 +9,8 @@
             @Html.LabelFor(model => model.SamAccountName)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @*@Html.TextBoxFor(m => m.SamAccountName, new { Value = "" })*@
             @Html.TextBoxFor(m => m.SamAccountName, new { Value = Model.SamAccountName })
-            @Html.ValidationMessageFor(model => model.SamAccountName ,null, new { @class= "validation" })
+            @Html.ValidationMessageFor(model => model.SamAccountName, null, new { @class = "validation" })
           </div>
         </div>
 
@@ -29,7 +20,7 @@
           </div>
           <div class="col-lg-10">
             @Html.TextBoxFor(m => m.IdSmart, new { Value = "" })
-            @Html.ValidationMessageFor(model => model.IdSmart,null, new { @class = "validation" })
+            @Html.ValidationMessageFor(model => model.IdSmart, null, new { @class = "validation" })
           </div>
         </div>
         <div id="NomeDiv" class="row">
@@ -50,24 +41,24 @@
             @Html.ValidationMessageFor(model => model.Email, null, new { @class = "validation" })
           </div>
         </div>
-            <div id="AreaDepartamentoDiv" class="row">
-              <div class="col-lg-2">
-                @Html.LabelFor(m => m.AreaDepartament)<span>:</span>
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBoxFor(m => m.AreaDepartament, new { Value = "" })
-                @Html.ValidationMessageFor(model => model.AreaDepartament, null, new { @class = "validation" })
-              </div>
-            </div>
-            <div id="FuncaoDiv" class="row">
-              <div class="col-lg-2">
-                @Html.LabelFor(m => m.Funtion)<span>:</span>
-              </div>
-              <div class="col-lg-10">
-                @Html.TextBoxFor(m => m.Funtion, new { Value = "" })
-                @Html.ValidationMessageFor(model => model.Funtion, null, new { @class = "validation" })
-              </div>
-            </div>
+        <div id="AreaDepartamentoDiv" class="row">
+          <div class="col-lg-2">
+            @Html.LabelFor(m => m.AreaDepartament)<span>:</span>
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.AreaDepartament, new { Value = "" })
+            @Html.ValidationMessageFor(model => model.AreaDepartament, null, new { @class = "validation" })
+          </div>
+        </div>
+        <div id="FuncaoDiv" class="row">
+          <div class="col-lg-2">
+            @Html.LabelFor(m => m.Function)<span>:</span>
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.Function, new { Value = "" })
+            @Html.ValidationMessageFor(model => model.Function, null, new { @class = "validation" })
+          </div>
+        </div>
             <div id="RamalDiv" class="row">
               <div class="col-lg-2">
                 @Html.LabelFor(m => m.ExtensionLine)<span>:</span>

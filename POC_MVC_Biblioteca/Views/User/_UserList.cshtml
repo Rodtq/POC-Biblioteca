@@ -9,7 +9,7 @@
       <label>Nome:</label>
       @Html.TextBoxFor(model => model.Name)
       <label>IdSmart:</label>
-      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0" })
+      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0", @Value = "" })
       <label>Departamento:</label>
       @Html.TextBoxFor(model => model.AreaDepartament)
       <input type="submit" value="consultar" />
