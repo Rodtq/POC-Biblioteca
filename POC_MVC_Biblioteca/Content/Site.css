@@ -52,10 +52,12 @@ tbody td {
 
 .acervo-menu-esquerda {
     padding-left: 0px;
+    padding-right: 0px;
 }
 
 .acervo-menu-direita {
-    height: 460px;
+    height: 599px;
+    padding:0px;
 }
 
 .acervo-reserva-locacao {
@@ -131,16 +133,16 @@ tbody td {
 /*======================================================================================*/
 /*======================================================================================*/
 
+.register-form-content{
+    padding-left:30px;
+    padding-top:30px;
+}
+
 .cadastro-Livros-partial {
-    background: #4f4f4f;
     padding: 10px;
     font: 12px arial, verdana, helvetica, sans-serif;
-    border-top: 8px solid #cfcfcf;
-    border-left: 8px solid #cfcfcf;
-    border-right: 8px solid #696969;
-    border-bottom: 8px solid #696969;
-    border-collapse: collapse;
-    color: #cfcfcf;
+    height: 599px;
+    padding-left:10px;
 }
 
     .cadastro-Livros-partial input[type=text], input[type=number], select {
@@ -152,6 +154,14 @@ tbody td {
 /*Consulta DE Livros*/
 /*======================================================================================*/
 /*======================================================================================*/
+
+.book-partial{
+    padding: 10px;
+    font: 12px arial, verdana, helvetica, sans-serif;
+    height: 599px;
+    padding-left:10px;
+}
+
 .book-table {
     margin-bottom: 0px;
     border-spacing: 0px;
@@ -176,15 +186,13 @@ tbody td {
 /*======================================================================================*/
 
 .cadastro-usuario-partial {
-    background: #4f4f4f;
+    background-color:#f9f9f9;
     padding: 10px;
     font: 12px arial, verdana, helvetica, sans-serif;
-    border-top: 8px solid #cfcfcf;
-    border-left: 8px solid #cfcfcf;
-    border-right: 8px solid #696969;
-    border-bottom: 8px solid #696969;
-    border-collapse: collapse;
-    color: #cfcfcf;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
 }
 
     .cadastro-usuario-partial input[type=text], select {
@@ -192,15 +200,7 @@ tbody td {
         width: 600px;
     }
 
-    .validation{
-        color:red;
-    }
-    .validationSelect{
-        float:right;
-        color:red;
-        margin-right:454px;
-        padding-top:24px;
-    }
+
 
 /*======================================================================================*/
 /*======================================================================================*/
@@ -232,3 +232,21 @@ tbody td {
     .user-filter label {
         padding-left: 10px;
     }
+
+ /*======================================================================================*/
+/*======================================================================================*/
+/*Validações*/
+/*======================================================================================*/
+/*======================================================================================*/
+    .validation {
+    color: red;
+    font-weight:bolder;
+    padding-left:10px;
+}
+
+.validationSelect {
+    float: right;
+    color: red;
+    margin-right: 454px;
+    padding-top: 24px;
+}

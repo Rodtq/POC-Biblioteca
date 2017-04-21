@@ -3,7 +3,7 @@
   <h3>Cadastro de livros</h3>
   @using (@Html.BeginForm("CreateBook", "BooksCatalog", FormMethod.Post, new { id = "bookRegister-fmr" }))
   {
-      <div id="cadastro-Livros-partial-container" class="container-fluid">
+      <div id="cadastro-Livros-partial-container" class="container-fluid register-form-content">
         <div id="isbnDiv" class="row">
           <div class="col-lg-2">
             @Html.LabelFor(m => m.ISBN)<span>:</span>
