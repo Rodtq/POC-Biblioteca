@@ -7,67 +7,83 @@ using POC_MVC_Biblioteca.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using POC_MVC_Biblioteca.ViewModels;
+using System.Web.Mvc;
 
 namespace POC_MVC_Biblioteca.Services
 {
     public class BooksCatalogManager
     {
 
-        public void AddBook(Book catalogacao)
+        public void AddBook(BooksViewModel book)
         {
             using (POC_Database db = new POC_Database())
             {
-                DbEntityEntry dbEntityEntry = db.Entry(catalogacao);
+                int categoryId = Convert.ToInt32(book.CategoryId);
+                Book parsedModel = new Book()
+                {
+                    ISBN = book.ISBN,
+                    Title = book.Title,
+                    Author = book.Author,
+                    BookYear = book.BookYear,
+                    Category = db.BookCategory.SingleOrDefault(b => b.Id == categoryId),
+                    Editor = book.Editor,
+                    Quantity = book.Quantity,
+                    Description = book.Description,
+                    Observation = book.Observation,
+                    LocalizationShelf = book.LocalizationShelf
+                };
+                DbEntityEntry dbEntityEntry = db.Entry(parsedModel);
                 if (dbEntityEntry.State != EntityState.Detached)
                 {
                     dbEntityEntry.State = EntityState.Added;
                 }
                 else
                 {
-                    db.Books.Attach(catalogacao);
-                    db.Books.Add(catalogacao);
+                    db.Books.Attach(parsedModel);
+                    db.Books.Add(parsedModel);
                 }
                 db.SaveChanges();
             }
         }
 
-        public IEnumerable<Book> GetBooks(BooksConsultViewModel filtros = null)
+        public IEnumerable<Book> GetBooks(BooksViewModel filters = null)
         {
-            IEnumerable<Book> Result = new List<Book>();
-            IQueryable<Book> Query = null;
+            IEnumerable<Book> result = new List<Book>();
+            IQueryable<Book> query = null;
             using (POC_Database db = new POC_Database())
             {
-                Query = db.Books.Include("Category");
-                if (!string.IsNullOrEmpty(filtros.AuthorFilter))
+                query = db.Books.Include("Category");
+                if (!string.IsNullOrEmpty(filters.Author))
                 {
-                    Query = Query.Where(l => l.Author.Contains(filtros.AuthorFilter));
+                    query = query.Where(l => l.Author.Contains(filters.Author));
                 }
-                if (!string.IsNullOrEmpty(filtros.CategroryFilter))
+                if (!string.IsNullOrEmpty(filters.CategoryId))
                 {
-                    //Query = Query.Where(l => l.Category.Contains(filtros.CategroryFilter));
+                    query = query.Where(l => l.Category.Id == Convert.ToInt32(filters.CategoryId));
                 }
-                if (!string.IsNullOrEmpty(filtros.EditorFilter))
+                if (!string.IsNullOrEmpty(filters.Editor))
                 {
-                    Query = Query.Where(l => l.Editor.Contains(filtros.EditorFilter));
+                    query = query.Where(l => l.Editor.Contains(filters.Editor));
                 }
-                if (!string.IsNullOrEmpty(filtros.TitleFilter))
+                if (!string.IsNullOrEmpty(filters.Title))
                 {
-                    Query = Query.Where(l => l.Title.Contains(filtros.TitleFilter));
+                    query = query.Where(l => l.Title.Contains(filters.Title));
                 }
-                Result = Query.ToList();
-            }
-            return Result;
-        }
-
-        public IEnumerable<BookCategory> GetBookCategories()
-        {
-            IEnumerable<BookCategory> result = new List<BookCategory>();
-            using (POC_Database db = new POC_Database())
-            {
-                result = db.BookCategory.ToList();
+                result = query.ToList();
             }
             return result;
         }
 
+        public IEnumerable<SelectListItem> GetBookCategories()
+        {
+            IEnumerable<SelectListItem> result = new List<SelectListItem>();
+            IQueryable<BookCategory> query = null;
+            using (POC_Database db = new POC_Database())
+            {
+                query = db.BookCategory;
+                result = query.ToList().Select(bc => new SelectListItem { Value = bc.Id.ToString(), Text = bc.Name });
+            }
+            return result;
+        }
     }
 }

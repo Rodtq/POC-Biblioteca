@@ -23,7 +23,7 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             BooksViewModel model = new BooksViewModel()
             {
-                CataegoriesList = _as.GetBookCategories()
+                BookCategories = _as.GetBookCategories()
             };
             return View(model);
         }
@@ -33,10 +33,10 @@ namespace POC_MVC_Biblioteca.Controllers
             switch (partialViewName)
             {
                 case "_CadastroLivros":
-                    CreateBookViewModel model = new CreateBookViewModel() { BookCategories = GetBookCategories() };
+                    BooksViewModel model = new BooksViewModel() { BookCategories = _as.GetBookCategories() };
                     return PartialView(partialViewName, model);
                 case "_ConsultaLivros":
-                    return RedirectToAction("GetBooks", new BooksConsultViewModel());
+                    return RedirectToAction("GetBooks", new BooksViewModel());
                 case "_ReservaLivros":
                     return PartialView(partialViewName);
                 case "_EmprestimoLivros":
@@ -48,57 +48,26 @@ namespace POC_MVC_Biblioteca.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrator")]
-        public ActionResult CreateBook(CreateBookViewModel livro)
+        //[Authorize(Roles = "Administrator")]
+        public ActionResult CreateBook(BooksViewModel book)
         {
             if (!ModelState.IsValid)
             {
-                livro.BookCategories = GetBookCategories(); 
-                return PartialView("_CadastroLivros", livro);
+                book.BookCategories = _as.GetBookCategories();
+                return PartialView("_CadastroLivros", book);
             }
-            Book catalogação = new Book()
-            {
-                ISBN = livro.ISBN,
-                Title = livro.Title,
-                Author = livro.Author,
-                BookYear = livro.BookYear,
-                Category = _as.GetBookCategories().SingleOrDefault(b => b.Id == Convert.ToInt32(livro.CategoryId)),
-                Editor = livro.Editor,
-                Quantity = livro.Quantity,
-                Description = livro.Description,
-                Observation = livro.Observation,
-                LocalizationShelf = livro.LocalizationShelf
-            };
-            _as.AddBook(catalogação);
-            return PartialView("_CadastroLivros", new CreateBookViewModel() {BookCategories = GetBookCategories() });
+            _as.AddBook(book);
+            return PartialView("_CadastroLivros", new BooksViewModel() { BookCategories = _as.GetBookCategories() });
         }
 
 
-        public ActionResult GetBooks(BooksConsultViewModel filtros)
+        public ActionResult GetBooks(BooksViewModel filters)
         {
-
-            IEnumerable<Book> livros = _as.GetBooks(filtros);
-            BooksConsultViewModel result = new BooksConsultViewModel();
-            result.CataegoriesList = _as.GetBookCategories();
-            IList<Book> parseList = new List<Book>();
-            if (result.BooksList == null)
-            {
-                result.BooksList = new List<Book>();
-            }
-            livros.ToList().ForEach(livro =>
-            {
-                parseList.Add(livro);
-            });
-            result.BooksList = parseList;
+            BooksViewModel result = new BooksViewModel();
+            result.BookCategories = _as.GetBookCategories();
+            result.BooksList = _as.GetBooks(filters);
             return PartialView("_ConsultaLivros", result);
         }
-
-
-        private IEnumerable<SelectListItem> GetBookCategories()
-        {
-            return _as.GetBookCategories().Select(bc => new SelectListItem { Value = bc.Id.ToString(), Text = bc.Name });
-        }
-
 
     }
 }

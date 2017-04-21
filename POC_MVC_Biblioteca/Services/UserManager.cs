@@ -111,7 +111,7 @@ namespace POC_MVC_Biblioteca.Services
                     Email = u.eMail,
                     AreaDepartament = u.AreaDepartament,
                     ExtensionLine = u.ExtensionLine,
-                    Funtion = u.Function,
+                    Function = u.Function,
                     Id = u.Id,
                     IdSmart = u.IdSmart,
                     Manager = u.Manager,

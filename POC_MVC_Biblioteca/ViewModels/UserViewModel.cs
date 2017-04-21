@@ -41,7 +41,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [DataType(DataType.Text)]
         [Required]
         [Display(Name = "Função")]
-        public string Funtion { get; set; }
+        public string Function { get; set; }
         [StringLength(60)]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Ramal")]

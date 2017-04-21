@@ -39,9 +39,9 @@
           </div>
           <div id="containerCategorias" class="row">
             <ul>
-              @foreach (var category in Model.CataegoriesList)
+              @foreach (var category in Model.BookCategories)
               {
-                  <li><a>@category.Name</a></li>
+                  <li><a navigation-categories data-navigation-categories=@Url.Action("GetBooks", "BooksCatalog", new { filtros = category.Value})>@category.Text</a></li>
               }
             </ul>
           </div>

@@ -1,4 +1,4 @@
-﻿@model POC_MVC_Biblioteca.ViewModels.BooksConsultViewModel
+﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <div id="consulta-Livros-partial" class="book-partial">
   <h3>Consulta de livros</h3>
   @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm" }))
@@ -8,12 +8,11 @@
           <label>Filtros:</label>
         </div>
         <label>Titulo:</label>
-        @Html.TextBoxFor(model => model.TitleFilter)
+        @Html.TextBoxFor(model => model.Title)
         <label>Autor:</label>
-        @Html.TextBoxFor(model => model.AuthorFilter)
+        @Html.TextBoxFor(model => model.Author)
         <label>Editora:</label>
-        @Html.TextBoxFor(model => model.EditorFilter)
-        @* @Html.DropDownListFor(model => model.FiltroCategoria, Model.ListaCategorias, "-- Selecione --");*@
+        @Html.TextBoxFor(model => model.Editor)
         <input type="submit" value="consultar" />
       </div>
 

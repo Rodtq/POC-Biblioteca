@@ -59,7 +59,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 eMail = user.Email,
                 AreaDepartament = user.AreaDepartament,
                 Manager = user.Manager,
-                Function = user.Funtion,
+                Function = user.Function,
                 ExtensionLine = user.ExtensionLine,
                 Roles = SetRoles(user.RolesId),
             };
@@ -107,7 +107,7 @@ namespace POC_MVC_Biblioteca.Controllers
             usr.AreaDepartament = user.AreaDepartament;
             usr.eMail = user.Email;
             usr.ExtensionLine = user.ExtensionLine;
-            usr.Function = user.Funtion;
+            usr.Function = user.Function;
             usr.Id = usr.Id;
             usr.IdSmart = user.IdSmart;
             usr.Manager = user.Manager;

@@ -6,11 +6,11 @@ function Navigation(elementWithInfo, htmlReplacementElement) {
             method: "GET",
             url: partialUrl,
             success: function (data, textStatus, request) {
-                var req = JSON.parse(request.getResponseHeader('X-Responded-JSON'));
-                if (req !== null && req.status == 401) {
-                    alert("Not Authorized");
-                    return;
-                }
+                //var req = JSON.parse(request.getResponseHeader('X-Responded-JSON'));
+                //if (req !== null && req.status == 401) {
+                //    alert("Not Authorized");
+                //    return;
+                //}
                 $(htmlReplacementElement).html(data);
             }, error: function (xhr) {
                 alert("Error");
