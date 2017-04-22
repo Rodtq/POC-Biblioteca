@@ -17,7 +17,7 @@
           <div id="tituloLocacao" class="row">
             <label id="lblTituloLocacao">Reserva de locação</label>
           </div>
-          <div id="containerLocacao" class="row">
+          <div id="containerLocacao" class="row login">
             @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { name = "Index" }))
             {
                 @Html.AntiForgeryToken()

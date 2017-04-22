@@ -77,6 +77,15 @@ tbody td {
     padding: 25px;
 }
 
+.login input[type="text"],input[type="password"],input[type="submit"] {
+    margin-top:10px;
+}
+
+.login a{
+    display:block;
+    padding-top:10px;
+}
+
 /*======================================================================================*/
 /*======================================================================================*/
 /*HOME*/
