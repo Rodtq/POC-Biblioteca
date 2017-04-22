@@ -53,21 +53,24 @@ namespace POC_MVC_Biblioteca.Services
             using (POC_Database db = new POC_Database())
             {
                 query = db.Books.Include("Category");
-                if (!string.IsNullOrEmpty(filters.Author))
+                if (filters != null)
                 {
-                    query = query.Where(l => l.Author.Contains(filters.Author));
-                }
-                if (!string.IsNullOrEmpty(filters.CategoryId))
-                {
-                    query = query.Where(l => l.Category.Id == Convert.ToInt32(filters.CategoryId));
-                }
-                if (!string.IsNullOrEmpty(filters.Editor))
-                {
-                    query = query.Where(l => l.Editor.Contains(filters.Editor));
-                }
-                if (!string.IsNullOrEmpty(filters.Title))
-                {
-                    query = query.Where(l => l.Title.Contains(filters.Title));
+                    if (!string.IsNullOrEmpty(filters.Author))
+                    {
+                        query = query.Where(l => l.Author.Contains(filters.Author));
+                    }
+                    if (!string.IsNullOrEmpty(filters.CategoryId))
+                    {
+                        query = query.Where(l => l.Category.Id == Convert.ToInt32(filters.CategoryId));
+                    }
+                    if (!string.IsNullOrEmpty(filters.Editor))
+                    {
+                        query = query.Where(l => l.Editor.Contains(filters.Editor));
+                    }
+                    if (!string.IsNullOrEmpty(filters.Title))
+                    {
+                        query = query.Where(l => l.Title.Contains(filters.Title));
+                    }
                 }
                 result = query.ToList();
             }

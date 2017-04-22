@@ -82,15 +82,33 @@ tbody td {
 /*HOME*/
 /*======================================================================================*/
 /*======================================================================================*/
+
+.logon-name{
+    float:right;
+    margin-top:15px;
+    color:#999999;
+    padding-right:20px;
+    display:none;
+}
+
+.logoff-btn{
+    float:right;
+    margin-top:16px;
+    color:#999999;
+    display:none;
+}
+
 .home-alignment {
     text-align: center;
 }
 
 .logo-small {
+    background-image: url(\images\\icon32-sccp-black.png);
+    background-repeat: no-repeat;
     float: left;
-    padding-top: 8px;
-    padding-right: 20px;
-    margin-left: 20px;
+    padding-top: 40px;
+    padding-right: 45px;
+    margin-top: 8px;
 }
 
 .logo-large {
@@ -168,15 +186,15 @@ tbody td {
 }
 
 .books-list {
-    height: 400px;
-    overflow-y: scroll;
+    height: 383px;
+    overflow-y: auto;
     margin-left: 0px;
     margin-right: 0px;
 }
 
 .book-filter {
     padding-bottom: 10px;
-    padding-left:30px;
+    padding-left: 30px;
     padding-top: 10px;
 }
 

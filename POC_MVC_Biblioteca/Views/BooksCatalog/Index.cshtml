@@ -1,6 +1,6 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <section id="acervo">
-  <h3>Acervo</h3>
+  <h2>Acervo</h2>
   <div id="container" class="container-fluid">
     @*<div id="navegacao_acervo" class="row acervo-navegacao">
         <ul class="nav nav-pills navbar-nav">
@@ -41,7 +41,7 @@
             <ul>
               @foreach (var category in Model.BookCategories)
               {
-                  <li><a navigation-categories data-navigation-categories=@Url.Action("GetBooks", "BooksCatalog", new { filtros = category.Value})>@category.Text</a></li>
+                  <li><a data-navigation-categories=@Url.Action("GetBooksPerCategory", "BooksCatalog", new { categoryId = category.Value})>@category.Text</a></li>
               }
             </ul>
           </div>
@@ -68,8 +68,10 @@
 </section>
 @Scripts.Render("~/bundles/jquery")
 <script src="~/Scripts/App/Common.js"></script>
+<script src="~/Scripts/App/BookScripts.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));
+    CategoriesNavigation($("a[data-navigation-categories]"), $("#conteudoDireita"));
   });
 </script>

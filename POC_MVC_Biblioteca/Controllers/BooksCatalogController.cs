@@ -60,12 +60,20 @@ namespace POC_MVC_Biblioteca.Controllers
             return PartialView("_CadastroLivros", new BooksViewModel() { BookCategories = _as.GetBookCategories() });
         }
 
-
+        
         public ActionResult GetBooks(BooksViewModel filters)
         {
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _as.GetBookCategories();
             result.BooksList = _as.GetBooks(filters);
+            return PartialView("_ConsultaLivros", result);
+        }
+        
+        public ActionResult GetBooksPerCategory(int categoryId)
+        {
+            BooksViewModel result = new BooksViewModel();
+            result.BookCategories = _as.GetBookCategories();
+            result.BooksList = _as.GetBooks().Where(b=>b.Category.Id == categoryId);
             return PartialView("_ConsultaLivros", result);
         }
 
