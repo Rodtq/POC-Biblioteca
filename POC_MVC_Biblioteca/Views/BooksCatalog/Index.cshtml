@@ -2,15 +2,15 @@
 <section id="acervo">
   <h3>Acervo</h3>
   <div id="container" class="container-fluid">
-    <div id="navegacao_acervo" class="row acervo-navegacao">
-      <ul class="nav nav-pills navbar-nav">
-        <li><a id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
-        <li><a id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
-        <li><a id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
-        <li><a id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
-        <li><a id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>
-      </ul>
-    </div>
+    @*<div id="navegacao_acervo" class="row acervo-navegacao">
+        <ul class="nav nav-pills navbar-nav">
+          <li><a id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
+          <li><a id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+          <li><a id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
+          <li><a id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
+          <li><a id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>
+        </ul>
+      </div>*@
     <div id="separador" class="row acervo-separador">
       <div id="menuLateralEsquerdo" class="col-lg-3 acervo-menu-esquerda">
         <div id="reservaLocacao" class="container acervo-reserva-locacao">
@@ -47,10 +47,21 @@
           </div>
         </div>
       </div>
-      <div id="conteudoDireita" class="col-lg-9 acervo-menu-direita">
-        @{
-            Html.RenderAction("GetBooks", "BooksCatalog");
-        }
+      <div class="col-lg-9 acervo-menu-direita">
+        <div id="navegacao_acervo" class="acervo-navegacao">
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a data-toggle="tab" id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
+            <li role="presentation"><a data-toggle="tab" id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+            @*<li role="presentation"><a data-toggle="tab" id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
+            <li role="presentation"><a data-toggle="tab" id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
+            <li role="presentation"><a data-toggle="tab" id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>*@
+          </ul>
+        </div>
+        <div id="conteudoDireita">
+          @{
+              Html.RenderAction("GetBooks", "BooksCatalog");
+          }
+        </div>
       </div>
     </div>
   </div>
