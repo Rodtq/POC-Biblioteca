@@ -134,7 +134,7 @@ tbody td {
 
 .register-form-content {
     padding-left: 30px;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 .cadastro-Livros-partial {
@@ -176,6 +176,8 @@ tbody td {
 
 .book-filter {
     padding-bottom: 10px;
+    padding-left:30px;
+    padding-top: 10px;
 }
 
 /*======================================================================================*/
