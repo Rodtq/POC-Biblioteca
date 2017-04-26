@@ -12,8 +12,10 @@ namespace POC_MVC_Biblioteca.ViewModels
     {
         public IEnumerable<Book> BooksList { get; set; }
         [Required]
+        [StringLength(15)]
+        [DataType(DataType.Text)]
         [Display(Name = "ISBN")]
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
         [StringLength(30)]
         [DataType(DataType.Text)]
         [Required]
@@ -39,11 +41,9 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Required]
         [Display(Name = "Quantidade")]
         public int Quantity { get; set; }
-        [StringLength(100)]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Descrição")]
         public string Description { get; set; }
-        [StringLength(100)]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Observação")]
         public string Observation { get; set; }

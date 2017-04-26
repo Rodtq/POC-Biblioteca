@@ -9,7 +9,7 @@
             @Html.LabelFor(m => m.ISBN)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.ISBN, new { Value = "", type = "number", min = "0" })
+            @Html.TextBoxFor(m => m.ISBN, new { Value = ""})
             @Html.ValidationMessageFor(m => m.ISBN, null, new { @class = "validation" })
           </div>
         </div>
@@ -67,15 +67,6 @@
             @Html.ValidationMessageFor(m => m.Quantity, null, new { @class = "validation" })
           </div>
         </div>
-        <div id="DescricaoDiv" class="row">
-          <div class="col-lg-2">
-            @Html.LabelFor(m => m.Description)<span>:</span>
-          </div>
-          <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Description, new { @Value = "" })
-            @Html.ValidationMessageFor(m => m.Description, null, new { @class = "validation" })
-          </div>
-        </div>
         <div id="ObservacaoDiv" class="row">
           <div class="col-lg-2">
             @Html.LabelFor(m => m.Observation)<span>:</span>
@@ -93,7 +84,16 @@
             @Html.TextBoxFor(m => m.LocalizationShelf, new { @Value = "" })
           </div>
         </div>
-        <input type="submit" value="Finalizar">
+        <div id="DescricaoDiv" class="row">
+          <div class="col-lg-2">
+            @Html.LabelFor(m => m.Description)<span>:</span>
+          </div>
+          <div class="col-lg-10">
+            @Html.TextBoxFor(m => m.Description, new { @Value = "" })
+            @Html.ValidationMessageFor(m => m.Description, null, new { @class = "validation" })
+          </div>
+        </div>
+        <input type="submit" value="Finalizar" class="btn btn-sm">
       </div>
   }
 </div>

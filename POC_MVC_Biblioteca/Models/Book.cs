@@ -12,7 +12,7 @@ namespace POC_MVC_Biblioteca.Models
     {
         [Key]
         public int Id { get; set; }
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public DateTime BookYear { get; set; }

@@ -77,13 +77,13 @@ tbody td {
     padding: 25px;
 }
 
-.login input[type="text"],input[type="password"],input[type="submit"] {
-    margin-top:10px;
+.login input[type="text"], input[type="password"], input[type="submit"] {
+    margin-top: 10px;
 }
 
-.login a{
-    display:block;
-    padding-top:10px;
+.login a {
+    display: block;
+    padding-top: 10px;
 }
 
 /*======================================================================================*/
@@ -92,19 +92,19 @@ tbody td {
 /*======================================================================================*/
 /*======================================================================================*/
 
-.logon-name{
-    float:right;
-    margin-top:15px;
-    color:#999999;
-    padding-right:20px;
-    display:none;
+.logon-name {
+    float: right;
+    margin-top: 15px;
+    color: #999999;
+    padding-right: 20px;
+    display: none;
 }
 
-.logoff-btn{
-    float:right;
-    margin-top:16px;
-    color:#999999;
-    display:none;
+.logoff-btn {
+    float: right;
+    margin-top: 16px;
+    color: #999999;
+    display: none;
 }
 
 .home-alignment {
@@ -127,8 +127,9 @@ tbody td {
 .jumbotron h1 {
     font-size: 63px;
     text-align: center;
-    color: dodgerblue;
-    text-shadow: 10px 8px 8px #333;
+    color: steelblue;
+    text-shadow: none;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
 }
 
 
@@ -207,6 +208,17 @@ tbody td {
     padding-top: 10px;
 }
 
+    .book-filter input {
+        max-width:200px;
+        margin-right:10px;
+    }
+    .book-filter .form-control{
+        display:inline;
+    }
+
+    .book-filter .btn{
+        margin-bottom:10px;
+    }
 /*======================================================================================*/
 /*======================================================================================*/
 /*CADASTRO DE USUARIOS*/

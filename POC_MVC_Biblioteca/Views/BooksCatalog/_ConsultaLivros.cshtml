@@ -1,19 +1,16 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <div id="consulta-Livros-partial" class="book-partial">
   <h3>Consulta de livros</h3>
-  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm" }))
+  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm", @class= "form - group" }))
   {
       <div id="consulta-filtros" class="book-filter">
         <div>
           <label>Filtros:</label>
         </div>
-        <label>Titulo:</label>
-        @Html.TextBoxFor(model => model.Title)
-        <label>Autor:</label>
-        @Html.TextBoxFor(model => model.Author)
-        <label>Editora:</label>
-        @Html.TextBoxFor(model => model.Editor)
-        <input type="submit" value="consultar" />
+        @Html.TextBoxFor(model => model.Title,new { @class = "form-control" , placeholder="Titulo" })
+        @Html.TextBoxFor(model => model.Author, new { @class = "form-control", placeholder = "Autor" })
+        @Html.TextBoxFor(model => model.Editor, new { @class = "form-control", placeholder = "Editora" })
+        <input type="submit" value="consultar" class="btn btn-sm" />
       </div>
 
   }
