@@ -1,84 +1,89 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <section id="acervo">
-    <h2>Acervo</h2>
-    <div id="container" class="container-fluid">
-        @*<div id="navegacao_acervo" class="row acervo-navegacao">
-              <ul class="nav nav-pills navbar-nav">
-                <li><a id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
-                <li><a id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
-                <li><a id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
-                <li><a id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
-                <li><a id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>
-              </ul>
-            </div>*@
-        <div id="separador" class="row acervo-separador">
-            <div id="menuLateralEsquerdo" class="col-lg-3 acervo-menu-esquerda">
-                <div id="reservaLocacao" class="container acervo-reserva-locacao">
-                    <div id="tituloLocacao" class="row">
-                        <label id="lblTituloLocacao">Reserva de locação</label>
-                    </div>
-                    <div id="containerLocacao" class="row login">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <label>Teste</label>
-                        }
-                        else
-                        {
-                            using (Html.BeginForm("Index", "Login", FormMethod.Post, new { name = "Index", @class = "form-group" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <input type="text" title="Login" name="UserName" class="form-control" placeholder="login" />
+  <h2>Acervo</h2>
+  <div id="container" class="container-fluid">
+    @*<div id="navegacao_acervo" class="row acervo-navegacao">
+        <ul class="nav nav-pills navbar-nav">
+          <li><a id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
+          <li><a id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+          <li><a id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
+          <li><a id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
+          <li><a id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>
+        </ul>
+      </div>*@
+    <div id="separador" class="row acervo-separador">
+      <div id="menuLateralEsquerdo" class="col-lg-3 acervo-menu-esquerda">
+        <div id="reservaLocacao" class="container acervo-reserva-locacao">
+          <div id="tituloLocacao" class="row">
+            <label id="lblTituloLocacao">Reserva de locação</label>
+          </div>
+          <div id="containerLocacao" class="row login">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div>
+
+                </div>
+                <div>
+                  @Html.ActionLink("Log-off","Logoff", "Login",null, new { @class = "btn btn-sm" })
+                </div>
+            }
+            else
+            {
+              using (Html.BeginForm("Index", "Login", FormMethod.Post, new { name = "Index", @class = "form-group" }))
+              {
+                    @Html.AntiForgeryToken()
+                    <input type="text" title="Login" name="UserName" class="form-control" placeholder="login" />
                                 <input type="password" title="Password" name="Password" class="form-control" placeholder="password" />
                                 <div>
-                                    <input type="submit" value="Sign In" id="login" class="btn btn-sm">
-                                    @Html.ActionLink("Sign up", "Index", "User")
+                                  <input type="submit" value="Sign In" id="login" class="btn btn-sm">
+                                  @Html.ActionLink("Sign up", "Index", "User")
                                 </div>
-                            }
-                        }
-                        <div>
-                            <a>Forgot your password</a>
-                        </div>
-                    </div>
+              }
+                <div>
+                  <a>Forgot your password</a>
                 </div>
-                <div id="categorias" class="container acervo-categorias">
-                    <div id="tituloCategorias" class="row">
-                        <label>Categorias</label>
-                    </div>
-                    <div id="containerCategorias" class="row">
-                        <ul>
-                            @foreach (var category in Model.BookCategories)
-                            {
-                                <li><a data-navigation-categories=@Url.Action("GetBooksPerCategory", "BooksCatalog", new { categoryId = category.Value})>@category.Text</a></li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-9 acervo-menu-direita">
-                <div id="navegacao_acervo" class="acervo-navegacao">
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a data-toggle="tab" id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
-                        <li role="presentation"><a data-toggle="tab" id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
-                        @*<li role="presentation"><a data-toggle="tab" id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
-                            <li role="presentation"><a data-toggle="tab" id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
-                            <li role="presentation"><a data-toggle="tab" id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>*@
-                    </ul>
-                </div>
-                <div id="conteudoDireita">
-                    @{
-                        Html.RenderAction("GetBooks", "BooksCatalog");
-                    }
-                </div>
-            </div>
+            }
+          </div>
         </div>
+        <div id="categorias" class="container acervo-categorias">
+          <div id="tituloCategorias" class="row">
+            <label>Categorias</label>
+          </div>
+          <div id="containerCategorias" class="row">
+            <ul>
+              @foreach (var category in Model.BookCategories)
+              {
+                  <li><a data-navigation-categories=@Url.Action("GetBooksPerCategory", "BooksCatalog", new { categoryId = category.Value})>@category.Text</a></li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 acervo-menu-direita">
+        <div id="navegacao_acervo" class="acervo-navegacao">
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a data-toggle="tab" id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
+            <li role="presentation"><a data-toggle="tab" id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+            @*<li role="presentation"><a data-toggle="tab" id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
+              <li role="presentation"><a data-toggle="tab" id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
+              <li role="presentation"><a data-toggle="tab" id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>*@
+          </ul>
+        </div>
+        <div id="conteudoDireita">
+          @{
+              Html.RenderAction("GetBooks", "BooksCatalog");
+          }
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 @Scripts.Render("~/bundles/jquery")
 <script src="~/Scripts/App/Common.js"></script>
 <script src="~/Scripts/App/BookScripts.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));
-        CategoriesNavigation($("a[data-navigation-categories]"), $("#conteudoDireita"));
-    });
+  $(document).ready(function () {
+    Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));
+    CategoriesNavigation($("a[data-navigation-categories]"), $("#conteudoDireita"));
+  });
 </script>
