@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -132,7 +134,7 @@ namespace POC_MVC_Biblioteca.Services
                     Id = u.Id,
                     IdSmart = u.IdSmart,
                     Manager = u.Manager,
-                    Name = u.Name
+                    Name = u.Name,
                 });
             }
             return Result;
@@ -220,6 +222,82 @@ namespace POC_MVC_Biblioteca.Services
                                                      select role));
             return roles;
         }
+
+
+        public UserViewModel FindActiveDirectotyUser(string samAccountName)
+        {
+            var foundDC = DomainController.FindOne(new DirectoryContext(DirectoryContextType.Domain),
+             ActiveDirectorySite.GetComputerSite().ToString(),
+             LocatorOptions.ForceRediscovery | LocatorOptions.WriteableRequired);
+            var searcher = foundDC.GetDirectorySearcher();
+            searcher.Filter = string.Format("(&(objectClass=user)(objectCategory=person)(samAccountName={0}))", samAccountName);
+            //var root = new DirectoryEntry("LDAP://" + Properties.Settings.Default.ActiveDirectoryPath);
+            //var searcher = new DirectorySearcher(root)
+            //{
+            //    Filter =
+            //        string.Format("(&(objectClass=user)(objectCategory=person)(samAccountName={0}))", samAccountName)
+            //};
+            searcher.PropertiesToLoad.Add("name");
+            searcher.PropertiesToLoad.Add("mail");
+            searcher.PropertiesToLoad.Add("manager");
+            searcher.PropertiesToLoad.Add("telephoneNumber");
+            searcher.PropertiesToLoad.Add("department");
+            searcher.PropertiesToLoad.Add("samAccountName");
+            searcher.PropertiesToLoad.Add("thumbnailPhoto");
+            searcher.PropertiesToLoad.Add("employeeID");
+
+            var result = searcher.FindOne();
+            if (result != null)
+            {
+                var user = new UserViewModel();
+                if (result.Properties.Contains("samAccountName"))
+                {
+                    user.SamAccountName = (string)result.Properties["samAccountName"][0];
+                }
+                if (result.Properties.Contains("name"))
+                {
+                    user.Name = (string)result.Properties["name"][0];
+                }
+                if (result.Properties.Contains("mail"))
+                {
+                    user.Email = (string)result.Properties["mail"][0];
+                }
+                if (result.Properties.Contains("manager"))
+                {
+                    searcher.Filter = string.Format("(&(objectClass=user)(objectCategory=person)(distinguishedName={0}))", (string)result.Properties["manager"][0]);
+                    searcher.PropertiesToLoad.Add("name");
+                    var managerResult = searcher.FindOne();
+                    if (managerResult != null)
+                    {
+                        user.Manager = (string)managerResult.Properties["name"][0];
+                    }
+                }
+                if (result.Properties.Contains("telephoneNumber"))
+                {
+                    user.ExtensionLine = (string)result.Properties["telephoneNumber"][0];
+                }
+                if (result.Properties.Contains("department"))
+                {
+                    user.AreaDepartament = (string)result.Properties["department"][0];
+                }
+                if (result.Properties.Contains("samAccountName"))
+                {
+                    user.SamAccountName = (string)result.Properties["samAccountName"][0];
+                }
+                if (result.Properties.Contains("thumbnailPhoto"))
+                {
+                    user.Photo = (byte[])result.Properties["thumbnailPhoto"][0];
+                }
+                if (result.Properties.Contains("employeeID"))
+                {
+                    user.IdSmart = (int)result.Properties["employeeID"][0];
+                }
+
+                return user;
+            }
+            return null;
+        }
+
 
     }
 }

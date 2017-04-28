@@ -52,6 +52,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         public int[] RolesId { get; set; }
         public MultiSelectList Roles { get; set; }
         public string PartialName { get; set; }
+        public byte[] Photo { get; set; }
 
     }
 

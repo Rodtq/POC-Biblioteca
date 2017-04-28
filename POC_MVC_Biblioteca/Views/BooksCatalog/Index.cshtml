@@ -18,13 +18,17 @@
             <label id="lblTituloLocacao">Reserva de locação</label>
           </div>
           <div id="containerLocacao" class="row login">
-            @if (!User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
             {
                 <div>
 
                 </div>
                 <div>
-                  @Html.ActionLink("Log-off","Logoff", "Login",null, new { @class = "btn btn-sm" })
+                  @using (Html.BeginForm("Logoff", "Login", FormMethod.Post, new { name = "Logoff-frm", @class = "form-group" }))
+                  {
+                      @Html.AntiForgeryToken()
+                      <input type="submit" value="Sign-off" id="logout" class="btn btn-sm">
+                  }
                 </div>
             }
             else
@@ -33,11 +37,11 @@
               {
                     @Html.AntiForgeryToken()
                     <input type="text" title="Login" name="UserName" class="form-control" placeholder="login" />
-                                <input type="password" title="Password" name="Password" class="form-control" placeholder="password" />
-                                <div>
-                                  <input type="submit" value="Sign In" id="login" class="btn btn-sm">
-                                  @Html.ActionLink("Sign up", "Index", "User")
-                                </div>
+                    <input type="password" title="Password" name="Password" class="form-control" placeholder="password" />
+                    <div>
+                      <input type="submit" value="Sign In" id="login" class="btn btn-sm">
+                      @Html.ActionLink("Sign up", "Index", "User")
+                    </div>
               }
                 <div>
                   <a>Forgot your password</a>

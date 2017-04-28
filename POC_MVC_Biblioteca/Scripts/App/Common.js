@@ -3,6 +3,7 @@ function Navigation(elementWithInfo, htmlReplacementElement) {
     $(elementWithInfo).click(function (e) {
         var partialUrl = $(this).data('navigation-partial');
         $.ajax({
+            cache: false,
             method: "GET",
             url: partialUrl,
             success: function (data, textStatus, request) {
@@ -25,6 +26,7 @@ function GenericPostHandler(form, htmlReplacementElement) {
     form.on("submit", function (e) {
         e.preventDefault();
         $.ajax({
+            cache: false,
             type: "POST",
             url: form.attr('action'),
             data: form.serialize(), // serializes the form's elements.

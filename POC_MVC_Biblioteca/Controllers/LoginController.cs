@@ -64,7 +64,7 @@ namespace POC_MVC_Biblioteca.Controllers
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut(App_Start.CustomAuthentication.ApplicationCookie);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "BooksCatalog");
         }
     }
 }

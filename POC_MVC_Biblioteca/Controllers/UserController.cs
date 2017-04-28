@@ -58,7 +58,7 @@ namespace POC_MVC_Biblioteca.Controllers
             _um.AddUser(user);
             return PartialView("_UserRegister", result);
         }
-
+        [OutputCache(Duration = 1, VaryByParam = "*")]
         public ActionResult UserNavigation(string partialViewName)
         {
             switch (partialViewName)
@@ -104,6 +104,16 @@ namespace POC_MVC_Biblioteca.Controllers
             _um.UpdateUser(usr);
             return PartialView("_UserEdit", user);
         }
+
+
+        public ActionResult FindADUser(string samAccountName)
+        {
+
+            UserViewModel model = _um.FindActiveDirectotyUser(samAccountName);
+            model.Roles = _um.GetParsedRoles();
+            return PartialView("_UserRegister", model);
+        }
+
 
     }
 }
