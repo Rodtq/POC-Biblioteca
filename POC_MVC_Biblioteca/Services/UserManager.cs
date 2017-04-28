@@ -226,9 +226,16 @@ namespace POC_MVC_Biblioteca.Services
 
         public UserViewModel FindActiveDirectotyUser(string samAccountName)
         {
+
+            var user = new UserViewModel() { SamAccountName = samAccountName };
+            if (true)
+            {
+                return user;
+            }
             var foundDC = DomainController.FindOne(new DirectoryContext(DirectoryContextType.Domain),
              ActiveDirectorySite.GetComputerSite().ToString(),
              LocatorOptions.ForceRediscovery | LocatorOptions.WriteableRequired);
+
             var searcher = foundDC.GetDirectorySearcher();
             searcher.Filter = string.Format("(&(objectClass=user)(objectCategory=person)(samAccountName={0}))", samAccountName);
             //var root = new DirectoryEntry("LDAP://" + Properties.Settings.Default.ActiveDirectoryPath);
@@ -249,7 +256,6 @@ namespace POC_MVC_Biblioteca.Services
             var result = searcher.FindOne();
             if (result != null)
             {
-                var user = new UserViewModel();
                 if (result.Properties.Contains("samAccountName"))
                 {
                     user.SamAccountName = (string)result.Properties["samAccountName"][0];
@@ -298,6 +304,10 @@ namespace POC_MVC_Biblioteca.Services
             return null;
         }
 
-
+        private bool IsLocalUser(string accountName)
+        {
+            var domainContext = new PrincipalContext(ContextType.Machine);
+            return Principal.FindByIdentity(domainContext, accountName) != null;
+        }
     }
 }
