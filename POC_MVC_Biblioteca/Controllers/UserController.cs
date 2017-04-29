@@ -58,7 +58,9 @@ namespace POC_MVC_Biblioteca.Controllers
             _um.AddUser(user);
             return PartialView("_UserRegister", result);
         }
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+
+        //[OutputCache(Duration = 10, VaryByParam = "*")]
+        [NoCache]
         public ActionResult UserNavigation(string partialViewName)
         {
             switch (partialViewName)

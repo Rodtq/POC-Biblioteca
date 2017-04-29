@@ -228,10 +228,10 @@ namespace POC_MVC_Biblioteca.Services
         {
 
             var user = new UserViewModel() { SamAccountName = samAccountName };
-            if (true)
-            {
-                return user;
-            }
+            //if (true)
+            //{
+            //    return user;
+            //}
             var foundDC = DomainController.FindOne(new DirectoryContext(DirectoryContextType.Domain),
              ActiveDirectorySite.GetComputerSite().ToString(),
              LocatorOptions.ForceRediscovery | LocatorOptions.WriteableRequired);

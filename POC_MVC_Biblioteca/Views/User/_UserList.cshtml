@@ -1,18 +1,18 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.UserViewModel
 <h3>Lista de Usuários</h3>
-@using (Html.BeginForm("GetUsers", "User", FormMethod.Post, new { id = "QueryUsers-frm" }))
+@using (Html.BeginForm("GetUsers", "User", FormMethod.Post, new { id = "QueryUsers-frm", @class = "form - group" }))
 {
     <div id="consulta-filtros" class="user-filter">
       <div>
         <label>Filtros:</label>
       </div>
       <label>Nome:</label>
-      @Html.TextBoxFor(model => model.Name)
+      @Html.TextBoxFor(model => model.Name ,new { @class = "form-control" })
       <label>IdSmart:</label>
-      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0", @Value = "" })
+      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0", @Value = "" , @class = "form-control" })
       <label>Departamento:</label>
-      @Html.TextBoxFor(model => model.AreaDepartament)
-      <input type="submit" value="consultar" />
+      @Html.TextBoxFor(model => model.AreaDepartament, new { @class = "form-control" })
+      <input type="submit" value="consultar" class="btn btn-sm" />
     </div>
 }
 <div id="user-list">

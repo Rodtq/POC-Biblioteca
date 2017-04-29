@@ -39,7 +39,14 @@ tbody td {
     font-size: 10px;
 }
 
-.table-bordered th, .table-bordered td { border: 1px solid #ddd!important }
+table {
+    border-collapse: separate;
+}
+
+    table:first-child {
+        border-top: none;
+    }
+
 /*======================================================================================*/
 /*======================================================================================*/
 /*ACERVO*/
@@ -209,15 +216,16 @@ tbody td {
 }
 
     .book-filter input {
-        max-width:200px;
-        margin-right:10px;
-    }
-    .book-filter .form-control{
-        display:inline;
+        max-width: 200px;
+        margin-right: 10px;
     }
 
-    .book-filter .btn{
-        margin-bottom:10px;
+    .book-filter .form-control {
+        display: inline;
+    }
+
+    .book-filter .btn {
+        margin-bottom: 10px;
     }
 /*======================================================================================*/
 /*======================================================================================*/
@@ -254,7 +262,7 @@ tbody td {
 
 .user-list {
     height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     border: solid 1px lightgray;
 }
 
@@ -272,6 +280,20 @@ tbody td {
     .user-filter label {
         padding-left: 10px;
     }
+
+    .user-filter input {
+        max-width: 200px;
+        margin-right: 10px;
+    }
+
+    .user-filter .form-control {
+        display: inline;
+    }
+
+    .user-filter .btn {
+        margin-bottom: 10px;
+    }
+
 
 /*======================================================================================*/
 /*======================================================================================*/
