@@ -6,12 +6,9 @@
       <div>
         <label>Filtros:</label>
       </div>
-      <label>Nome:</label>
-      @Html.TextBoxFor(model => model.Name ,new { @class = "form-control" })
-      <label>IdSmart:</label>
-      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0", @Value = "" , @class = "form-control" })
-      <label>Departamento:</label>
-      @Html.TextBoxFor(model => model.AreaDepartament, new { @class = "form-control" })
+      @Html.TextBoxFor(model => model.Name ,new { @class = "form-control", placeholder = "Nome" })
+      @Html.TextBoxFor(model => model.IdSmart, new { type = "number", min = "0", @Value = "" , @class = "form-control", placeholder = "IdSmart" })
+      @Html.TextBoxFor(model => model.AreaDepartament, new { @class = "form-control", placeholder = "Departamento" })
       <input type="submit" value="consultar" class="btn btn-sm" />
     </div>
 }

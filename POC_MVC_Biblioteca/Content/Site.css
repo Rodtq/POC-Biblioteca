@@ -179,7 +179,7 @@ table {
     padding-left: 10px;
 }
 
-    .cadastro-Livros-partial input[type=text], input[type=number], select {
+    .cadastro-Livros-partial input[type=text], .cadastro-Livros-partial input[type=number],.cadastro-Livros-partial select {
         margin-bottom: 10px;
         width: 600px;
     }
@@ -273,8 +273,10 @@ table {
     margin-bottom: 10px;
 }
 
+
     .user-filter div label {
-        padding-left: 10px;
+        margin-left: 10px;
+        
     }
 
     .user-filter label {
@@ -282,8 +284,10 @@ table {
     }
 
     .user-filter input {
+        padding-left: 10px;
         max-width: 200px;
         margin-right: 10px;
+        margin-left:20px;
     }
 
     .user-filter .form-control {
