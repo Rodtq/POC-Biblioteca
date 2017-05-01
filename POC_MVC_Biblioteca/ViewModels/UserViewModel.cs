@@ -33,6 +33,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Required]
         [Display(Name = "Area - Departamento")]
         public string AreaDepartament { get; set; }
+        [Required]
         [StringLength(60)]
         [DataType(DataType.Text)]
         [Display(Name = "Gerente")]
@@ -42,6 +43,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Required]
         [Display(Name = "Função")]
         public string Function { get; set; }
+        [Required]
         [StringLength(60)]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Ramal")]

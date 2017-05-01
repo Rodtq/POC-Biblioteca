@@ -179,7 +179,7 @@ table {
     padding-left: 10px;
 }
 
-    .cadastro-Livros-partial input[type=text], .cadastro-Livros-partial input[type=number],.cadastro-Livros-partial select {
+    .cadastro-Livros-partial input[type=text], .cadastro-Livros-partial input[type=number], .cadastro-Livros-partial select {
         margin-bottom: 10px;
         width: 600px;
     }
@@ -242,13 +242,19 @@ table {
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
 }
-
-    .cadastro-usuario-partial input[type=text], select {
-        margin-bottom: 10px;
-        width: 600px;
+    .cadastro-usuario-partial label {
+        padding-top:22px;
     }
 
 
+    .cadastro-usuario-partial input[type=text], select {
+        margin-top: 10px;
+        width: 600px;
+    }
+
+    .findUserFrm{
+        margin-bottom:0px;
+    }
 
 /*======================================================================================*/
 /*======================================================================================*/
@@ -276,7 +282,6 @@ table {
 
     .user-filter div label {
         margin-left: 10px;
-        
     }
 
     .user-filter label {
@@ -287,7 +292,7 @@ table {
         padding-left: 10px;
         max-width: 200px;
         margin-right: 10px;
-        margin-left:20px;
+        margin-left: 20px;
     }
 
     .user-filter .form-control {
@@ -308,13 +313,6 @@ table {
     color: red;
     font-weight: bolder;
     padding-left: 10px;
-}
-
-.validationSelect {
-    float: right;
-    color: red;
-    margin-right: 454px;
-    padding-top: 24px;
 }
 
 /*======================================================================================*/
