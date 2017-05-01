@@ -16,7 +16,6 @@ namespace POC_MVC_Biblioteca.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "ISBN")]
         public string ISBN { get; set; }
-        [StringLength(30)]
         [DataType(DataType.Text)]
         [Required]
         [Display(Name = "Titulo")]
@@ -47,6 +46,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [DataType(DataType.MultilineText)]
         [Display(Name = "Observação")]
         public string Observation { get; set; }
+        [Display(Name = "Localização")]
         public string LocalizationShelf { get; set; }
         public IEnumerable<SelectListItem> BookCategories { get; set; }
 

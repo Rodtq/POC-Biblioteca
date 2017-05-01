@@ -170,6 +170,7 @@ table {
 .register-form-content {
     padding-left: 30px;
     padding-top: 10px;
+    width: 100%;
 }
 
 .cadastro-Livros-partial {
@@ -183,6 +184,13 @@ table {
         margin-bottom: 10px;
         width: 600px;
     }
+
+    .cadastro-Livros-partial textarea {
+        resize: none;
+    }
+
+
+
 /*======================================================================================*/
 /*======================================================================================*/
 /*Consulta DE Livros*/
@@ -235,26 +243,24 @@ table {
 
 .cadastro-usuario-partial {
     background-color: #f9f9f9;
-    padding: 10px;
     font: 12px arial, verdana, helvetica, sans-serif;
-    border-top: 1px solid lightgray;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
 }
-    .cadastro-usuario-partial label {
-        padding-top:22px;
-    }
-
 
     .cadastro-usuario-partial input[type=text], select {
-        margin-top: 10px;
         width: 600px;
     }
 
-    .findUserFrm{
-        margin-bottom:0px;
+.cadastrodiv {
+    width: 100%;
+}
+
+    .cadastrodiv input {
+        margin-bottom: 10px;
     }
+
+.findUserFrm {
+    margin-bottom: 10px;
+}
 
 /*======================================================================================*/
 /*======================================================================================*/
