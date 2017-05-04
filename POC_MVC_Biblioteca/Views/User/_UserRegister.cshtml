@@ -6,10 +6,10 @@
     {
         <div id="SamAccountNameDiv" class="row">
           <div class="col-lg-2">
-            @Html.LabelFor(model => model.SamAccountName,new { @class="control-label" })<span>:</span>
+            @Html.LabelFor(model => model.SamAccountName, new { @class = "control-label" })<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.SamAccountName, new { Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.SamAccountName, Model.SamAccountName != null ? new { Value = Model.SamAccountName, @class = "form-control" } : new { Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SamAccountName, null, new { @class = "validation" })
           </div>
         </div>
@@ -89,7 +89,7 @@
           </div>
           <div id="Role" class="row">
             <div class="col-lg-2">
-              @Html.LabelFor(m => m.RolesId,new { @class="control-label" })<span>:</span>
+              @Html.LabelFor(m => m.RolesId, new { @class = "control-label" })<span>:</span>
             </div>
             <div class="col-lg-10">
               @Html.ListBoxFor(m => m.RolesId, Model.Roles, new { @class = "form-control" })
@@ -106,8 +106,12 @@
   $(document).ready(function () {
     GenericPostHandler($("#userRegister-fmr"), $("#container-partials"));
     GenericPostHandler($("#findUser-fmr"), $("#container-partials"));
-
-
+    $("#SamAccountName").focusout(function () {
+      if ($("#SamAccountName").val() === "") {
+        return;
+      }
+      $("#findUser-fmr").trigger("submit");
+    });
   });
 </script>
 
