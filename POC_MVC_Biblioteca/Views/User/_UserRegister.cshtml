@@ -102,18 +102,8 @@
   </div>
 </div>
 @Scripts.Render("~/bundles/jquery")
-<script type="text/javascript">
-  $(document).ready(function () {
-    GenericPostHandler($("#userRegister-fmr"), $("#container-partials"));
-    GenericPostHandler($("#findUser-fmr"), $("#container-partials"));
-    $("#SamAccountName").focusout(function () {
-      if ($("#SamAccountName").val() === "") {
-        return;
-      }
-      $("#findUser-fmr").trigger("submit");
-    });
-  });
-</script>
+<script src="~/Scripts/App/register-user.js"></script>
+
 
 
 
