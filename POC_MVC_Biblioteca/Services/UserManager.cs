@@ -293,7 +293,9 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 if (result.Properties.Contains("employeeID"))
                 {
-                    user.IdSmart = (int)result.Properties["employeeID"][0];
+                    string fullId = result.Properties["employeeID"][0].ToString();
+                    int numberId = Convert.ToInt32(fullId.Substring(5, fullId.Length));
+                    user.IdSmart = numberId;
                 }
 
                 return user;
