@@ -294,8 +294,21 @@ namespace POC_MVC_Biblioteca.Services
                 if (result.Properties.Contains("employeeID"))
                 {
                     string fullId = result.Properties["employeeID"][0].ToString();
-                    int numberId = Convert.ToInt32(fullId.Substring(5, fullId.Length));
-                    user.IdSmart = numberId;
+                    string[] splittedId = fullId.Split('-');
+                    if (splittedId.Length > 0)
+                    {
+                        int n;
+                        for (int i = 0; i < splittedId.Length; i++)
+                        {
+                            bool isNumeric = int.TryParse(splittedId[i], out n);
+                            if (isNumeric)
+                            {
+                                int numberId = Convert.ToInt32(splittedId[i]);
+                                user.IdSmart = numberId;
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 return user;
