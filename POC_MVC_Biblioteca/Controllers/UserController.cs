@@ -110,7 +110,10 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult FindADUser(string samAccountName)
         {
-
+            if (string.IsNullOrEmpty(samAccountName))
+            {
+                return PartialView("_UserRegister", new UserViewModel() { Roles = _um.GetParsedRoles() });
+            }
             UserViewModel model = _um.FindActiveDirectotyUser(samAccountName);
             model.Roles = _um.GetParsedRoles();
             return PartialView("_UserRegister", model);

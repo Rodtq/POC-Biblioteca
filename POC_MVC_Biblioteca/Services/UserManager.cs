@@ -228,10 +228,7 @@ namespace POC_MVC_Biblioteca.Services
         {
 
             var user = new UserViewModel() { SamAccountName = samAccountName };
-            //if (true)
-            //{
-            //    return user;
-            //}
+
             var foundDC = DomainController.FindOne(new DirectoryContext(DirectoryContextType.Domain),
              ActiveDirectorySite.GetComputerSite().ToString(),
              LocatorOptions.ForceRediscovery | LocatorOptions.WriteableRequired);
@@ -296,7 +293,22 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 if (result.Properties.Contains("employeeID"))
                 {
-                    user.IdSmart = (int)result.Properties["employeeID"][0];
+                    string fullId = result.Properties["employeeID"][0].ToString();
+                    string[] splittedId = fullId.Split('-');
+                    if (splittedId.Length > 0)
+                    {
+                        int n;
+                        for (int i = 0; i < splittedId.Length; i++)
+                        {
+                            bool isNumeric = int.TryParse(splittedId[i], out n);
+                            if (isNumeric)
+                            {
+                                int numberId = Convert.ToInt32(splittedId[i]);
+                                user.IdSmart = numberId;
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 return user;

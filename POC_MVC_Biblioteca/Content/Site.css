@@ -247,6 +247,7 @@ table {
 /*======================================================================================*/
 
 .cadastro-usuario-partial {
+    padding:10px;
     background-color: #f9f9f9;
     font: 12px arial, verdana, helvetica, sans-serif;
 }
