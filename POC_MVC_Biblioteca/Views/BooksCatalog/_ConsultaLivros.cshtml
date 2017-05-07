@@ -1,13 +1,13 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <div id="consulta-Livros-partial" class="book-partial">
   <h3>Consulta de livros</h3>
-  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm", @class= "form - group" }))
+  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm", @class = "form - group" }))
   {
       <div id="consulta-filtros" class="book-filter">
         <div>
           <label>Filtros:</label>
         </div>
-        @Html.TextBoxFor(model => model.Title,new { @class = "form-control" , placeholder="Titulo" })
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Titulo" })
         @Html.TextBoxFor(model => model.Author, new { @class = "form-control", placeholder = "Autor" })
         @Html.TextBoxFor(model => model.Editor, new { @class = "form-control", placeholder = "Editora" })
         <input type="submit" value="consultar" class="btn btn-sm" />
@@ -19,6 +19,7 @@
       <table class="table-striped book-table">
         <thead>
           <tr>
+            <th class="col-lg-3"><b>Imagem</b></th>
             <th class="col-lg-3"><b>Titulo</b></th>
             <th class="col-lg-3"><b>Autor</b></th>
             <th class="col-lg-2"><b>Editora</b></th>
@@ -42,6 +43,12 @@
           @foreach (var item in Model.BooksList)
           {
               <tr>
+                <td class="col-lg-2">
+                  @if (item.Cover != null)
+                  {
+                      <img src="data:image/png;base64,@Convert.ToBase64String(item.Cover,0,item.Cover.Length)" />
+                  }
+                </td>
                 <td class="col-lg-3">
                   <label>@item.Title</label>
                 </td>

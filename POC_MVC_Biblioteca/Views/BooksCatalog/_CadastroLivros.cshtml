@@ -45,7 +45,7 @@
             @Html.LabelFor(m => m.CategoryId)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.DropDownListFor(m => m.CategoryId, Model.BookCategories, Model.CategoryId != null ? Model.CategoryId : "--Selecione--", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.CategoryId, Model.BookCategories, string.IsNullOrEmpty(Model.CategoryId) ? "--Selecione--" : Model.CategoryId, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "validation" })
           </div>
         </div>
@@ -90,7 +90,7 @@
             @Html.LabelFor(m => m.Description)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextAreaFor(m => m.Description, Model.Description != null ? new { @Value = Model.Description, @class = "form-control", rows = '5' } : new { @Value = "", @class = "form-control", rows = '5' })
+            @Html.TextAreaFor(m => m.Description, string.IsNullOrEmpty(Model.Description) ?  new { @Value = "", @class = "form-control", rows = '5' }: new { @Value = Model.Description, @class = "form-control", rows = '5' })
             @Html.ValidationMessageFor(m => m.Description, null, new { @class = "validation" })
           </div>
         </div>

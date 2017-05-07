@@ -8,6 +8,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using POC_MVC_Biblioteca.ViewModels;
 using System.Web.Mvc;
+using System.Net;
 
 namespace POC_MVC_Biblioteca.Services
 {
@@ -30,7 +31,8 @@ namespace POC_MVC_Biblioteca.Services
                     Quantity = book.Quantity,
                     Description = book.Description,
                     Observation = book.Observation,
-                    LocalizationShelf = book.LocalizationShelf
+                    LocalizationShelf = book.LocalizationShelf,
+                    Cover = ConvertImageToBytes(book.BookCover)
                 };
                 DbEntityEntry dbEntityEntry = db.Entry(parsedModel);
                 if (dbEntityEntry.State != EntityState.Detached)
@@ -74,6 +76,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 result = query.ToList();
             }
+
             return result;
         }
 
@@ -87,6 +90,20 @@ namespace POC_MVC_Biblioteca.Services
                 result = query.ToList().Select(bc => new SelectListItem { Value = bc.Id.ToString(), Text = bc.Name });
             }
             return result;
+        }
+
+        public byte[] ConvertImageToBytes(string url)
+        {
+            WebClient wc = new WebClient();
+            try
+            {
+                byte[] imageBytes = wc.DownloadData(url);
+                return imageBytes;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
