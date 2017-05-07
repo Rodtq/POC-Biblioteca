@@ -176,8 +176,10 @@ table {
 .cadastro-Livros-partial {
     padding: 10px;
     font: 12px arial, verdana, helvetica, sans-serif;
-    height: 599px;
+    height: 641px;
     padding-left: 10px;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
     .cadastro-Livros-partial input[type=text], .cadastro-Livros-partial input[type=number], .cadastro-Livros-partial select {
@@ -189,7 +191,9 @@ table {
         resize: none;
     }
 
-
+    .cover-img{
+        margin-top:10px;
+    }
 
 /*======================================================================================*/
 /*======================================================================================*/
@@ -234,6 +238,7 @@ table {
 
     .book-filter .btn {
         margin-bottom: 10px;
+        
     }
 /*======================================================================================*/
 /*======================================================================================*/

@@ -46,6 +46,9 @@ namespace POC_MVC_Biblioteca.ViewModels
         [DataType(DataType.MultilineText)]
         [Display(Name = "Observação")]
         public string Observation { get; set; }
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Capa do Livro")]
+        public string BookCover { get; set; }
         [Display(Name = "Localização")]
         public string LocalizationShelf { get; set; }
         public IEnumerable<SelectListItem> BookCategories { get; set; }

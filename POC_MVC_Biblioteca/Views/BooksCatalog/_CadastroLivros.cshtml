@@ -9,7 +9,7 @@
             @Html.LabelFor(m => m.ISBN)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.ISBN,Model.ISBN != null ? new { Value = Model.ISBN , @class = "form-control" } : new { Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.ISBN, Model.ISBN != null ? new { Value = Model.ISBN, @class = "form-control" } : new { Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.ISBN, null, new { @class = "validation" })
           </div>
         </div>
@@ -18,7 +18,7 @@
             @Html.LabelFor(m => m.Title)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Title, Model.Title != null ? new { Value = Model.Title, @class = "form-control" }: new { Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Title, Model.Title != null ? new { Value = Model.Title, @class = "form-control" } : new { Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Title, null, new { @class = "validation" })
           </div>
         </div>
@@ -27,7 +27,7 @@
             @Html.LabelFor(m => m.Author)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Author,Model.Author != null? new { Value = Model.Author, @class = "form-control" }: new { Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Author, Model.Author != null ? new { Value = Model.Author, @class = "form-control" } : new { Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Author, null, new { @class = "validation" })
           </div>
         </div>
@@ -45,7 +45,7 @@
             @Html.LabelFor(m => m.CategoryId)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.DropDownListFor(m => m.CategoryId, Model.BookCategories, Model.CategoryId != null? Model.CategoryId: "--Selecione--", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.CategoryId, Model.BookCategories, Model.CategoryId != null ? Model.CategoryId : "--Selecione--", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "validation" })
           </div>
         </div>
@@ -54,7 +54,7 @@
             @Html.LabelFor(m => m.Editor)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Editor, Model.Editor !=null? new { @Value = Model.Editor, @class = "form-control" }: new { @Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Editor, Model.Editor != null ? new { @Value = Model.Editor, @class = "form-control" } : new { @Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Editor, null, new { @class = "validation" })
           </div>
         </div>
@@ -63,7 +63,7 @@
             @Html.LabelFor(m => m.Quantity)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Quantity, Model.Quantity !=0 ? new { @Value = Model.Quantity.ToString(), type = "number", min = "0", @class = "form-control" }: new { @Value = "", type = "number", min = "0", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Quantity, Model.Quantity != 0 ? new { @Value = Model.Quantity.ToString(), type = "number", min = "0", @class = "form-control" } : new { @Value = "", type = "number", min = "0", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Quantity, null, new { @class = "validation" })
           </div>
         </div>
@@ -72,7 +72,7 @@
             @Html.LabelFor(m => m.Observation)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.Observation,Model.Observation != null? new { @Value = Model.Observation, @class = "form-control" }: new { @Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Observation, Model.Observation != null ? new { @Value = Model.Observation, @class = "form-control" } : new { @Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Observation, null, new { @class = "validation" })
           </div>
         </div>
@@ -81,7 +81,7 @@
             @Html.LabelFor(m => m.LocalizationShelf)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextBoxFor(m => m.LocalizationShelf,Model.LocalizationShelf != null ? new { @Value = Model.LocalizationShelf, @class = "form-control" }: new { @Value = "", @class = "form-control" })
+            @Html.TextBoxFor(m => m.LocalizationShelf, Model.LocalizationShelf != null ? new { @Value = Model.LocalizationShelf, @class = "form-control" } : new { @Value = "", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.LocalizationShelf, null, new { @class = "validation" })
           </div>
         </div>
@@ -90,8 +90,17 @@
             @Html.LabelFor(m => m.Description)<span>:</span>
           </div>
           <div class="col-lg-10">
-            @Html.TextAreaFor(m => m.Description,Model.Description != null ? new { @Value = Model.Description, @class = "form-control", rows = '5' } : new { @Value = "", @class = "form-control", rows='5' })
+            @Html.TextAreaFor(m => m.Description, Model.Description != null ? new { @Value = Model.Description, @class = "form-control", rows = '5' } : new { @Value = "", @class = "form-control", rows = '5' })
             @Html.ValidationMessageFor(m => m.Description, null, new { @class = "validation" })
+          </div>
+        </div>
+        <div id="Image" class="row cover-img">
+          <div class="col-lg-2">
+            @Html.LabelFor(m => m.BookCover)<span>:</span>
+          </div>
+          <div class="col-lg-10">
+                <img id="ImgCover" src="~/Content/images/open-book-icon.png" class="img-thumbnail" />
+            @Html.HiddenFor(m => m.BookCover);
           </div>
           <input type="submit" value="Finalizar" class="btn btn-sm">
         </div>
