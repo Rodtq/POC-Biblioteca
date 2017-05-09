@@ -17,6 +17,11 @@
     });
 });
 function initializeModel(data) {
+    if (data.totalItems === 0) {
+        alert('Data for ISBN not found');
+        return;
+    }
+    console.log(data);
     $("#Title").val(data.items[0].volumeInfo.title);
     $("#Editor").val(data.items[0].volumeInfo.publisher);
     $("#Description").val(data.items[0].volumeInfo.description);
@@ -34,7 +39,10 @@ function initializeModel(data) {
         date = moment("1/1/" + data.items[0].volumeInfo.publishedDate).format("L");
     }
     $("#BookYear").val(date);
-    console.log(data.items[0].volumeInfo);
-    $("#ImgCover").attr("src", data.items[0].volumeInfo.imageLinks.smallThumbnail);
-    $("#BookCover").val(data.items[0].volumeInfo.imageLinks.smallThumbnail);
+
+    if (data.items[0].volumeInfo.imageLinks !== undefined) {
+        $("#ImgCover").attr("src", data.items[0].volumeInfo.imageLinks.smallThumbnail);
+        $("#BookCover").val(data.items[0].volumeInfo.imageLinks.smallThumbnail);
+    }
+    
 };

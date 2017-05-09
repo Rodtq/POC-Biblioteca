@@ -178,8 +178,8 @@ table {
     font: 12px arial, verdana, helvetica, sans-serif;
     height: 641px;
     padding-left: 10px;
-    overflow-y:auto;
-    overflow-x:hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
     .cadastro-Livros-partial input[type=text], .cadastro-Livros-partial input[type=number], .cadastro-Livros-partial select {
@@ -191,9 +191,9 @@ table {
         resize: none;
     }
 
-    .cover-img{
-        margin-top:10px;
-    }
+.cover-img {
+    margin-top: 10px;
+}
 
 /*======================================================================================*/
 /*======================================================================================*/
@@ -238,16 +238,27 @@ table {
 
     .book-filter .btn {
         margin-bottom: 10px;
-        
     }
+
+.books-buttons {
+    position: absolute;
+    bottom: 8px;
+}
+
+.books-description {
+    height: 100px;
+}
+
+.books-quantity {
+    margin-left: 230px;
+}
 /*======================================================================================*/
 /*======================================================================================*/
 /*CADASTRO DE USUARIOS*/
 /*======================================================================================*/
 /*======================================================================================*/
-
 .cadastro-usuario-partial {
-    padding:10px;
+    padding: 10px;
     background-color: #f9f9f9;
     font: 12px arial, verdana, helvetica, sans-serif;
 }

@@ -15,20 +15,20 @@
 
   }
   <div class="container">
-    <div id="row">
-      <table class="table-striped book-table">
-        <thead>
-          <tr>
-            <th class="col-lg-3"><b>Imagem</b></th>
-            <th class="col-lg-3"><b>Titulo</b></th>
-            <th class="col-lg-3"><b>Autor</b></th>
-            <th class="col-lg-2"><b>Editora</b></th>
-            <th class="col-lg-2"><b>Categoria</b></th>
-            <th class="col-lg-2"><b>Publicação</b></th>
-          </tr>
-        </thead>
-      </table>
-    </div>
+    @*<div id="row">
+        <table class="table-striped book-table">
+          <thead>
+            <tr>
+              <th class="col-lg-3"><b>Imagem</b></th>
+              <th class="col-lg-3"><b>Titulo</b></th>
+              <th class="col-lg-3"><b>Autor</b></th>
+              <th class="col-lg-2"><b>Editora</b></th>
+              <th class="col-lg-2"><b>Categoria</b></th>
+              <th class="col-lg-2"><b>Publicação</b></th>
+            </tr>
+          </thead>
+        </table>
+      </div>*@
     <div class="books-list row">
       <table class="table table-striped table-bordered">
         <tbody>
@@ -46,23 +46,20 @@
                 <td class="col-lg-2">
                   @if (item.Cover != null)
                   {
-                      <img src="data:image/png;base64,@Convert.ToBase64String(item.Cover,0,item.Cover.Length)" />
+                      <img class="img-thumbnail" src="data:image/png;base64,@Convert.ToBase64String(item.Cover,0,item.Cover.Length)" />
                   }
                 </td>
-                <td class="col-lg-3">
-                  <label>@item.Title</label>
-                </td>
-                <td class="col-lg-3">
-                  <label>@item.Author</label>
-                </td>
-                <td class="col-lg-2">
-                  <label>@item.Editor</label>
-                </td>
-                <td class="col-lg-2">
-                  <label>@item.Category.Name</label>
-                </td>
-                <td class="col-lg-2">
-                  <label>@item.BookYear.ToShortDateString()</label>
+                <td class="col-lg-9">
+                  <div><h4>@item.Title</h4></div>
+                  <div><label class="books-description">@item.Description</label></div>
+                  <div class="books-buttons">
+                    <button class="btn btn-default btn-xs">Locar</button>
+                    <button class="btn btn-default btn-xs">Reservar</button>
+                    <button class="btn btn-default btn-xs">Detalhes</button>
+                    <button class="btn btn-default btn-xs">Editar</button>
+                    <button class="btn btn-default btn-xs">Excluir</button>
+                    <label class="books-quantity">Disponiveis:</label><label>@item.Quantity</label>
+                  </div>
                 </td>
               </tr>
           }
