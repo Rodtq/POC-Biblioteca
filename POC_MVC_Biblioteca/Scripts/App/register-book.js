@@ -40,6 +40,7 @@ function initializeModel(data) {
     }
     $("#BookYear").val(date);
 
+    $("#ImgCover").attr("src","/Content/images/open-book-icon.png");
     if (data.items[0].volumeInfo.imageLinks !== undefined) {
         $("#ImgCover").attr("src", data.items[0].volumeInfo.imageLinks.smallThumbnail);
         $("#BookCover").val(data.items[0].volumeInfo.imageLinks.smallThumbnail);
