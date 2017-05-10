@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    var elementWithInfo =$("a[data-navigation-categories]");
+    Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));
+    var elementWithInfo = $("a[data-navigation-categories]");
     var htmlReplacementElement = $("#conteudoDireita");
     $(elementWithInfo).click(function (e) {
         var partialUrl = $(this).data('navigation-categories');
