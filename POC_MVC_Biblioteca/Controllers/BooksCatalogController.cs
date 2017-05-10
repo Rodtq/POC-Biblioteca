@@ -81,5 +81,15 @@ namespace POC_MVC_Biblioteca.Controllers
             return PartialView("_ConsultaLivros", result);
         }
 
+
+        public ActionResult DeleteBook(int bookId)
+        {
+            _as.DeleteBook(bookId);
+            BooksViewModel result = new BooksViewModel();
+            result.BookCategories = _as.GetBookCategories();
+            result.BooksList = _as.GetBooks();
+            return PartialView("_ConsultaLivros", result);
+        }
+
     }
 }

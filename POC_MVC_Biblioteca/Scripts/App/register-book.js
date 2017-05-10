@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    datepickerInitializer();
+    GenericPostHandler($("#bookRegister-fmr"), $("#conteudoDireita"));
+    
     $("#ISBN").focus();
     $("#ISBN").focusout(function (e) {
         var isbn = $(this).val();

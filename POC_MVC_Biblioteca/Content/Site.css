@@ -243,6 +243,7 @@ table {
 .books-buttons {
     position: absolute;
     bottom: 8px;
+    width:100%;
 }
 
 .books-description {
@@ -250,7 +251,8 @@ table {
 }
 
 .books-quantity {
-    margin-left: 230px;
+    float:right;
+    margin-right: 45px;
 }
 /*======================================================================================*/
 /*======================================================================================*/

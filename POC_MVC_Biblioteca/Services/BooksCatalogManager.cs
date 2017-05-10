@@ -80,6 +80,8 @@ namespace POC_MVC_Biblioteca.Services
             return result;
         }
 
+ 
+
         public IEnumerable<SelectListItem> GetBookCategories()
         {
             IEnumerable<SelectListItem> result = new List<SelectListItem>();
@@ -103,6 +105,17 @@ namespace POC_MVC_Biblioteca.Services
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+
+        public void DeleteBook(int bookId)
+        {
+            using (POC_Database db = new POC_Database())
+            {
+                var bookEntity = db.Books.SingleOrDefault(b => b.Id == bookId);
+                db.Books.Remove(bookEntity);
+                db.SaveChanges();
             }
         }
     }
