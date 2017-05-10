@@ -70,14 +70,13 @@
             @if (User.IsInRole("Administrator"))
             {
                 <li role="presentation"><a data-toggle="tab" id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+                <li role="presentation"><a data-toggle="tab" id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Empréstimos</a></li>
             }
             else
             {
-                <li role="presentation" class="disabled"><a data-toggle="tab disabled" id="Cadastro" >Cadastrar</a></li>
+                <li role="presentation" class="disabled"><a data-toggle="tab disabled" id="Cadastro">Cadastrar</a></li>
+                <li role="presentation" class="disabled"><a data-toggle="tab disabled" id="LivrosEmprestados">Empréstimos</a></li>
             }
-            @*<li role="presentation"><a data-toggle="tab" id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
-              <li role="presentation"><a data-toggle="tab" id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
-              <li role="presentation"><a data-toggle="tab" id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>*@
           </ul>
         </div>
         <div id="conteudoDireita">
