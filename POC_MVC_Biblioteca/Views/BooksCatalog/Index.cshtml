@@ -67,7 +67,14 @@
         <div id="navegacao_acervo" class="acervo-navegacao">
           <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a data-toggle="tab" id="Consultas" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Consultar</a></li>
-            <li role="presentation"><a data-toggle="tab" id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+            @if (User.IsInRole("Administrator"))
+            {
+                <li role="presentation"><a data-toggle="tab" id="Cadastro" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_CadastroLivros"})>Cadastrar</a></li>
+            }
+            else
+            {
+                <li role="presentation" class="disabled"><a data-toggle="tab disabled" id="Cadastro" >Cadastrar</a></li>
+            }
             @*<li role="presentation"><a data-toggle="tab" id="Reservas" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ReservaLivros" })">Reservas</a></li>
               <li role="presentation"><a data-toggle="tab" id="LivrosEmprestados" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EmprestimoLivros" })">Livros Emprestados</a></li>
               <li role="presentation"><a data-toggle="tab" id="EntregasLivros" data-navigation-partial="@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_EntregaLivros" })">Entregas</a></li>*@
@@ -88,6 +95,6 @@
 <script type="text/javascript">
   $(document).ready(function () {
     Navigation($("a[data-navigation-partial]"), $("#conteudoDireita"));
-  //  //CategoriesNavigation($("a[data-navigation-categories]"), $("#conteudoDireita"));
+    //  //CategoriesNavigation($("a[data-navigation-categories]"), $("#conteudoDireita"));
   });
 </script>
