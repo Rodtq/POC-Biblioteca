@@ -82,6 +82,7 @@ table {
 .acervo-categorias {
     border-right: solid 1px lightgray;
     padding: 25px;
+    height:468px;
 }
 
 .login input[type="text"], input[type="password"], input[type="submit"] {
@@ -176,7 +177,7 @@ table {
 .cadastro-Livros-partial {
     padding: 10px;
     font: 12px arial, verdana, helvetica, sans-serif;
-    height: 641px;
+    height: 537px;
     padding-left: 10px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -243,7 +244,7 @@ table {
 .books-buttons {
     position: absolute;
     bottom: 8px;
-    width:100%;
+    width:99%;
 }
 
 .books-description {

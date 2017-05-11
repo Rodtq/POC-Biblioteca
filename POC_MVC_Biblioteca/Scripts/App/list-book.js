@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     GenericPostHandler($("#QueryBooks-frm"), $("#conteudoDireita"));
-
+    truncateText($(".truncate"), 830);
     //exclude-cmd
     $("button[id^='excludeBook-']").on("click", function () {
         var btn = $(this);

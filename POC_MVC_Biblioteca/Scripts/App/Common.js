@@ -41,3 +41,13 @@ function datepickerInitializer() { // will trigger when the document is ready
     $('.datepicker').datepicker({ format: 'dd/mm/yyyy' }); //Initialise any date pickers
 };
 
+function truncateText(elementList, maxLenth) {
+    for (var i = 0; i < elementList.length; i++) {
+        var element = $(elementList[i]);
+        var text = element.text();
+        if (text.length > maxLenth) {
+            var subText = text.substring(0, maxLenth) + '...';
+            element.text(subText);
+        }
+    }
+};
