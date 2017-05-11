@@ -11,10 +11,12 @@
         $.ajax({
             method: "GET",
             url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
             success: function (data, textStatus, request) {
                 initializeModel(data);
             }, error: function (xhr) {
-                alert("Error");
+                alert(xhr.getResponseHeader);
             }
         });
     });

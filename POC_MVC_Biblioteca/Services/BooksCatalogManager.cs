@@ -9,6 +9,7 @@ using System.Data.Entity;
 using POC_MVC_Biblioteca.ViewModels;
 using System.Web.Mvc;
 using System.Net;
+using System.IO;
 
 namespace POC_MVC_Biblioteca.Services
 {
@@ -80,7 +81,7 @@ namespace POC_MVC_Biblioteca.Services
             return result;
         }
 
- 
+
 
         public IEnumerable<SelectListItem> GetBookCategories()
         {
@@ -96,6 +97,10 @@ namespace POC_MVC_Biblioteca.Services
 
         public byte[] ConvertImageToBytes(string url)
         {
+            if (string.IsNullOrEmpty(url))
+            {
+                url = @"\Content\images\";
+            }
             WebClient wc = new WebClient();
             try
             {
@@ -104,7 +109,7 @@ namespace POC_MVC_Biblioteca.Services
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 

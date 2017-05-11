@@ -28,6 +28,7 @@ namespace POC_MVC_Biblioteca.Controllers
             return View(model);
         }
         //[Authorize(Roles = "Administrator")]
+        [NoCache]
         public ActionResult BooksCatalogNavigation(string partialViewName)
         {
             switch (partialViewName)
@@ -48,7 +49,7 @@ namespace POC_MVC_Biblioteca.Controllers
             }
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult CreateBook(BooksViewModel book)
         {
             if (!ModelState.IsValid)
@@ -64,7 +65,7 @@ namespace POC_MVC_Biblioteca.Controllers
             });
         }
 
-
+        [NoCache]
         public ActionResult GetBooks(BooksViewModel filters)
         {
             BooksViewModel result = new BooksViewModel();
