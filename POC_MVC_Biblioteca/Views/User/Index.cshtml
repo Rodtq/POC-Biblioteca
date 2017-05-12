@@ -11,14 +11,12 @@
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserList" })">Listar Usuários </a></li>
         <li><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserRegister" })">Cadastrar Usuarios</a></li>
-        @*<li><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserEdit" })">Editar Usuarios</a></li>
-        <li><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserDelete" })">Deletar Usuario</a></li>*@
       </ul>
     </div>
   </div>
   <div id="container-partials">
     @{
-        Html.RenderAction("UserNavigation", "User", new { partialViewName = Model.PartialName, time = DateTime.UtcNow});
+        Html.RenderAction("UserNavigation", "User", new { partialViewName = Model.PartialName, time = DateTime.UtcNow });
     }
   </div>
 </section>

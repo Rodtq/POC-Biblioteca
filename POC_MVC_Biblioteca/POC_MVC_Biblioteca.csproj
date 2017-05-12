@@ -411,6 +411,7 @@
     <Content Include="Views\BooksCatalog\_EntregaLivros.cshtml" />
     <Content Include="Views\User\_UserDelete.cshtml" />
     <Content Include="Views\User\_UserEdit.cshtml" />
+    <Content Include="Views\BooksCatalog\_EditBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

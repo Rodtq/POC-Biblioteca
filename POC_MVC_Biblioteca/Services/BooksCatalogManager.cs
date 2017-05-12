@@ -20,21 +20,7 @@ namespace POC_MVC_Biblioteca.Services
         {
             using (POC_Database db = new POC_Database())
             {
-                int categoryId = Convert.ToInt32(book.CategoryId);
-                Book parsedModel = new Book()
-                {
-                    ISBN = book.ISBN,
-                    Title = book.Title,
-                    Author = book.Author,
-                    BookYear = book.BookYear,
-                    Category = db.BookCategory.SingleOrDefault(b => b.Id == categoryId),
-                    Editor = book.Editor,
-                    Quantity = book.Quantity,
-                    Description = book.Description,
-                    Observation = book.Observation,
-                    LocalizationShelf = book.LocalizationShelf,
-                    Cover = ConvertImageToBytes(book.BookCover)
-                };
+                Book parsedModel = ParseBookViewModelToBookModel(book);
                 DbEntityEntry dbEntityEntry = db.Entry(parsedModel);
                 if (dbEntityEntry.State != EntityState.Detached)
                 {
@@ -95,21 +81,30 @@ namespace POC_MVC_Biblioteca.Services
             return result;
         }
 
-        public byte[] ConvertImageToBytes(string url)
+        public byte[] ImageToByteParser(string imgInfo)
         {
-            if (string.IsNullOrEmpty(url))
+            byte[] imageBytes = null;
+            if (string.IsNullOrEmpty(imgInfo))
             {
-                url = @"\Content\images\";
-            }
-            WebClient wc = new WebClient();
-            try
-            {
-                byte[] imageBytes = wc.DownloadData(url);
                 return imageBytes;
             }
-            catch (Exception)
+            try
             {
-                throw;
+                imageBytes = Convert.FromBase64String(imgInfo);
+                return imageBytes;
+            }
+            catch (FormatException)
+            {
+                WebClient wc = new WebClient();
+                try
+                {
+                    imageBytes = wc.DownloadData(imgInfo);
+                    return imageBytes;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 
@@ -121,6 +116,87 @@ namespace POC_MVC_Biblioteca.Services
                 var bookEntity = db.Books.SingleOrDefault(b => b.Id == bookId);
                 db.Books.Remove(bookEntity);
                 db.SaveChanges();
+            }
+        }
+
+        public BooksViewModel GetBookPerId(int bookId)
+        {
+            Book bookEntity = null;
+            using (POC_Database db = new POC_Database())
+            {
+                bookEntity = db.Books.Include("Category").SingleOrDefault(b => b.Id == bookId);
+            }
+            BooksViewModel result = ParseBookModelToBookViewModel(bookEntity);
+            return result;
+        }
+
+
+
+        public BooksViewModel UpdateBook(BooksViewModel book)
+        {
+
+
+
+            using (POC_Database db = new POC_Database())
+            {
+                Book parsedModel = ParseBookViewModelToBookModel(book);
+
+                DbEntityEntry dbEntityEntry = db.Entry(parsedModel);
+
+                if (dbEntityEntry.State == EntityState.Detached)
+                {
+                    db.Books.Attach(parsedModel);
+                }
+
+                dbEntityEntry.State = EntityState.Modified;
+                db.SaveChanges();
+                return book;
+            }
+
+        }
+
+        private BooksViewModel ParseBookModelToBookViewModel(Book book)
+        {
+            BooksViewModel result = new BooksViewModel()
+            {
+                Author = book.Author,
+                BookCategories = GetBookCategories(),
+                BookCover = Convert.ToBase64String(book.Cover),
+                BookYear = book.BookYear,
+                CategoryId = book.Category.Id.ToString(),
+                Description = book.Description,
+                Editor = book.Editor,
+                ISBN = book.ISBN,
+                Id = book.Id,
+                LocalizationShelf = book.LocalizationShelf,
+                Observation = book.Observation,
+                Quantity = book.Quantity,
+                Title = book.Title
+            };
+            return result;
+        }
+
+        private Book ParseBookViewModelToBookModel(BooksViewModel book)
+        {
+            using (POC_Database db = new POC_Database())
+            {
+                int categoryId = Convert.ToInt32(book.CategoryId);
+                Book parsedModel = new Book()
+                {
+                    ISBN = book.ISBN,
+                    Title = book.Title,
+                    Author = book.Author,
+                    BookYear = book.BookYear,
+                    Category = db.BookCategory.SingleOrDefault(b => b.Id == categoryId),
+                    Editor = book.Editor,
+                    Quantity = book.Quantity,
+                    Description = book.Description,
+                    Observation = book.Observation,
+                    LocalizationShelf = book.LocalizationShelf,
+                    Cover = ImageToByteParser(book.BookCover),
+                    Id = book.Id
+                };
+                return parsedModel;
             }
         }
     }

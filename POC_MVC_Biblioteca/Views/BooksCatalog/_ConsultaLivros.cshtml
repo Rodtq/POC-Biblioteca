@@ -1,67 +1,89 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
 <div id="consulta-Livros-partial" class="book-partial">
-    <h3>Consulta de livros</h3>
-    @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm", @class = "form - group" }))
-    {
-        <div id="consulta-filtros" class="book-filter">
-            <div>
-                <label>Filtros:</label>
-            </div>
-            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Titulo" })
-            @Html.TextBoxFor(model => model.Author, new { @class = "form-control", placeholder = "Autor" })
-            @Html.TextBoxFor(model => model.Editor, new { @class = "form-control", placeholder = "Editora" })
-            <input type="submit" value="consultar" class="btn btn-sm" />
+  <h3>Consulta de livros</h3>
+  @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm", @class = "form - group" }))
+  {
+      <div id="consulta-filtros" class="book-filter">
+        <div>
+          <label>Filtros:</label>
         </div>
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Titulo" })
+        @Html.TextBoxFor(model => model.Author, new { @class = "form-control", placeholder = "Autor" })
+        @Html.TextBoxFor(model => model.Editor, new { @class = "form-control", placeholder = "Editora" })
+        <input type="submit" value="consultar" class="btn btn-sm" />
+      </div>
 
-    }
-    <div class="container table-cont-book">
-        <div class="books-list row">
-            <table class="book-table table-striped table-bordered">
-                <tbody>
-                    @if (!Model.BooksList.Any())
+  }
+  <div class="container table-cont-book">
+    <div class="books-list row">
+      <table class="book-table table-striped table-bordered">
+        <tbody>
+          @if (!Model.BooksList.Any())
+          {
+              <tr>
+                <td>
+                  <label>Nao existem Livros cadastrados</label>
+                </td>
+              </tr>
+          }
+          @foreach (var item in Model.BooksList)
+          {
+              <tr>
+                <td class="col-lg-2">
+                  @if (item.Cover != null)
+                  {
+                      <img class="img-thumbnail" src="data:image/png;base64,@Convert.ToBase64String(item.Cover,0,item.Cover.Length)" />
+                  }
+                  else
+                  {
+                      <img class="img-thumbnail" src="~/Content/images/open-book-icon.png" />
+                  }
+                </td>
+                <td class="col-lg-9">
+                  <div><h4>@item.Title</h4></div>
+                  <div><label class="books-description truncate">@item.Description</label></div>
+                  <div class="books-buttons">
+                    <button id="locateBook-@item.Id" data-cmd="locate" class="btn btn-default btn-xs">Locar</button>
+                    <button id="reserveBook-@item.Id" data-cmd="reserve" class="btn btn-default btn-xs">Reservar</button>
+                    <button id="detailBook-@item.Id" data-cmd="detail" class="btn btn-default btn-xs">Detalhes</button>
+                    @if (User.IsInRole("Administrator"))
                     {
-                        <tr>
-                            <td>
-                                <label>Nao existem Livros cadastrados</label>
-                            </td>
-                        </tr>
+                        <button type="button" data-toggle="modal" data-target="#editBookModal" id="editBook-@item.Id" data-cmd="@Url.Action("EditBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Editar</button>
+                        <button id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
                     }
-                    @foreach (var item in Model.BooksList)
-                    {
-                        <tr>
-                            <td class="col-lg-2">
-                                @if (item.Cover != null)
-                                {
-                                    <img class="img-thumbnail" src="data:image/png;base64,@Convert.ToBase64String(item.Cover,0,item.Cover.Length)" />
-                                }
-                                else
-                                {
-                                    <img class="img-thumbnail" src="~/Content/images/open-book-icon.png" />
-                                }
-                            </td>
-                            <td class="col-lg-9">
-                                <div><h4>@item.Title</h4></div>
-                                <div><label class="books-description truncate">@item.Description</label></div>
-                                <div class="books-buttons">
-                                    <button id="locateBook-@item.Id" data-cmd="locate" class="btn btn-default btn-xs">Locar</button>
-                                    <button id="reserveBook-@item.Id" data-cmd="reserve" class="btn btn-default btn-xs">Reservar</button>
-                                    <button id="detailBook-@item.Id" data-cmd="detail" class="btn btn-default btn-xs">Detalhes</button>
-                                    @if (User.IsInRole("Administrator"))
-                                    {
-                                        <button id="editBook-@item.Id" data-cmd="edit" class="btn btn-default btn-xs">Editar</button>
-                                        <button id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
-                                    }
-                                    <label class="books-quantity">Disponiveis: @item.Quantity</label>
+                    <label class="books-quantity">Disponiveis: @item.Quantity</label>
 
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                  </div>
+                </td>
+              </tr>
+          }
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade modal-mod" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editBookModalLabel">Editar Livro</h4>
+      </div>
+      <div class="modal-body">
+        <div id="modal-content"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="closeAction" type="button" class="btn btn-default" data-dismiss="modal" data-navigation-partial=@Url.Action("BooksCatalogNavigation", "BooksCatalog", new { partialViewName = "_ConsultaLivros" })>Fechar</button>
+        <button id="updateAction" type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 @Scripts.Render("~/bundles/jquery")
 <script src="~/Scripts/App/list-book.js"></script>
 

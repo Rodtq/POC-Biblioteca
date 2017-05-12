@@ -20,7 +20,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Required]
         [Display(Name = "Titulo")]
         public string Title { get; set; }
-        [StringLength(30)]
+        [StringLength(100)]
         [DataType(DataType.Text)]
         [Required]
         [Display(Name = "Autor")]
@@ -52,6 +52,7 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Display(Name = "Localização")]
         public string LocalizationShelf { get; set; }
         public IEnumerable<SelectListItem> BookCategories { get; set; }
+        public int Id { get; set; }
 
     }
 }

@@ -49,6 +49,7 @@ namespace POC_MVC_Biblioteca.Controllers
             }
         }
 
+        #region add
         [Authorize(Roles = "Administrator")]
         public ActionResult CreateBook(BooksViewModel book)
         {
@@ -64,6 +65,8 @@ namespace POC_MVC_Biblioteca.Controllers
                 BookCategories = _as.GetBookCategories(),
             });
         }
+        #endregion
+        #region query
 
         [NoCache]
         public ActionResult GetBooks(BooksViewModel filters)
@@ -81,7 +84,8 @@ namespace POC_MVC_Biblioteca.Controllers
             result.BooksList = _as.GetBooks().Where(b => b.Category.Id == categoryId);
             return PartialView("_ConsultaLivros", result);
         }
-
+        #endregion
+        #region delete
 
         public ActionResult DeleteBook(int bookId)
         {
@@ -91,6 +95,28 @@ namespace POC_MVC_Biblioteca.Controllers
             result.BooksList = _as.GetBooks();
             return PartialView("_ConsultaLivros", result);
         }
-
+        #endregion
+        #region update
+        [NoCache]
+        [HttpGet]
+        public ActionResult EditBook(int bookId)
+        {
+            BooksViewModel result = new BooksViewModel();
+            result = _as.GetBookPerId(bookId);
+            return PartialView("_EditBook", result);
+        }
+        [HttpPost]
+        public ActionResult UpdateBook(BooksViewModel book)
+        {
+            if (!ModelState.IsValid)
+            {
+                book.BookCategories = _as.GetBookCategories();
+                return PartialView("_EditBook", book);
+            }
+            var result = _as.UpdateBook(book);
+            result.BookCategories = _as.GetBookCategories();
+            return PartialView("_EditBook", result);
+        }
     }
+    #endregion
 }
