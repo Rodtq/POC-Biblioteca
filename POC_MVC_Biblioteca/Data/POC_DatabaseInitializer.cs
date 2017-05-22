@@ -44,6 +44,7 @@ namespace POC_MVC_Biblioteca.Data
             categoriesName.Add("Religião");
             categoriesName.Add("Romance");
             categoriesName.Add("Saúde");
+            categoriesName.Add("Bibliografia");
 
             categoriesName.ForEach(name =>
             {
