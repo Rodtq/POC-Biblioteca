@@ -4,9 +4,6 @@
   @using (Html.BeginForm("GetBooks", "BooksCatalog", FormMethod.Post, new { id = "QueryBooks-frm", @class = "form - group" }))
   {
       <div id="consulta-filtros" class="book-filter">
-        <div>
-          <label>Filtros:</label>
-        </div>
         @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Titulo" })
         @Html.TextBoxFor(model => model.Author, new { @class = "form-control", placeholder = "Autor" })
         @Html.TextBoxFor(model => model.Editor, new { @class = "form-control", placeholder = "Editora" })
@@ -43,11 +40,11 @@
                   <div><h4>@item.Title</h4></div>
                   <div><label class="books-description truncate">@item.Description</label></div>
                   <div class="books-buttons">
-                    <button id="locateBook-@item.Id" data-cmd="locate" class="btn btn-default btn-xs">Locar</button>
-                    <button id="reserveBook-@item.Id" data-cmd="reserve" class="btn btn-default btn-xs">Reservar</button>
                     <button id="detailBook-@item.Id" data-cmd="detail" class="btn btn-default btn-xs">Detalhes</button>
                     @if (User.IsInRole("Administrator"))
                     {
+                        <button id="locateBook-@item.Id" data-cmd="locate" class="btn btn-default btn-xs">Locar</button>
+                        <button id="reserveBook-@item.Id" data-cmd="reserve" class="btn btn-default btn-xs">Reservar</button>
                         <button type="button" data-toggle="modal" data-target="#editBookModal" id="editBook-@item.Id" data-cmd="@Url.Action("EditBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Editar</button>
                         <button id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
                     }
