@@ -41,7 +41,18 @@ namespace POC_MVC_Biblioteca.Controllers
                 case "_ReservaLivros":
                     return PartialView(partialViewName);
                 case "_EmprestimoLivros":
-                    return PartialView(partialViewName);
+                    BooksLoanViewModel booksLoan = new BooksLoanViewModel();
+
+                    List<BooksLoanViewModel> teste = new List<BooksLoanViewModel>();
+                    teste.Add(new BooksLoanViewModel() { UserName = "Alexandre", BookName = "CartolaFC",InitialDate = DateTime.Now,ExpirationDate = DateTime.Now.AddDays(1) });
+                    teste.Add(new BooksLoanViewModel() { UserName = "Maria", BookName = "RobinhoFC", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(2) });
+                    teste.Add(new BooksLoanViewModel() { UserName = "João", BookName = "Ontem", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(1) });
+                    teste.Add(new BooksLoanViewModel() { UserName = "Fulano", BookName = "jovemPão", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(6) });
+                    teste.Add(new BooksLoanViewModel() { UserName = "Beltrano", BookName = "lalalala", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(2) });
+                    booksLoan.BookLoanList = teste;
+
+
+                    return PartialView(partialViewName,booksLoan);
                 case "_EntregaLivros":
                     return PartialView(partialViewName);
                 default:
@@ -118,5 +129,9 @@ namespace POC_MVC_Biblioteca.Controllers
             return PartialView("_EditBook", result);
         }
     }
+    #endregion
+    #region Loans
+    //Metodo de empréstimos vão aqui
+
     #endregion
 }

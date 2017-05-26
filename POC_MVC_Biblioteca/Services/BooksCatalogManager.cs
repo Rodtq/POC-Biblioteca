@@ -161,7 +161,7 @@ namespace POC_MVC_Biblioteca.Services
             {
                 Author = book.Author,
                 BookCategories = GetBookCategories(),
-                BookCover = Convert.ToBase64String(book.Cover),
+                BookCover = book.Cover!=null? Convert.ToBase64String(book.Cover):null,
                 BookYear = book.BookYear,
                 CategoryId = book.Category.Id.ToString(),
                 Description = book.Description,

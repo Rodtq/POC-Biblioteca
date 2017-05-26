@@ -1,5 +1,42 @@
-﻿<div class="book-loans-partial">
-  <h3>Emprestimos de livros</h3>
+﻿@model POC_MVC_Biblioteca.ViewModels.BooksLoanViewModel
+<div id="book-loans-partial" class="book-loans-partial">
+    <h3>Emprestimos de livros</h3>
+    @*@using (Html.BeginForm("LoanBooks", "BooksCatalog", FormMethod.Post, new { id = "LoanReport-frm", @class = "form - group" }))
+        {    <div id="consulta-filtros" class="book-filter">
+                <div>
+                    <label>Confirme sua escolha clicando em Locar:</label>
+                </div>
+                @Html.LabelFor(model => model.Title, new { @class = "form-control"})
+                @Html.LabelFor(model => model.Author, new { @class = "form-control"})
+                @Html.LabelFor(model => model.Editor, new { @class = "form-control"})
+                @Html.LabelFor(model => model.Editor, new { @class = "form-control"})
+                <input type="submit" value="Locar" class="btn btn-sm" />
+            </div>
+        }*@
 
-  <h1>Em Construção</h1>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do usuário</th>
+                    <th>Nome do livro</th>
+                    <th>Data de empréstimo</th>
+                    <th>Data de devolução</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var loanedBook in Model.BookLoanList)
+                {
+                    <tr>
+                        <td>@loanedBook.UserName</td>
+                        <td>@loanedBook.BookName</td>
+                        <td>@loanedBook.InitialDate</td>
+                        <td>@loanedBook.ExpirationDate</td>
+                        <td><input type="button" value="cancelar"><input type="button" value="retirado"><input type="button" value="devolvido" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
