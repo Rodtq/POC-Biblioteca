@@ -21,6 +21,27 @@
     });
 
 
+    //locate-cmd
+    $("button[id^='locateBook-']").on("click", function () {
+        var btn = $(this);
+        var cmdUrl = btn.data("cmd");
+        var htmlReplacementElement = $("#conteudoDireita");
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: cmdUrl,
+            success: function (data) {
+                htmlReplacementElement.html(data);
+                alert('Livro locado com sucesso!');
+            },
+            error: function (data) {
+                alert('Erro ao locar Livro!');
+            }
+        });
+    });
+
+
+
     $(document).on('show.bs.modal', '#editBookModal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var cmdUrl = button.data('cmd'); // Extract info from data-* attributes
@@ -36,7 +57,6 @@
             url: cmdUrl,
             success: function (data) {
                 content.html(data);
-                
             },
             error: function (data) {
                 alert('Erro');

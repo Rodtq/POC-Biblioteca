@@ -11,10 +11,12 @@ namespace POC_MVC_Biblioteca.Controllers
 {
     public class BooksCatalogController : Controller
     {
-        private readonly BooksCatalogManager _as;
+        private readonly BooksCatalogManager _bcm;
+        private readonly LoanManager _lm;
         public BooksCatalogController()
         {
-            _as = new BooksCatalogManager();
+            _bcm = new BooksCatalogManager();
+            _lm = new LoanManager();
         }
 
         // GET: Acervo
@@ -23,7 +25,7 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             BooksViewModel model = new BooksViewModel()
             {
-                BookCategories = _as.GetBookCategories()
+                BookCategories = _bcm.GetBookCategories()
             };
             return View(model);
         }
@@ -34,25 +36,19 @@ namespace POC_MVC_Biblioteca.Controllers
             switch (partialViewName)
             {
                 case "_CadastroLivros":
-                    BooksViewModel model = new BooksViewModel() { BookCategories = _as.GetBookCategories() };
+                    BooksViewModel model = new BooksViewModel() { BookCategories = _bcm.GetBookCategories() };
                     return PartialView(partialViewName, model);
                 case "_ConsultaLivros":
                     return RedirectToAction("GetBooks", new BooksViewModel());
                 case "_ReservaLivros":
                     return PartialView(partialViewName);
                 case "_EmprestimoLivros":
-                    BooksLoanViewModel booksLoan = new BooksLoanViewModel();
+                    BooksLoanViewModel booksLoan = new BooksLoanViewModel
+                    {
+                        BookLoanList = _lm.GetLoans()
+                    };
 
-                    List<BooksLoanViewModel> teste = new List<BooksLoanViewModel>();
-                    teste.Add(new BooksLoanViewModel() { UserName = "Alexandre", BookName = "CartolaFC",InitialDate = DateTime.Now,ExpirationDate = DateTime.Now.AddDays(1) });
-                    teste.Add(new BooksLoanViewModel() { UserName = "Maria", BookName = "RobinhoFC", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(2) });
-                    teste.Add(new BooksLoanViewModel() { UserName = "João", BookName = "Ontem", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(1) });
-                    teste.Add(new BooksLoanViewModel() { UserName = "Fulano", BookName = "jovemPão", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(6) });
-                    teste.Add(new BooksLoanViewModel() { UserName = "Beltrano", BookName = "lalalala", InitialDate = DateTime.Now, ExpirationDate = DateTime.Now.AddDays(2) });
-                    booksLoan.BookLoanList = teste;
-
-
-                    return PartialView(partialViewName,booksLoan);
+                    return PartialView(partialViewName, booksLoan);
                 case "_EntregaLivros":
                     return PartialView(partialViewName);
                 default:
@@ -66,14 +62,14 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             if (!ModelState.IsValid)
             {
-                book.BookCategories = _as.GetBookCategories();
+                book.BookCategories = _bcm.GetBookCategories();
                 return PartialView("_CadastroLivros", book);
             }
-            _as.AddBook(book);
+            _bcm.AddBook(book);
             ModelState.Clear();
             return PartialView("_CadastroLivros", new BooksViewModel()
             {
-                BookCategories = _as.GetBookCategories(),
+                BookCategories = _bcm.GetBookCategories(),
             });
         }
         #endregion
@@ -83,16 +79,16 @@ namespace POC_MVC_Biblioteca.Controllers
         public ActionResult GetBooks(BooksViewModel filters)
         {
             BooksViewModel result = new BooksViewModel();
-            result.BookCategories = _as.GetBookCategories();
-            result.BooksList = _as.GetBooks(filters);
+            result.BookCategories = _bcm.GetBookCategories();
+            result.BooksList = _bcm.GetBooks(filters);
             return PartialView("_ConsultaLivros", result);
         }
 
         public ActionResult GetBooksPerCategory(int categoryId)
         {
             BooksViewModel result = new BooksViewModel();
-            result.BookCategories = _as.GetBookCategories();
-            result.BooksList = _as.GetBooks().Where(b => b.Category.Id == categoryId);
+            result.BookCategories = _bcm.GetBookCategories();
+            result.BooksList = _bcm.GetBooks().Where(b => b.Category.Id == categoryId);
             return PartialView("_ConsultaLivros", result);
         }
         #endregion
@@ -100,10 +96,10 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult DeleteBook(int bookId)
         {
-            _as.DeleteBook(bookId);
+            _bcm.DeleteBook(bookId);
             BooksViewModel result = new BooksViewModel();
-            result.BookCategories = _as.GetBookCategories();
-            result.BooksList = _as.GetBooks();
+            result.BookCategories = _bcm.GetBookCategories();
+            result.BooksList = _bcm.GetBooks();
             return PartialView("_ConsultaLivros", result);
         }
         #endregion
@@ -113,7 +109,7 @@ namespace POC_MVC_Biblioteca.Controllers
         public ActionResult EditBook(int bookId)
         {
             BooksViewModel result = new BooksViewModel();
-            result = _as.GetBookPerId(bookId);
+            result = _bcm.GetBookPerId(bookId);
             return PartialView("_EditBook", result);
         }
         [HttpPost]
@@ -121,17 +117,53 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             if (!ModelState.IsValid)
             {
-                book.BookCategories = _as.GetBookCategories();
+                book.BookCategories = _bcm.GetBookCategories();
                 return PartialView("_EditBook", book);
             }
-            var result = _as.UpdateBook(book);
-            result.BookCategories = _as.GetBookCategories();
+            var result = _bcm.UpdateBook(book);
+            result.BookCategories = _bcm.GetBookCategories();
             return PartialView("_EditBook", result);
         }
-    }
-    #endregion
-    #region Loans
-    //Metodo de empréstimos vão aqui
+        #endregion
+        #region Loans
+        //Metodo de empréstimos vão aqui
+        public ActionResult BookLocator(int bookId)
+        {
+            string userName = Request.LogonUserIdentity.Name.Substring(Request.LogonUserIdentity.Name.LastIndexOf(@"\") + 1);
+            _lm.Locator(bookId, userName);
+            BooksViewModel result = new BooksViewModel();
+            result.BookCategories = _bcm.GetBookCategories();
+            result.BooksList = _bcm.GetBooks();
+            return PartialView("_ConsultaLivros", result);
+        }
 
-    #endregion
+        [HttpGet]
+        public ActionResult BookUserDeliver(int loanId)
+        {
+            var result = _lm.deliverBookToClient(loanId);
+            return PartialView("_EmprestimoLivros", result);
+        }
+
+
+        [HttpGet]
+        public ActionResult BookUserReturner(int loanId)
+        {
+            _lm.BookToLibraryReturner(loanId);
+            BooksLoanViewModel result = new BooksLoanViewModel();
+            result.BookLoanList = _lm.GetLoans();
+            return PartialView("_EmprestimoLivros", result);
+        }
+
+        [HttpGet]
+        public ActionResult BookUserLoanCanceler(int loanId)
+        {
+            _lm.CancelLoan(loanId);
+            BooksLoanViewModel result = new BooksLoanViewModel();
+            result.BookLoanList = _lm.GetLoans();
+            return PartialView("_EmprestimoLivros", result);
+        }
+
+
+        #endregion
+    }
 }

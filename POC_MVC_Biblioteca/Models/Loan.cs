@@ -9,14 +9,16 @@ namespace POC_MVC_Biblioteca.Models
 {
     public class Loan
     {
-        [Column(Order = 1)Key,ForeignKey("Tenant")]
+        [Key]
+        public int Id { get; set; }
+        [ForeignKey("Tenant")]
         public int Id_User { get; set; }
-        [Column(Order = 2)Key, ForeignKey("Book")]
+        [ForeignKey("Book")]
         public int Id_Book { get; set; }
-        public DateTime InitialDate { get; set; }
-        public DateTime RenewingDate { get; set; }
-        public DateTime ExpirationDate { get; set; }
-        public bool Devolution { get; set; }
+        public DateTime LocationlDate { get; set; }
+        public DateTime? PullOutDate { get; set; }
+        public DateTime? RenewingDate { get; set; }
+        public DateTime? DevolutionDate { get; set; }
         public virtual User Tenant { get; set; }
         public virtual Book Book { get; set; }
     }

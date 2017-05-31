@@ -13,11 +13,8 @@ body {
     padding-bottom: 20px;
 }
 
-    body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
-        margin-right: 0px;
-    }
-/* Set padding to keep content from hitting the edges */
-.body-content {
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
     background: white;
     padding-left: 50px;
     padding-right: 15px;

@@ -23,5 +23,6 @@ namespace POC_MVC_Biblioteca.Models
         public string Observation { get; set; }
         public string LocalizationShelf { get; set; }
         public byte[] Cover { get; set; }
+        public int Status { get; set; }
     }
 }

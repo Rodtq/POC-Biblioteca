@@ -51,3 +51,5 @@ function truncateText(elementList, maxLenth) {
         }
     }
 };
+
+

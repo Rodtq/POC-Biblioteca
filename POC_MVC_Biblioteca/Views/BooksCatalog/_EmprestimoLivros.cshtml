@@ -1,42 +1,65 @@
-﻿@model POC_MVC_Biblioteca.ViewModels.BooksLoanViewModel
+﻿@using POC_MVC_Biblioteca.ExtensionMethods
+@model POC_MVC_Biblioteca.ViewModels.BooksLoanViewModel
 <div id="book-loans-partial" class="book-loans-partial">
-    <h3>Emprestimos de livros</h3>
-    @*@using (Html.BeginForm("LoanBooks", "BooksCatalog", FormMethod.Post, new { id = "LoanReport-frm", @class = "form - group" }))
-        {    <div id="consulta-filtros" class="book-filter">
-                <div>
-                    <label>Confirme sua escolha clicando em Locar:</label>
-                </div>
-                @Html.LabelFor(model => model.Title, new { @class = "form-control"})
-                @Html.LabelFor(model => model.Author, new { @class = "form-control"})
-                @Html.LabelFor(model => model.Editor, new { @class = "form-control"})
-                @Html.LabelFor(model => model.Editor, new { @class = "form-control"})
-                <input type="submit" value="Locar" class="btn btn-sm" />
+  <h3>Emprestimos de livros</h3>
+  @*@using (Html.BeginForm("LoanBooks", "BooksCatalog", FormMethod.Post, new { id = "LoanReport-frm", @class = "form - group" }))
+    {    <div id="consulta-filtros" class="book-filter">
+            <div>
+                <label>Confirme sua escolha clicando em Locar:</label>
             </div>
-        }*@
+            @Html.LabelFor(model => model.Title, new { @class = "form-control"})
+            @Html.LabelFor(model => model.Author, new { @class = "form-control"})
+            @Html.LabelFor(model => model.Editor, new { @class = "form-control"})
+            @Html.LabelFor(model => model.Editor, new { @class = "form-control"})
+            <input type="submit" value="Locar" class="btn btn-sm" />
+        </div>
+    }*@
 
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome do usuário</th>
-                    <th>Nome do livro</th>
-                    <th>Data de empréstimo</th>
-                    <th>Data de devolução</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var loanedBook in Model.BookLoanList)
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Livro</th>
+          <th>Empréstimo</th>
+          <th>Devolução</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var loanedBook in Model.BookLoanList)
+        {
+            <tr>
+              <td>@loanedBook.UserName</td>
+              <td>@loanedBook.BookName</td>
+              <td>@loanedBook.PullOutlDate.GetValueOrDefault().ToShortDateString()</td>
+              <td>@loanedBook.DevolutionDate.GetValueOrDefault().ToShortDateString()</td>
+              <td>@loanedBook.BookStatus.EnumDescriptionToString()</td>
+              <td>
+                @if ((int)loanedBook.BookStatus == 3)
                 {
-                    <tr>
-                        <td>@loanedBook.UserName</td>
-                        <td>@loanedBook.BookName</td>
-                        <td>@loanedBook.InitialDate</td>
-                        <td>@loanedBook.ExpirationDate</td>
-                        <td><input type="button" value="cancelar"><input type="button" value="retirado"><input type="button" value="devolvido" /></td>
-                    </tr>
+                    <input type="button" value="retirar" id="deliverBook-@loanedBook.Id" disabled="disabled" class="btn btn-xs">
+                    <input type="button" value="devolver" id="returnBook-@loanedBook.Id" data-cmd="@Url.Action("BookUserReturner", "BooksCatalog", new { loanId = loanedBook.Id})" class="btn btn-xs" />
                 }
-            </tbody>
-        </table>
-    </div>
+                else
+                {
+                    <input type="button" value="retirar" id="deliverBook-@loanedBook.Id" data-cmd="@Url.Action("BookUserDeliver", "BooksCatalog", new {loanId = loanedBook.Id })" class="btn btn-xs" />
+                    <input type="button" value="devolver" id="returnBook-@loanedBook.Id" disabled="disabled" class="btn btn-xs" />
+                }
+                @if ((int)loanedBook.BookStatus != 2)
+                {
+                    <input type="button" value="cancelar" id="cancelBook-@loanedBook.Id" disabled="disabled" class="btn btn-xs">
+                }
+                else
+                {
+                    <input type="button" value="cancelar" id="cancelBook-@loanedBook.Id" data-cmd="@Url.Action("BookUserLoanCanceler", "BooksCatalog", new { loanId = loanedBook.Id})" class="btn btn-xs">
+                }
+              </td>
+            </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>
+<script src="~/Scripts/App/book-loan.js"></script>
