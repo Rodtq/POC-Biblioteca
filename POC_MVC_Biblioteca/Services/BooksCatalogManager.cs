@@ -18,6 +18,7 @@ namespace POC_MVC_Biblioteca.Services
 
         public void AddBook(BooksViewModel book)
         {
+            book.Status = 1;
             using (POC_Database db = new POC_Database())
             {
                 Book parsedModel = ParseBookViewModelToBookModel(book);
@@ -194,7 +195,9 @@ namespace POC_MVC_Biblioteca.Services
                     Observation = book.Observation,
                     LocalizationShelf = book.LocalizationShelf,
                     Cover = ImageToByteParser(book.BookCover),
-                    Id = book.Id
+                    Id = book.Id,
+                    Status = book.Status
+                    
                 };
                 return parsedModel;
             }

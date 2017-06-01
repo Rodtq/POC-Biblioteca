@@ -53,6 +53,6 @@ namespace POC_MVC_Biblioteca.ViewModels
         public string LocalizationShelf { get; set; }
         public IEnumerable<SelectListItem> BookCategories { get; set; }
         public int Id { get; set; }
-
+        public int Status { get; set; }
     }
 }

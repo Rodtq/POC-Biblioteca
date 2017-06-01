@@ -57,7 +57,7 @@
                     @if (User.IsInRole("Administrator"))
                     {
                         <button type="button" data-toggle="modal" data-target="#editBookModal" id="editBook-@item.Id" data-cmd="@Url.Action("EditBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Editar</button>
-                        <button id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
+                        <button type="button" data-toggle="modal" data-target="#deleteBookModal" id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
                     }
                     <label class="books-quantity">Disponiveis: @item.Quantity</label>
 
@@ -90,7 +90,24 @@
   </div>
 </div>
 
-
+<!-- Delete Modal -->
+<div class="modal fade bs-delete-modal-sm" id="deleteBookModal" tabindex="-1" role="dialog" aria-labelledby="deleteSmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content" >
+      <div class="modal-header alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editBookModalLabel"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  Deletar Livro</h4>
+      </div>
+      <div class="modal-body" >
+        <p><span></span>Este livro será apagado permanentemente. Você tem certeza?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="closeAction" type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+        <button id="deleteAction" type="button" class="btn btn-primary" data-dismiss="modal">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @Scripts.Render("~/bundles/jquery")
 <script src="~/Scripts/App/list-book.js"></script>
