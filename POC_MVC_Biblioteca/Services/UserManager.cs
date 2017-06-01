@@ -8,6 +8,8 @@ using System.Data.Entity.Infrastructure;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -195,11 +197,31 @@ namespace POC_MVC_Biblioteca.Services
         }
 
 
-        public MultiSelectList GetParsedRoles()
+        public MultiSelectList GetParsedRoles(System.Security.Principal.WindowsIdentity userIdentity)
         {
+            var roles = GetRoles();
+
+            bool isAuth = userIdentity.IsAuthenticated;
+            // Cast the Thread.CurrentPrincipal
+            if (isAuth)
+            {
+                ClaimsPrincipal icp = Thread.CurrentPrincipal as ClaimsPrincipal;
+                // Access IClaimsIdentity which contains claims
+                ClaimsIdentity claimsIdentity = (ClaimsIdentity)icp.Identity;
+                var isAdmin = claimsIdentity.Claims.Any(r => r.Value.Equals("Administrator"));
+                if (!isAdmin)
+                {
+                    roles = roles.Except(roles.Where(r => r.Id == 1));
+                }
+            }
+            else
+            {
+                roles = roles.Except(roles.Where(r => r.Id == 1));
+            }
+
             try
             {
-                MultiSelectList result = new MultiSelectList(GetRoles(), "Id", "Name");
+                MultiSelectList result = new MultiSelectList(roles, "Id", "Name");
                 return result;
             }
             catch (Exception)

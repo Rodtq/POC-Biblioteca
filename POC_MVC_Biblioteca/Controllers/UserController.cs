@@ -4,6 +4,8 @@ using POC_MVC_Biblioteca.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,15 +47,17 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult CreateUser(UserViewModel user)
         {
+            user.Roles = _um.GetParsedRoles(Request.LogonUserIdentity);
+
+
             if (!ModelState.IsValid)
             {
-                user.Roles = _um.GetParsedRoles();
                 return PartialView("_UserRegister", user);
             }
 
             UserViewModel result = new UserViewModel()
             {
-                Roles = _um.GetParsedRoles()
+                Roles = _um.GetParsedRoles(Request.LogonUserIdentity)
             };
             _um.AddUser(user);
             return PartialView("_UserRegister", result);
@@ -63,10 +67,13 @@ namespace POC_MVC_Biblioteca.Controllers
         [NoCache]
         public ActionResult UserNavigation(string partialViewName)
         {
+            MultiSelectList rolesItem = _um.GetParsedRoles(Request.LogonUserIdentity);
+
+
+
             switch (partialViewName)
             {
                 case "_UserRegister":
-                    MultiSelectList rolesItem = _um.GetParsedRoles();
                     if (rolesItem.Any())
                     {
                         return PartialView(partialViewName, new UserViewModel() { Roles = rolesItem });
@@ -112,10 +119,10 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             if (string.IsNullOrEmpty(samAccountName))
             {
-                return PartialView("_UserRegister", new UserViewModel() { Roles = _um.GetParsedRoles() });
+                return PartialView("_UserRegister", new UserViewModel() { Roles = _um.GetParsedRoles(Request.LogonUserIdentity) });
             }
             UserViewModel model = _um.FindActiveDirectotyUser(samAccountName);
-            model.Roles = _um.GetParsedRoles();
+            model.Roles = _um.GetParsedRoles(Request.LogonUserIdentity);
             return PartialView("_UserRegister", model);
         }
 
