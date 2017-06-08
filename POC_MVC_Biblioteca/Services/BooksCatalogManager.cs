@@ -97,6 +97,8 @@ namespace POC_MVC_Biblioteca.Services
             catch (FormatException)
             {
                 WebClient wc = new WebClient();
+                WebProxy wp = new WebProxy("sr-brz-dc01.smartm.internal",false,null, CredentialCache.DefaultCredentials);
+                wc.Proxy = wp;
                 try
                 {
                     imageBytes = wc.DownloadData(imgInfo);
