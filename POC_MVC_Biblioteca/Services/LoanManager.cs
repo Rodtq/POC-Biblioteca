@@ -28,7 +28,9 @@ namespace POC_MVC_Biblioteca.Services
                 bookModel = db.Books.FirstOrDefault(b => b.Id == bookId);
                 bookModel.Status = (int)BookStatus.Located;
                 bookModel.Quantity -= 1;
+
                 userModel = db.Users.FirstOrDefault(u => string.Compare(u.SamAccountName, samAccName, StringComparison.OrdinalIgnoreCase) == 0);
+
                 loan = new Loan()
                 {
                     Id_Book = bookModel.Id,

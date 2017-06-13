@@ -10,6 +10,7 @@ using POC_MVC_Biblioteca.ViewModels;
 using System.Web.Mvc;
 using System.Net;
 using System.IO;
+using System.Security.Principal;
 
 namespace POC_MVC_Biblioteca.Services
 {
@@ -97,7 +98,9 @@ namespace POC_MVC_Biblioteca.Services
             catch (FormatException)
             {
                 WebClient wc = new WebClient();
-                WebProxy wp = new WebProxy("sr-brz-dc01.smartm.internal",false,null, CredentialCache.DefaultCredentials);
+                ICredentials cred;
+                cred = new NetworkCredential("Alexandre.Isabella", "GANZULETOVA");
+                WebProxy wp = new WebProxy("sr-brz-dc01.smartm.internal", true, null, cred);
                 wc.Proxy = wp;
                 try
                 {
