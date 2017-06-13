@@ -4,6 +4,7 @@ using POC_MVC_Biblioteca.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
@@ -129,12 +130,14 @@ namespace POC_MVC_Biblioteca.Controllers
         //Metodo de empréstimos vão aqui
         public ActionResult BookLocator(int bookId)
         {
-            string userName = Request.LogonUserIdentity.Name.Substring(Request.LogonUserIdentity.Name.LastIndexOf(@"\") + 1);
+            string userName = HttpContext.User.Identity.Name;
+
             _lm.Locator(bookId, userName);
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
             result.BooksList = _bcm.GetBooks();
             return PartialView("_ConsultaLivros", result);
+
         }
 
         [HttpGet]
