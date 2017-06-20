@@ -11,20 +11,22 @@ namespace SmartBooksTaskScheduler
     {
         static void Main(string[] args)
         {
-            if (!args.Any())
-            {
-                return;
-            }
+            //if (!args.Any())
+            //{
+            //    return;
+            //}
             using (CookieWebClient urlTrigger = new CookieWebClient())
             {
-                string uri = "AuthenticationURI";
-                string credentials = "UserName=value&Password=value";
+                string authUrl = "http://localhost:56634/Login/Index";
+                string mailServiceUrl = "http://localhost:56634/BooksCatalog";
+                string credentials = "UserName=vntrotq&Password=f3br0n10.2";
                 urlTrigger.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-                urlTrigger.UploadString(uri, credentials);
-
+                urlTrigger.UploadString(authUrl, credentials);
                 try
                 {
                     urlTrigger.OpenRead(args[0]);
+                    urlTrigger.DownloadString(mailServiceUrl);
+
                 }
                 catch (WebException ex)
                 {

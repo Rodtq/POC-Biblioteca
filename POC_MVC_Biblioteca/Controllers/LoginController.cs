@@ -19,7 +19,6 @@ namespace POC_MVC_Biblioteca.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public virtual ActionResult Index(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
