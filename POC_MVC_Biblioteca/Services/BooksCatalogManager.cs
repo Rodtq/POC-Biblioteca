@@ -177,7 +177,9 @@ namespace POC_MVC_Biblioteca.Services
                 LocalizationShelf = book.LocalizationShelf,
                 Observation = book.Observation,
                 Quantity = book.Quantity,
-                Title = book.Title
+                Title = book.Title,
+                Status = book.Status
+                
             };
             return result;
         }

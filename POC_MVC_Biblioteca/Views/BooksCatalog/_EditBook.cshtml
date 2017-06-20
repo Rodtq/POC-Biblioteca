@@ -99,10 +99,15 @@
             @Html.LabelFor(m => m.BookCover)<span>:</span>
           </div>
           <div class="col-lg-9">
-            <img id="ImgCover" src="data:image/png;base64,@Model.BookCover" class="img-thumbnail" />
-            @Html.HiddenFor(m=>m.BookCover);
+            <img id="ImgCover" src="data:image/png;base64,@Model.BookCover" class="img-thumbnail" click="imageUploader(this,$('#ImgCover'), $('#BookCover'))" />
+            @Html.HiddenFor(m => m.BookCover)
+            @Html.HiddenFor(m => m.Status)
+            <div>
+            <input id="editImage" type="file" accept="image/png" >
+            </div>
           </div>
         </div>
       </div>
   }
 </div>
+<script src="~/Scripts/App/edit-book.js"></script>
