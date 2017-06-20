@@ -53,3 +53,29 @@ function truncateText(elementList, maxLenth) {
 };
 
 
+function imageUploader(input, preview, hiddenInput) {
+    if (input.files && input.files[0]) {
+        var parts = $(input).val().split('.');
+        var extension = parts[parts.length - 1];
+        if (extension !== "png") {
+            alert('Por favor escolha uma imagem do tipo .png');
+            $(input).val("");
+            $(preview).attr('src', "");
+            return;
+        }
+        if (input.files[0].size / (1024 * 1024) > 0.1) {
+            alert('Por favor escolha uma imagem de tamanho menor que 100 KBytes');
+            $(input).val("");
+            $(preview).attr('src', "");
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = e.target.result;
+            var imgbytes = img.replace("data:image/png;base64,", "");
+            $(preview).attr('src', img);
+            $(hiddenInput).val(imgbytes);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}

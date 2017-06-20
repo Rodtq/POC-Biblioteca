@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     datepickerInitializer();
     GenericPostHandler($("#bookRegister-fmr"), $("#conteudoDireita"));
-    
+
     $("#ISBN").focus();
     $("#ISBN").focusout(function (e) {
         var isbn = $(this).val();
@@ -20,13 +20,18 @@
             }
         });
     });
+
+    $("#manualImage").change(function () {
+        imageUploader(this, $('#ImgCover'), $('#BookCover'));
+    });
+
 });
 function initializeModel(data) {
     if (data.totalItems === 0) {
         alert('Data for ISBN not found');
         return;
     }
-    console.log(data);
+    //console.log(data);
     $("#Title").val(data.items[0].volumeInfo.title);
     $("#Editor").val(data.items[0].volumeInfo.publisher);
     $("#Description").val(data.items[0].volumeInfo.description);
@@ -45,10 +50,11 @@ function initializeModel(data) {
     }
     $("#BookYear").val(date);
 
-    $("#ImgCover").attr("src","/Content/images/open-book-icon.png");
+    $("#ImgCover").attr("src", "/Content/images/open-book-icon.png");
     if (data.items[0].volumeInfo.imageLinks !== undefined) {
         $("#ImgCover").attr("src", data.items[0].volumeInfo.imageLinks.smallThumbnail);
         $("#BookCover").val(data.items[0].volumeInfo.imageLinks.smallThumbnail);
-    }
-    
+    };
 };
+
+

@@ -7,4 +7,9 @@
         }
         $("#findUser-fmr").trigger("submit");
     });
+
+    $("#manualImage").change(function () {
+        imageUploader(this, $('#ImgCover'), $('#BookCover'));
+    });
+
 });
