@@ -28,23 +28,30 @@ namespace POC_MVC_Biblioteca.Data
 
             List<string> categoriesName = new List<string>();
             categoriesName.Add("Auto Ajuda");
+            categoriesName.Add("Biografia");
             categoriesName.Add("Ciência");
             categoriesName.Add("Culinária/Gastronomia");
             categoriesName.Add("Esoterismo");
             categoriesName.Add("Ficção");
             categoriesName.Add("Filosofia");
             categoriesName.Add("História");
+            categoriesName.Add("Infantil");
             categoriesName.Add("Informática");
             categoriesName.Add("Literatura");
             categoriesName.Add("Música");
             categoriesName.Add("Negócios");
+            categoriesName.Add("Poemas");
+            categoriesName.Add("Policial");
             categoriesName.Add("Política");
             categoriesName.Add("Psicologia");
             categoriesName.Add("Quadrinhos");
             categoriesName.Add("Religião");
             categoriesName.Add("Romance");
             categoriesName.Add("Saúde");
-            categoriesName.Add("Bibliografia");
+            categoriesName.Add("Suspense");
+            categoriesName.Add("Terror");
+            categoriesName.Add("Treinamento");
+            
 
             categoriesName.ForEach(name =>
             {
