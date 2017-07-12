@@ -82,7 +82,7 @@ table {
 .acervo-categorias {
     border-right: solid 1px lightgray;
     padding: 25px;
-    height: 468px;
+    height: 530px;
 }
 
 .login input[type="text"], input[type="password"], input[type="submit"] {
@@ -217,7 +217,7 @@ table {
 }
 
 .books-list {
-    height: 398px;
+    height: 600px;
     overflow-y: auto;
     margin-left: 0px;
     margin-right: 0px;
