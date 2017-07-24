@@ -16,14 +16,14 @@ namespace POC_MVC_Biblioteca.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "BIBLIOTECA SMART.";
+            ViewBag.Message = "DEIXE ABAIXO SUA SUGESTÃO";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "BIBLIOTECA SMART.";
+            ViewBag.Message = "";
 
             return View();
         }

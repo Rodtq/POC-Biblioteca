@@ -1,18 +1,71 @@
 ﻿@{
-    ViewBag.Title = "BREVE";
+    ViewBag.Title = "CONTATO";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-@*<address>*@
-    @*One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100*@
-@*</address>*@
+<div id="container-partials">
+    <h3>Deixe seus dados</h3>
+    <div class="contato-usuario-partial" id="contato-usuario-partial">
+       <div class="container-fluid" id="contato-usuario-partial-container">
+           <form class="form-inline" id="contatoRegister-fmr" action="/User/ContatoUser" method="post">
+               <div class="form-group contatodiv">
+                   <div class="row" id="NomeDiv">
+                       <div class="col-lg-3">
+                           <label class="control-label" for="Name">Nome</label>
+                           <span>:</span>
+                       </div>
+                       <div class="col-lg-12">
+                           <input name="Name" class="form-control" id="Name" type="text" data-val-required="The Nome field is required." data-val-length-max="30" data-val-length="The field Nome must be a string with a maximum length of 30." data-val="true" value=""></input>
+                           <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Name"></span>
+                       </div>
+                   </div>
+                   <div class="row" id="EmailDiv">
+                       <div class="col-lg-3">
+                           <label class="control-label" for="Email">E-mail</label>
+                           <span>:</span>
+                       </div>
+                       <div class="col-lg-12">
+                           <input name="Email" class="form-control" id="Email" type="text" data-val-required="The E-mail field is required." data-val-length-max="60" data-val-length="The field E-mail must be a string with a maximum length of 60." data-val="true" value=""></input>
+                           <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Email"></span>
+                       </div>
+                   </div>
+                   <div class="row" id="RamalDiv">
+                       <div class="col-lg-3">
+                           <label class="control-label" for="ExtensionLine">Ramal</label>
+                           <span>:</span>
+                       </div>
+                       <div class="col-lg-12">
+                           <input name="ExtensionLine" class="form-control" id="ExtensionLine" type="text" data-val-required="The Ramal field is required." data-val-length-max="10" data-val-length="The field Ramal must be a string with a maximum length of 10." data-val="true" value=""></input>
+                           <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="ExtensionLine"></span>
+                       </div>
+                   </div>
+                   <div class="row" id="Opinion">
+                       <div class="col-lg-6">
+                           <label class="control-label" for="Opinion">Deixe sua Opinião!</label>
+                           <span>:</span>
+                       </div>
+                   <div class="col-lg-8">
+                       <input name="Opinion" class="form-control" id="Opinion" type="text" data-val-required="Your opinion is very important for us." data-val-length-max="300" data-val-length="The field Opinion must be a string with maximum length of 300." data-val="true" value=""></input>
+                       <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Opinion"></span>
+                   </div>
+               </div>
+           </form>
+       </div>
+        <input class="btn btn-default" type="submit" value="Enviar">
+    </div>
+  </div>
+<div class="row" id="address">
+    <div class="col-lg-6">
+        Av Tégula, 888<br />
+        Ponte Alta, Atibaia - Edifício Cristal<br />
+        <abbr title="Phone">P:</abbr>
+        11-4417-7200 - Ramal: 7221
+    </div>
+</div>
 
 <address>
     Página em construção. Para maiores informações contacte o RH.
-    @*<strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>*@
+    <strong>Sugestões ou doações:</strong>   <a href="mailto:tatiane.piffer@smartm.com">Clique aqui!</a><br />
+    @*<strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>*@
 </address>
