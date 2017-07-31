@@ -113,6 +113,17 @@ namespace POC_MVC_Biblioteca.Controllers
             result = _bcm.GetBookPerId(bookId);
             return PartialView("_EditBook", result);
         }
+
+        [HttpGet]
+        public ActionResult DetailBook(int bookId)
+        {
+            BooksViewModel result = new BooksViewModel();
+            result = _bcm.GetBookPerId(bookId);
+            return PartialView("_BookDetails", result);
+        }
+
+
+        
         [HttpPost]
         public ActionResult UpdateBook(BooksViewModel book)
         {

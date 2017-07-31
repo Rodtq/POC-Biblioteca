@@ -12,7 +12,6 @@
             @if (User.Identity.IsAuthenticated)
             {
                 <div>
-
                 </div>
                 <div>
                   @using (Html.BeginForm("Logoff", "Login", FormMethod.Post, new { name = "Logoff-frm", @class = "form-group" }))
@@ -82,4 +81,3 @@
 @Scripts.Render("~/bundles/jquery")
 <script src="~/Scripts/App/Common.js"></script>
 <script src="~/Scripts/App/BookScripts.js"></script>
-
