@@ -1,0 +1,94 @@
+﻿@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
+<div id="cadastro-Livros-partial" class="cadastro-Livros-partial">
+  <div id="cadastro-Livros-partial-container" class="container-fluid register-form-content form-group">
+    <div id="isbnDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.ISBN)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.ISBN)
+      </div>
+    </div>
+    <div id="TituloDaObraDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.Title)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.Title)
+      </div>
+    </div>
+    <div id="AutorDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.Author)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.Author)
+      </div>
+    </div>
+    <div id="AnoLivroDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(model => model.BookYear)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.BookYear)
+      </div>
+    </div>
+    <div id="CategoriaDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.CategoryId)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.CategoryId)
+      </div>
+    </div>
+    <div id="EditoraDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.Editor)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.Editor)
+      </div>
+    </div>
+    <div id="QuantidadeDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.Quantity)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.Quantity)
+      </div>
+    </div>
+    <div id="ObservacaoDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.Observation)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.Observation)
+      </div>
+    </div>
+    <div id="LocalizacaoDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.LocalizationShelf)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.LocalizationShelf)
+      </div>
+    </div>
+    <div id="DescricaoDiv" class="row">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.Description)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        @Html.DisplayTextFor(m => m.Description)
+      </div>
+    </div>
+    <div id="Image" class="row cover-img">
+      <div class="col-lg-3">
+        @Html.LabelFor(m => m.BookCover)<span>:</span>
+      </div>
+      <div class="col-lg-9">
+        <img id="ImgCover" src="data:image/png;base64,@Model.BookCover" class="img-thumbnail" click="imageUploader(this,$('#ImgCover'), $('#BookCover'))" />
+      </div>
+    </div>
+  </div>
+</div>
+<script src="~/Scripts/App/edit-book.js"></script>
