@@ -14,10 +14,10 @@
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>-->
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
 <div class="home-alignment">
   <p>@Html.ActionLink("Contato", "Contact", "Home", null, new { @class = "btn btn-primary btn-lg home-alignment"})</p>
-</div>
+</div>-->
 
 <div class="row home-alignment">
   <div class="col-md-4 home-alignment">
@@ -35,6 +35,9 @@
   <div class="col-md-4 home-alignment">
     <h2 class="home-alignment">Sugestões!</h2>
     <p>Títulos a serem comprados ou melhorias que você gostaria de ver em nossa biblioteca!</p>
-    <p>@Html.ActionLink("Sugestões", "About", "Home", new { @class = "btn btn-default" })</p>
+    
+      <!-- O <p> parágrafo abaixo precisa ser lincado com a página "contact" quando a mesma estiver pronta-->
+      
+      <p>@Html.ActionLink("Sugestões", "", "Home", new { @class = "btn btn-default" })</p>
   </div>
 </div>

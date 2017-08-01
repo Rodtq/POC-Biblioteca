@@ -20,7 +20,9 @@
           <!--The table downway is a link for another pages like Home, About and Contact-->
           <li>@Html.ActionLink("Acervo", "Index", "BooksCatalog")</li>
           <li>@Html.ActionLink("Clientes", "Index", "User")</li>
-          <li>@Html.ActionLink("Sugestões", "About", "Home")</li>
+          
+            <!--O link abaixo precisa ser ligado à página "Contact" quando a mesma estiver pronta-->
+            <li>@Html.ActionLink("Sugestões", "", "Home")</li>
         </ul>
       </div>
     </div>
@@ -30,7 +32,7 @@
     @RenderBody()
     <hr />
     <footer>
-      <p>Copyright &copy; @DateTime.Now - Research and Development Smart Modular Technologies Brazil. All rights reserved.</p>
+      <p>Copyright &copy; @DateTime.Now - Designed by R&D - Research and Development Smart Modular Technologies Brazil. All rights reserved. </p>
     </footer>
   </div>
   <script src="~/Scripts/moment.js"></script>
