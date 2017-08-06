@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +16,8 @@ namespace POC_MVC_Biblioteca.Models
             Roles = new HashSet<Role>();
         }
         public int Id { get; set; }
+        [StringLength(450)]
+        [Index(IsUnique = true)]
         public string SamAccountName { get; set; }
         public int IdSmart { get; set; }
         public string Name { get; set; }
