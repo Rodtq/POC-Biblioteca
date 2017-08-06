@@ -17,7 +17,7 @@
                   @using (Html.BeginForm("Logoff", "Login", FormMethod.Post, new { name = "Logoff-frm", @class = "form-group" }))
                   {
                       @Html.AntiForgeryToken()
-                      <input type="submit" value="Sign-off" id="logout" class="btn btn-sm">
+                      <input type="submit" value="Sair" id="logout" class="btn btn-sm">
                   }
                 </div>
             }
@@ -29,13 +29,10 @@
                     <input type="text" title="Login" name="UserName" class="form-control" placeholder="login" />
                     <input type="password" title="Password" name="Password" class="form-control" placeholder="password" />
                     <div>
-                      <input type="submit" value="Sign In" id="login" class="btn btn-sm">
-                      @Html.ActionLink("Sign up", "Index", "User")
+                      <input type="submit" value="Entrar" id="login" class="btn btn-sm">
+                      @Html.ActionLink("Cadastrar", "Index", "User")
                     </div>
               }
-                <div>
-                  <a>Forgot your password</a>
-                </div>
             }
           </div>
         </div>
