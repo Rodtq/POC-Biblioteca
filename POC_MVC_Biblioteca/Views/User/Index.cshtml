@@ -9,15 +9,24 @@
   <div id="cliente-navegacao" class="container-fluid">
     <div class="row">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserList" })">Listar Usuários </a></li>
+        @if (User.IsInRole("Administrator"))
+        {
+            <li class="active"><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserList" })">Listar Usuários </a></li>
+        }
         <li><a data-toggle="tab" data-navigation-partial="@Url.Action("UserNavigation", "User", new { partialViewName = "_UserRegister" })">Cadastrar Usuários</a></li>
       </ul>
     </div>
   </div>
   <div id="container-partials">
-    @{
-        Html.RenderAction("UserNavigation", "User", new { partialViewName = Model.PartialName, time = DateTime.UtcNow });
-    }
+    
+        @if (User.IsInRole("Administrator"))
+        {
+          Html.RenderAction("UserNavigation", "User", new { partialViewName = Model.PartialName, time = DateTime.UtcNow });
+        }
+        else
+        {
+          Html.RenderAction("UserNavigation", "User", new { partialViewName = "_UserRegister", time = DateTime.UtcNow });
+        }
   </div>
 </section>
 @Scripts.Render("~/bundles/jquery")
