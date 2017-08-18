@@ -11,6 +11,9 @@ body {
     background: white;
     padding-top: 60px;
     padding-bottom: 20px;
+    max-width:1200px;
+    width: 80%;
+    margin: 20px auto;
 }
 
     /* Set padding to keep content from hitting the edges */
@@ -185,7 +188,8 @@ table {
 
     .cadastro-Livros-partial input[type=text], .cadastro-Livros-partial input[type=number], .cadastro-Livros-partial select {
         margin-bottom: 10px;
-        width: 600px;
+        max-width: 600px;
+        width: 80%;
     }
 
     .cadastro-Livros-partial textarea {
@@ -366,6 +370,8 @@ table {
 /*======================================================================================*/
 /*======================================================================================*/
 .book-loans-partial {
+    height: 723px;
+    overflow-y: auto;
     padding-left: 10px;
     padding-top: 10px;
 }
