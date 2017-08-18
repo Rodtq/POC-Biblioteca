@@ -18,7 +18,7 @@ namespace POC_MVC_Biblioteca.Services
     public class UserManager
     {
 
-        public void AddUser(UserViewModel user)
+        public bool AddUser(UserViewModel user)
         {
             using (POC_Database db = new POC_Database())
             {
@@ -51,11 +51,11 @@ namespace POC_MVC_Biblioteca.Services
                         db.Users.Add(usr);
                     }
                     db.SaveChanges();
+                    return true;
                 }
-                catch (Exception ex)
+                catch (DbUpdateException ex)
                 {
-                    throw ex;
-
+                    return false;
                 }
             }
         }
@@ -143,14 +143,26 @@ namespace POC_MVC_Biblioteca.Services
         }
 
 
-        public User GetById(int Id)
+        public UserViewModel GetById(int Id)
         {
             User usuario = new User();
             using (POC_Database db = new POC_Database())
             {
                 usuario = db.Users.SingleOrDefault(u => u.Id == Id);
             }
-            return usuario;
+            UserViewModel result = new UserViewModel
+            {
+                IdSmart = usuario.IdSmart,
+                AreaDepartament = usuario.AreaDepartament,
+                Email = usuario.eMail,
+                ExtensionLine = usuario.ExtensionLine,
+                Function = usuario.Function,
+                Id = usuario.Id,
+                Manager = usuario.Manager,
+                Name = usuario.Name,
+                SamAccountName =usuario.SamAccountName
+            };
+            return result;
         }
 
 
