@@ -260,7 +260,6 @@ namespace POC_MVC_Biblioteca.Services
 
         public UserViewModel FindActiveDirectotyUser(string samAccountName)
         {
-
             var user = new UserViewModel() { SamAccountName = samAccountName };
 
             var foundDC = DomainController.FindOne(new DirectoryContext(DirectoryContextType.Domain),

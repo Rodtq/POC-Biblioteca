@@ -59,7 +59,12 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 Roles = _um.GetParsedRoles(Request.LogonUserIdentity)
             };
-            _um.AddUser(user);
+            bool isSuccess = _um.AddUser(user);
+            if (!isSuccess)
+            {
+                ModelState.AddModelError("SamAccountName", "Usuário já existente!");
+                result = user;
+            }
             return PartialView("_UserRegister", result);
         }
 

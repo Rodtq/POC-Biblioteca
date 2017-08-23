@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using POC_MVC_Biblioteca.Models;
+using System.Configuration;
 
 namespace POC_MVC_Biblioteca.Services
 {
     public class LoginService
     {
-
+        private string devUser = ConfigurationManager.AppSettings["devUser"].ToString();
         public class AuthenticationResult
         {
             public AuthenticationResult(string errorMessage = null)
@@ -37,16 +38,24 @@ namespace POC_MVC_Biblioteca.Services
             ContextType authenticationType = ContextType.Domain;
 #else
             // authenticates against your Domain AD
-
-            ContextType authenticationType = ContextType.Domain;
+            ContextType authenticationType;
+            if (username == devUser)
+            {
+                authenticationType = ContextType.Machine;
+            }
+            else
+            {
+                authenticationType = ContextType.Domain;
+            }
 #endif
             PrincipalContext principalContext = new PrincipalContext(authenticationType);
             bool isAuthenticated = false;
             UserPrincipal userPrincipal = null;
+
             try
             {
                 isAuthenticated = principalContext.ValidateCredentials(username, password, ContextOptions.Negotiate);
-                if (isAuthenticated)
+                if (isAuthenticated || username == devUser)
                 {
                     userPrincipal = UserPrincipal.FindByIdentity(principalContext, username);
                 }
@@ -57,7 +66,7 @@ namespace POC_MVC_Biblioteca.Services
                 userPrincipal = null;
             }
 
-            if (!isAuthenticated || userPrincipal == null)
+            if ((!isAuthenticated  || userPrincipal == null)&& username != devUser)
             {
                 return new AuthenticationResult("Username or Password is not correct");
             }
@@ -94,7 +103,8 @@ namespace POC_MVC_Biblioteca.Services
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userPrincipal.SamAccountName));
             UserManager um = new UserManager();
             IEnumerable<Role> roles = um.GetPrincipalRoles(userPrincipal.SamAccountName);
-            roles.ToList().ForEach(r => {
+            roles.ToList().ForEach(r =>
+            {
                 identity.AddClaim(new Claim(ClaimTypes.Role, r.Name));
             });
             if (!String.IsNullOrEmpty(userPrincipal.EmailAddress))

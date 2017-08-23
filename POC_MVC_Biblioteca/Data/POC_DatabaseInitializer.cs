@@ -11,6 +11,9 @@ namespace POC_MVC_Biblioteca.Data
     {
         protected override void Seed(POC_Database context)
         {
+
+
+
             #region Role
             context.Roles.Add(new Role
             {
@@ -22,8 +25,20 @@ namespace POC_MVC_Biblioteca.Data
                 Name = "User",
             });
             #endregion
-
-
+            #region User
+            context.Users.Add(new User
+            {
+                SamAccountName = "rodtq",
+                Name = "usuário de desenvolvimento",
+                AreaDepartament = "desenvolvimento",
+                eMail = "rodtq@hotmail.com",
+                ExtensionLine = "ramal",
+                Function = "desenvolvedor",
+                IdSmart = 000,
+                Manager = "Desenvolvedor",
+                Roles = new HashSet<Role>(context.Roles.Where(r => r.Name == "Administrator").ToList())
+            });
+            #endregion
             #region bookCategory
 
             List<string> categoriesName = new List<string>();
@@ -51,7 +66,7 @@ namespace POC_MVC_Biblioteca.Data
             categoriesName.Add("Suspense");
             categoriesName.Add("Terror");
             categoriesName.Add("Treinamento");
-            
+
 
             categoriesName.ForEach(name =>
             {
