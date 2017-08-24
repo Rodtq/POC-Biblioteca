@@ -78,12 +78,12 @@ namespace POC_MVC_Biblioteca.Services
             }
         }
 
-        public void DeleteBySmartId(int Id)
+        public void DeleteById(int Id)
         {
             User user = new User();
             using (POC_Database db = new POC_Database())
             {
-                user = db.Users.SingleOrDefault(u => u.IdSmart == Id);
+                user = db.Users.SingleOrDefault(u => u.Id == Id);
                 db.Users.Remove(user);
                 db.SaveChanges();
             }

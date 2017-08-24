@@ -134,6 +134,12 @@ namespace POC_MVC_Biblioteca.Controllers
             return PartialView("_UserRegister", model);
         }
 
-
+        public ActionResult DeleteUser(int userId)
+        {
+            _um.DeleteById(userId);
+            UserViewModel result = new UserViewModel();
+            result.UserList = _um.GetUsers(result).UserList;
+            return PartialView("_UserList", result);
+        }
     }
 }

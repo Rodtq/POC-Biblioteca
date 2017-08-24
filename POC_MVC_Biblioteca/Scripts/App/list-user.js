@@ -35,4 +35,35 @@
             $("#container-partials").html(data);
         });
     });
+    $(document).on('show.bs.modal', '#deleteUserModal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var cmdUrl = button.data('cmd'); // Extract info from data-* attributes
+        $('#deleteAction').on('click', function () {
+            console.log(cmdUrl);
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            var content = $('#modal-content');
+            content.html("");
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: cmdUrl,
+                success: function (data) {
+
+                },
+                error: function (data) {
+                    alert('Erro ao excluir livro');
+                }
+            });
+        });
+    });
+    $(document).on('hidden.bs.modal', '#deleteUserModal', function (event) {
+        var url = $("#ConsultasUsr").data('navigation-partial');
+        $.get(url, function (data) {
+            $("#container-partials").html(data);
+        });
+    });
+
+
 });

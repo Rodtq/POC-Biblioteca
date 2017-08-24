@@ -61,7 +61,7 @@
                 </td>
                 <td class="col-lg-2">
                   <button type="button" data-toggle="modal" data-target="#editUserModal" id="editBook-@item.Id" data-cmd="@Url.Action("GetUserToEdit", "User", new { userId = item.Id})" class="btn btn-default btn-xs">Editar</button>
-                  <button type="button" data-toggle="modal" data-target="#deleteUserkModal" id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
+                  <button type="button" data-toggle="modal" data-target="#deleteUserModal" id="excludeUser-@item.Id" data-cmd="@Url.Action("DeleteUser", "User", new { userId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
                 </td>
               </tr>
           }
@@ -95,10 +95,10 @@
     <div class="modal-content">
       <div class="modal-header alert alert-danger" role="alert">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editUserModalLabel"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  Deletar Livro</h4>
+        <h4 class="modal-title" id="editUserModalLabel"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  Deletar Usuário</h4>
       </div>
       <div class="modal-body">
-        <p><span></span>Este livro será apagado permanentemente. Você tem certeza?</p>
+        <p><span></span>Este usuário será apagado permanentemente. Você tem certeza?</p>
       </div>
       <div class="modal-footer">
         <button id="closeAction" type="button" class="btn btn-default" data-dismiss="modal">Não</button>
