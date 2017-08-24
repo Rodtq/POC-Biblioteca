@@ -99,9 +99,9 @@ namespace POC_MVC_Biblioteca.Services
             {
                 WebClient wc = new WebClient();
                 ICredentials cred;
-                cred = new NetworkCredential("Alexandre.Isabella", "GANZULETOVA1");
-                WebProxy wp = new WebProxy("sr-brz-dc01.smartm.internal", true, null, cred);
-                wc.Proxy = wp;
+                //cred = new NetworkCredential("Alexandre.Isabella", "GANZULETOVA1");
+                //WebProxy wp = new WebProxy("sr-brz-dc01.smartm.internal", true, null, cred);
+                //wc.Proxy = wp;
                 try
                 {
                     imageBytes = wc.DownloadData(imgInfo);

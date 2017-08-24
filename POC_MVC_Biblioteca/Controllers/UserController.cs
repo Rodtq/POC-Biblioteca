@@ -98,6 +98,18 @@ namespace POC_MVC_Biblioteca.Controllers
                     return null;
             }
         }
+        #region EditUser
+
+
+        [NoCache]
+        [HttpGet]
+        public ActionResult GetUserToEdit(int userId)
+        {
+            UserViewModel result = new UserViewModel();
+            result = _um.GetById(userId);
+            result.Roles = _um.GetParsedRoles(Request.LogonUserIdentity);
+            return PartialView("_UserEdit", result);
+        }
 
         public ActionResult EditUser(UserViewModel user)
         {
@@ -105,21 +117,12 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 return View(user);
             }
-            User usr = new User();
-            usr.AreaDepartament = user.AreaDepartament;
-            usr.eMail = user.Email;
-            usr.ExtensionLine = user.ExtensionLine;
-            usr.Function = user.Function;
-            usr.Id = usr.Id;
-            usr.IdSmart = user.IdSmart;
-            usr.Manager = user.Manager;
-            usr.Name = user.Name;
-            usr.Roles = null;
-            _um.UpdateUser(usr);
+            _um.UpdateUser(user);
+            user.Roles = _um.GetParsedRoles(Request.LogonUserIdentity);
             return PartialView("_UserEdit", user);
         }
 
-
+        #endregion
         public ActionResult FindADUser(string samAccountName)
         {
             if (string.IsNullOrEmpty(samAccountName))

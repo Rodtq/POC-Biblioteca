@@ -20,9 +20,10 @@
           <tr>
             <th class="col-lg-3"><b>Nome</b></th>
             <th class="col-lg-1"><b>Id</b></th>
-            <th class="col-lg-2"><b>Ramal</b></th>
+            <th class="col-lg-1"><b>Ramal</b></th>
             <th class="col-lg-3"><b>Email</b></th>
-            <th class="col-lg-3"><b>Area/Departamento</b></th>
+            <th class="col-lg-2"><b>Area/Departamento</b></th>
+            <th class="col-lg-3"><b>Comandos</b></th>
           </tr>
         </thead>
       </table>
@@ -49,14 +50,18 @@
                 <td class="col-lg-1">
                   <label>@item.IdSmart</label>
                 </td>
-                <td class="col-lg-2">
+                <td class="col-lg-1">
                   <label>@item.ExtensionLine</label>
                 </td>
                 <td class="col-lg-3">
                   <label>@item.Email</label>
                 </td>
-                <td class="col-lg-3">
+                <td class="col-lg-2">
                   <label>@item.AreaDepartament</label>
+                </td>
+                <td class="col-lg-2">
+                  <button type="button" data-toggle="modal" data-target="#editUserModal" id="editBook-@item.Id" data-cmd="@Url.Action("GetUserToEdit", "User", new { userId = item.Id})" class="btn btn-default btn-xs">Editar</button>
+                  <button type="button" data-toggle="modal" data-target="#deleteUserkModal" id="excludeBook-@item.Id" data-cmd="@Url.Action("DeleteBook", "BooksCatalog", new { bookId = item.Id})" class="btn btn-default btn-xs">Excluir</button>
                 </td>
               </tr>
           }
@@ -65,9 +70,44 @@
     </div>
   </div>
 </div>
+
+<!--EDIT Modal -->
+<div class="modal fade modal-mod" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editUserModalLabel">Editar Usuário</h4>
+      </div>
+      <div class="modal-body">
+        <div id="modal-content"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="closeAction" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button id="updateAction" type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete Modal -->
+<div class="modal fade bs-delete-modal-sm" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteSmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editUserModalLabel"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  Deletar Livro</h4>
+      </div>
+      <div class="modal-body">
+        <p><span></span>Este livro será apagado permanentemente. Você tem certeza?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="closeAction" type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+        <button id="deleteAction" type="button" class="btn btn-primary" data-dismiss="modal">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @Scripts.Render("~/bundles/jquery")
-<script type="text/javascript">
-  $(document).ready(function () {
-    GenericPostHandler($("#QueryUsers-frm"), $("#container-partials"));
-  });
-</script>
+<script src="~/Scripts/App/list-user.js"></script>

@@ -217,6 +217,7 @@
     <Content Include="Scripts\App\Common.js" />
     <Content Include="Scripts\App\edit-book.js" />
     <Content Include="Scripts\App\list-book.js" />
+    <Content Include="Scripts\App\list-user.js" />
     <Content Include="Scripts\App\register-book.js" />
     <Content Include="Scripts\App\register-user.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />

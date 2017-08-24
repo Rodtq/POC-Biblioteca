@@ -32,6 +32,7 @@ function GenericPostHandler(form, htmlReplacementElement) {
             data: form.serialize(), // serializes the form's elements.
             success: function (data) {
                 htmlReplacementElement.html(data);
+                console.log("aqui bateu :" + data);
             }
         });
     });

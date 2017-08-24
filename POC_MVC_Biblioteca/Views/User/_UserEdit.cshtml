@@ -1,71 +1,77 @@
 ﻿@model POC_MVC_Biblioteca.ViewModels.UserViewModel
-<div id="edit-user-partial-container" class="container-fluid">
-  @using (@Html.BeginForm("EditUser", "User"))
+  @using (@Html.BeginForm("EditUser", "User", FormMethod.Post, new { id = "editUser-fmr", @class = "form-horizontal" }))
   {
-      <div id="IdSmartDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("Código/Id:")
+      @Html.HiddenFor(m => m.Id);
+      @Html.HiddenFor(m => m.SamAccountName);
+      <div id="cadastro-usuarios-partial-container" class="container-fluid register-form-content form-group">
+        <div id="IdSmartDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("Id Smart:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.IdSmart, new { @class = "form-control" })
+          </div>
         </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.IdSmart)
+        <div id="NomeDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("Nome:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+          </div>
+        </div>
+        <div id="EmailDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("E-Mail:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+          </div>
+        </div>
+        <div id="AreaDepartamentoDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("Area/Departamento:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.AreaDepartament, new { @class = "form-control" })
+          </div>
+        </div>
+        <div id="FuncaoDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("Função:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.Function, new { @class = "form-control" })
+          </div>
+        </div>
+        <div id="RamalDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("Ramal:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.ExtensionLine, new { @class = "form-control" })
+          </div>
+        </div>
+        <div id="GerenteDiv" class="row">
+          <div class="col-lg-4">
+            @Html.Label("Gerente:")
+          </div>
+          <div class="col-lg-8">
+            @Html.TextBoxFor(m => m.Manager, new { @class = "form-control" })
+          </div>
+        </div>
+        <div id="Role" class="row">
+          <div class="col-lg-4">
+            @Html.LabelFor(m => m.RolesId, new { @class = "control-label" })<span>:</span>
+          </div>
+          <div class="col-lg-8">
+            @Html.ListBoxFor(m => m.RolesId, Model.Roles, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.RolesId, null, new { @class = "validation" })
+          </div>
         </div>
       </div>
-      <div id="NomeDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("Nome:")
-        </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.Name)
-        </div>
-      </div>
-      <div id="EmailDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("E-Mail:")
-        </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.Email)
-        </div>
-      </div>
-      <div id="AreaDepartamentoDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("Area/Departamento:")
-        </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.AreaDepartament)
-        </div>
-      </div>
-      <div id="FuncaoDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("Função:")
-        </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.Function)
-        </div>
-      </div>
-      <div id="RamalDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("Ramal:")
-        </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.ExtensionLine)
-        </div>
-      </div>
-      <div id="GerenteDiv" class="row">
-        <div class="col-lg-2">
-          @Html.Label("Gerente:")
-        </div>
-        <div class="col-lg-10">
-          @Html.TextBoxFor(m => m.Manager)
-        </div>
-      </div>
-      <input type="submit" value="Finalizar">
   }
-</div>
-<script type="text/javascript">
-  $(document).ready(function () {
-    GenericPostHandler($("#editUser-fmr"), $("#container-partials"))
-  });
-</script>
+
 
 
 

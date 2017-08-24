@@ -90,21 +90,30 @@ namespace POC_MVC_Biblioteca.Services
         }
 
 
-        public User UpdateUser(User user)
+        public UserViewModel UpdateUser(UserViewModel user)
         {
-            User updatedUser = new User();
+            User usr = new User();
+            usr.AreaDepartament = user.AreaDepartament;
+            usr.eMail = user.Email;
+            usr.ExtensionLine = user.ExtensionLine;
+            usr.Function = user.Function;
+            usr.Id = user.Id;
+            usr.IdSmart = user.IdSmart;
+            usr.Manager = user.Manager;
+            usr.Name = user.Name;
+            usr.Roles = SetRoles(user.RolesId);
+            usr.SamAccountName = user.SamAccountName;
             using (POC_Database db = new POC_Database())
             {
-                DbEntityEntry dbEntityEntry = db.Entry(user);
+                DbEntityEntry dbEntityEntry = db.Entry(usr);
                 if (dbEntityEntry.State == EntityState.Detached)
                 {
-                    db.Users.Attach(user);
+                    db.Users.Attach(usr);
                 }
                 dbEntityEntry.State = EntityState.Modified;
                 db.SaveChanges();
             }
-            updatedUser = user;
-            return updatedUser;
+            return user;
         }
 
         public UserViewModel GetUsers(UserViewModel filtros)
@@ -149,20 +158,21 @@ namespace POC_MVC_Biblioteca.Services
             using (POC_Database db = new POC_Database())
             {
                 usuario = db.Users.SingleOrDefault(u => u.Id == Id);
+                UserViewModel result = new UserViewModel
+                {
+                    IdSmart = usuario.IdSmart,
+                    AreaDepartament = usuario.AreaDepartament,
+                    Email = usuario.eMail,
+                    ExtensionLine = usuario.ExtensionLine,
+                    Function = usuario.Function,
+                    Id = usuario.Id,
+                    Manager = usuario.Manager,
+                    Name = usuario.Name,
+                    SamAccountName = usuario.SamAccountName,
+                    RolesId = usuario.Roles.Select(u=>u.Id).ToArray() 
+                };
+                return result;
             }
-            UserViewModel result = new UserViewModel
-            {
-                IdSmart = usuario.IdSmart,
-                AreaDepartament = usuario.AreaDepartament,
-                Email = usuario.eMail,
-                ExtensionLine = usuario.ExtensionLine,
-                Function = usuario.Function,
-                Id = usuario.Id,
-                Manager = usuario.Manager,
-                Name = usuario.Name,
-                SamAccountName =usuario.SamAccountName
-            };
-            return result;
         }
 
 
