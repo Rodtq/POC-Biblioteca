@@ -65,8 +65,7 @@
             @Html.LabelFor(m => m.RolesId, new { @class = "control-label" })<span>:</span>
           </div>
           <div class="col-lg-8">
-            @Html.ListBoxFor(m => m.RolesId, Model.Roles, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.RolesId, null, new { @class = "validation" })
+            @Html.ListBoxFor(m => m.NewRolesId, Model.Roles, new {@class = "form-control" })
           </div>
         </div>
       </div>

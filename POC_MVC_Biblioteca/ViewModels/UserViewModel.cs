@@ -50,9 +50,9 @@ namespace POC_MVC_Biblioteca.ViewModels
         [Display(Name = "Ramal")]
         public string ExtensionLine { get; set; }
         //Roles
-        [Required(ErrorMessage ="Clique sobre a palavra User")]
-        [Display(Name = "Perfil")]
         public int[] RolesId { get; set; }
+        [Display(Name = "Perfil")]
+        public int[] NewRolesId { get; set; }
         public MultiSelectList Roles { get; set; }
         public string PartialName { get; set; }
         public byte[] Photo { get; set; }

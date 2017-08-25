@@ -92,6 +92,7 @@ namespace POC_MVC_Biblioteca.Services
 
         public UserViewModel UpdateUser(UserViewModel user)
         {
+            
             User usr = new User();
             usr.AreaDepartament = user.AreaDepartament;
             usr.eMail = user.Email;
@@ -108,7 +109,19 @@ namespace POC_MVC_Biblioteca.Services
                 DbEntityEntry dbEntityEntry = db.Entry(usr);
                 if (dbEntityEntry.State == EntityState.Detached)
                 {
+
+                    db.Users.Include("Roles");
                     db.Users.Attach(usr);
+                    usr.Roles.Clear();
+                    var rolesUpd = SetRoles(user.NewRolesId);
+                    foreach (var role in rolesUpd)
+                    {
+                        if ( db.Entry(role).State == EntityState.Detached)
+                        {
+                            db.Roles.Attach(role);
+                        }
+                        usr.Roles.Add(role);
+                    }
                 }
                 dbEntityEntry.State = EntityState.Modified;
                 db.SaveChanges();
@@ -169,7 +182,9 @@ namespace POC_MVC_Biblioteca.Services
                     Manager = usuario.Manager,
                     Name = usuario.Name,
                     SamAccountName = usuario.SamAccountName,
-                    RolesId = usuario.Roles.Select(u=>u.Id).ToArray() 
+                    RolesId = usuario.Roles.Select(u=>u.Id).ToArray(),
+                    NewRolesId = usuario.Roles.Select(u => u.Id).ToArray()
+
                 };
                 return result;
             }

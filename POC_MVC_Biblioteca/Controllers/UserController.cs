@@ -107,12 +107,14 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             UserViewModel result = new UserViewModel();
             result = _um.GetById(userId);
+            TempData["roles"] = result.RolesId;
             result.Roles = _um.GetParsedRoles(Request.LogonUserIdentity);
             return PartialView("_UserEdit", result);
         }
 
         public ActionResult EditUser(UserViewModel user)
         {
+            user.RolesId = TempData["roles"] as int[];
             if (!ModelState.IsValid)
             {
                 return View(user);
