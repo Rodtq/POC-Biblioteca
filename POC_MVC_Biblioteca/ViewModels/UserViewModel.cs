@@ -13,43 +13,44 @@ namespace POC_MVC_Biblioteca.ViewModels
         public int Id { get; set; }
         [StringLength(60)]
         [DataType(DataType.Text)]
-        [Required]
+        [Required(ErrorMessage ="Digite seu Login Smart")]
         [Display(Name = "Login")]
         public string SamAccountName { get; set; }
         [Display(Name = "Código - Id Smart")]
+        [Required(ErrorMessage = "Digite seu número de ID")]
         public int IdSmart { get; set; }
         [StringLength(30)]
         [DataType(DataType.Text)]
-        [Required]
+        [Required(ErrorMessage = "Digite seu nome")]
         [Display(Name = "Nome")]
         public string Name { get; set; }
         [StringLength(60)]
         [DataType(DataType.EmailAddress)]
-        [Required]
+        [Required(ErrorMessage = "Digite seu E-mail")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
         [StringLength(70)]
         [DataType(DataType.Text)]
-        [Required]
+        [Required(ErrorMessage = "Digite o nome de sua Área ou departamento")]
         [Display(Name = "Area - Departamento")]
         public string AreaDepartament { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Digite o nome do seu Gerente")]
         [StringLength(60)]
         [DataType(DataType.Text)]
         [Display(Name = "Gerente")]
         public string Manager { get; set; }
         [StringLength(60)]
         [DataType(DataType.Text)]
-        [Required]
+        [Required(ErrorMessage = "Digite a sua função")]
         [Display(Name = "Função")]
         public string Function { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Digite seu Ramal")]
         [StringLength(60)]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Ramal")]
         public string ExtensionLine { get; set; }
         //Roles
-        [Required]
+        [Required(ErrorMessage ="Clique sobre a palavra User")]
         [Display(Name = "Perfil")]
         public int[] RolesId { get; set; }
         public MultiSelectList Roles { get; set; }
