@@ -140,21 +140,22 @@ namespace POC_MVC_Biblioteca.Services
 
         public BooksViewModel UpdateBook(BooksViewModel book)
         {
-
-
-
             using (POC_Database db = new POC_Database())
             {
                 Book parsedModel = ParseBookViewModelToBookModel(book);
-
-                DbEntityEntry dbEntityEntry = db.Entry(parsedModel);
-
-                if (dbEntityEntry.State == EntityState.Detached)
-                {
-                    db.Books.Attach(parsedModel);
-                }
-
-                dbEntityEntry.State = EntityState.Modified;
+                Book bModel = db.Books.First(b => b.Id == parsedModel.Id);
+                bModel.Author = parsedModel.Author;
+                bModel.BookYear = parsedModel.BookYear;
+                bModel.Category = parsedModel.Category;
+                bModel.Cover = parsedModel.Cover;
+                bModel.Description = parsedModel.Description;
+                bModel.Editor = parsedModel.Editor;
+                bModel.ISBN = parsedModel.ISBN;
+                bModel.LocalizationShelf = parsedModel.LocalizationShelf;
+                bModel.Observation = parsedModel.Observation;
+                bModel.Quantity = parsedModel.Quantity;
+                bModel.Status = parsedModel.Status;
+                bModel.Title = parsedModel.Title;
                 db.SaveChanges();
                 return book;
             }
@@ -179,7 +180,7 @@ namespace POC_MVC_Biblioteca.Services
                 Quantity = book.Quantity,
                 Title = book.Title,
                 Status = book.Status
-                
+
             };
             return result;
         }
@@ -204,7 +205,7 @@ namespace POC_MVC_Biblioteca.Services
                     Cover = ImageToByteParser(book.BookCover),
                     Id = book.Id,
                     Status = book.Status
-                    
+
                 };
                 return parsedModel;
             }

@@ -101,6 +101,7 @@ namespace POC_MVC_Biblioteca.Controllers
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
             result.BooksList = _bcm.GetBooks();
+            
             return PartialView("_ConsultaLivros", result);
         }
         #endregion
@@ -132,6 +133,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 book.BookCategories = _bcm.GetBookCategories();
                 return PartialView("_EditBook", book);
             }
+            
             var result = _bcm.UpdateBook(book);
             result.BookCategories = _bcm.GetBookCategories();
             return PartialView("_EditBook", result);
