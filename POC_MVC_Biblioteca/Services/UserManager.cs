@@ -113,7 +113,10 @@ namespace POC_MVC_Biblioteca.Services
                     db.Users.Include("Roles");
                     db.Users.Attach(usr);
                     usr.Roles.Clear();
-                    var rolesUpd = SetRoles(user.NewRolesId);
+                    var rolesUpd = from int rId in user.RolesId
+                                   join Role role in db.Roles
+                                   on rId equals role.Id
+                                   select role;
                     foreach (var role in rolesUpd)
                     {
                         if ( db.Entry(role).State == EntityState.Detached)
