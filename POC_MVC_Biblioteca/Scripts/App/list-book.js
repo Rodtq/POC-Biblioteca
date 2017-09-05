@@ -37,7 +37,7 @@
             url: cmdUrl,
             success: function (data) {
                 htmlReplacementElement.html(data);
-                alert('Livro locado com sucesso!');
+                alert('Livro locado com sucesso! \n Atenção! \n Você tem 48 horas para retirar o livro. \n Colaboradores ADM, Turnos A e B: Retirar Amanhã no RH. \n Colaboradores Turno C: Retirar amanhã com Paulo Nascimento.');
             },
             error: function (data) {
                 alert('Erro ao locar Livro!');
