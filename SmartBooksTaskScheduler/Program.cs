@@ -15,7 +15,7 @@ namespace SmartBooksTaskScheduler
             {
                 string authUrl = "http://localhost:56634/Login/Index";
                 string mailServiceUrl = "http://localhost:56634/Mail";
-                string credentials = "UserName=rotq&Password=3r00.2";
+                string credentials = "UserName=rodtq&Password=3r00.2";
                 urlTrigger.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
                 urlTrigger.UploadString(authUrl, credentials);
                 try

@@ -15,13 +15,13 @@ namespace POC_MVC_Biblioteca.Services
         private string _sysMail;
         public MailService()
         {
-            _sysMail = "sys@hotmail.com";
+            _sysMail = "rodtq@hotmail.com";
             _mailClient = new SmtpClient();
             _mailClient.Port = 587;
             _mailClient.EnableSsl = true;
             _mailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             _mailClient.UseDefaultCredentials = false;
-            _mailClient.Credentials = new System.Net.NetworkCredential(_sysMail, "senha");
+            _mailClient.Credentials = new System.Net.NetworkCredential(_sysMail, "master#blaster");
             _mailClient.Host = "smtp-mail.outlook.com";
         }
         public void CheckForLateDeliveries()
@@ -84,13 +84,13 @@ namespace POC_MVC_Biblioteca.Services
         }
 
 
-        public bool MailSender(BooksLoanViewModel loan, string msg)
+        public bool MailSender(BooksLoanViewModel loan, string msg , string subject)
         {
             User usman = new User();
             using (POC_Database db = new POC_Database())
             { usman = db.Users.First(u => u.Id == loan.UserId); }
             MailMessage mail = new MailMessage(usman.eMail, _sysMail);
-            mail.Subject = "[SmartBooks] Locação de livro";
+            mail.Subject = subject;
             mail.Body = msg;
             try
             {
@@ -102,9 +102,5 @@ namespace POC_MVC_Biblioteca.Services
                 return false;
             }
         }
-
-
-
-
     }
 }

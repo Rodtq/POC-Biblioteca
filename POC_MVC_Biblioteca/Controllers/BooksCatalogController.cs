@@ -103,7 +103,7 @@ namespace POC_MVC_Biblioteca.Controllers
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
             result.BooksList = _bcm.GetBooks();
-            
+
             return PartialView("_ConsultaLivros", result);
         }
         #endregion
@@ -126,7 +126,7 @@ namespace POC_MVC_Biblioteca.Controllers
         }
 
 
-        
+
         [HttpPost]
         public ActionResult UpdateBook(BooksViewModel book)
         {
@@ -135,7 +135,7 @@ namespace POC_MVC_Biblioteca.Controllers
                 book.BookCategories = _bcm.GetBookCategories();
                 return PartialView("_EditBook", book);
             }
-            
+
             var result = _bcm.UpdateBook(book);
             result.BookCategories = _bcm.GetBookCategories();
             return PartialView("_EditBook", result);
@@ -146,13 +146,13 @@ namespace POC_MVC_Biblioteca.Controllers
         public ActionResult BookLocator(int bookId)
         {
             string userName = HttpContext.User.Identity.Name;
-
             var bookLocated = _lm.Locator(bookId, userName);
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
             result.BooksList = _bcm.GetBooks();
+            string subject = "[SmartBooks] Locação de livro";
             string msg = string.Format("Olá, você locou o livro {0} com sucesso data: {1}. Você tem 48 horas para retirá-lo.", bookLocated.BookName, DateTime.Now);
-            _mservice.MailSender(bookLocated, msg);
+            _mservice.MailSender(bookLocated, msg, subject);
             return PartialView("_ConsultaLivros", result);
 
         }
@@ -162,7 +162,8 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             var result = _lm.deliverBookToClient(loanId);
             string msg = string.Format("Olá, você retirou o livro {0} com sucesso data: {1}. Você tem 30 dias ({2}) para devolvê-lo.", result.BookName, DateTime.Now, result.DevolutionDate);
-            _mservice.MailSender(result, msg);
+            string subject = "[SmartBooks] Retirada de livro";
+            _mservice.MailSender(result, msg, subject);
             return PartialView("_EmprestimoLivros", result);
         }
 
@@ -170,22 +171,26 @@ namespace POC_MVC_Biblioteca.Controllers
         [HttpGet]
         public ActionResult BookUserReturner(int loanId)
         {
+            var loanBook = _lm.GetLoans().First(x => x.Id == loanId);
             _lm.BookToLibraryReturner(loanId);
             BooksLoanViewModel result = new BooksLoanViewModel();
             result.BookLoanList = _lm.GetLoans();
             string msg = string.Format("Olá, você devolveu o livro {0} com sucesso data: {1}.", result.BookName, DateTime.Now);
-            _mservice.MailSender(result, msg);
+            string subject = "[SmartBooks] Entrega de livro";
+            _mservice.MailSender(loanBook, msg, subject);
             return PartialView("_EmprestimoLivros", result);
         }
 
         [HttpGet]
         public ActionResult BookUserLoanCanceler(int loanId)
         {
+            var loanBook = _lm.GetLoans().First(x => x.Id == loanId);
             _lm.CancelLoan(loanId);
             BooksLoanViewModel result = new BooksLoanViewModel();
             result.BookLoanList = _lm.GetLoans();
+            string subject = "[SmartBooks] Locação cancelada";
             string msg = string.Format("Olá, a locação do livro {0} foi cancelada data:{1}", result.BookName, DateTime.Now);
-            _mservice.MailSender(result, msg);
+            _mservice.MailSender(loanBook, msg, subject);
             return PartialView("_EmprestimoLivros", result);
         }
 
