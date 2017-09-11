@@ -15,13 +15,13 @@ namespace POC_MVC_Biblioteca.Services
         private string _sysMail;
         public MailService()
         {
-            _sysMail = "rodtq@hotmail.com";
+            _sysMail = "bibliotecasmart@hotmail.com";
             _mailClient = new SmtpClient();
             _mailClient.Port = 587;
             _mailClient.EnableSsl = true;
             _mailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             _mailClient.UseDefaultCredentials = false;
-            _mailClient.Credentials = new System.Net.NetworkCredential(_sysMail, "master#blaster");
+            _mailClient.Credentials = new System.Net.NetworkCredential(_sysMail, "Biblioteca2017");
             _mailClient.Host = "smtp-mail.outlook.com";
         }
         public void CheckForLateDeliveries()
@@ -47,9 +47,13 @@ namespace POC_MVC_Biblioteca.Services
                                 Expiredmail.CC.Add(user.eMail);
                             }
                         }
-                        else if (item.LocationlDate.AddHours(48) >= DateTime.Now)
+                        else if (item.LocationlDate.AddHours(48) <= DateTime.Now)
                         {
                             LoanManager loanManager = new LoanManager();
+                            var loan = loanManager.GetLoans().First(x => x.Id == item.Id);
+                            var msg = string.Format("Olá, você deixou de retirar o livro {0} dentro do prazo estipulado de 48 horas. Sua locação foi automaticamente cancelada",loan.BookName);
+                            var subject = "[SmartBooks] Locação de livros cancelada";
+                            MailSender(loan, msg, subject);
                             loanManager.CancelLoan(item.Id);
                         }
                     }
