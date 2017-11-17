@@ -99,7 +99,7 @@ namespace POC_MVC_Biblioteca.Services
             {
                 WebClient wc = new WebClient();
                 ICredentials cred;
-                cred = new NetworkCredential("Alexandre.Isabella", "GANZULETOVA1");
+                cred = new NetworkCredential("SmartLibrary", "");
                 WebProxy wp = new WebProxy("sr-brz-dc01.smartm.internal", true, null, cred);
                 wc.Proxy = wp;
                 try

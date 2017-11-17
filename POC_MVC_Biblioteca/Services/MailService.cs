@@ -15,14 +15,14 @@ namespace POC_MVC_Biblioteca.Services
         private string _sysMail;
         public MailService()
         {
-            _sysMail = "bibliotecasmart@hotmail.com";
+            _sysMail = "BRZ - SmartLibrary@smartm.com";
             _mailClient = new SmtpClient();
             _mailClient.Port = 587;
             _mailClient.EnableSsl = true;
             _mailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             _mailClient.UseDefaultCredentials = false;
             _mailClient.Credentials = new System.Net.NetworkCredential(_sysMail, "Biblioteca2017");
-            _mailClient.Host = "smtp-mail.outlook.com";
+            _mailClient.Host = "smtpint.smartm.internal";
         }
         public void CheckForLateDeliveries()
         {
@@ -76,7 +76,7 @@ namespace POC_MVC_Biblioteca.Services
                     if (Expiredmail.CC.Any())
                     {
                         Expiredmail.Subject = "[SmartBooks]Pendência de entrega";
-                        Expiredmail.Body = string.Format("Olá, você tem um livro da biblioteca atrasado, por favor entre em contato com o bibliotecario");
+                        Expiredmail.Body = string.Format("Olá, você tem um livro da biblioteca atrasado, por favor entre em contato com o RH");
                         _mailClient.Send(Expiredmail);
                     }
                 }
