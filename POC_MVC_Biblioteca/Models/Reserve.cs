@@ -15,5 +15,10 @@ namespace POC_MVC_Biblioteca.Models
         public int Id_Book { get; set; }
         public virtual User User { get; set; }
         public virtual Book Book { get; set; }
+
+        internal object reserved(int id_Book, string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

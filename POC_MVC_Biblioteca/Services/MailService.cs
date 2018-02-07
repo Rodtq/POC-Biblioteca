@@ -13,25 +13,28 @@ namespace POC_MVC_Biblioteca.Services
     {
         private SmtpClient _mailClient;
         private string _sysMail;
+        private string _groupMail;
         public MailService()
         {
-            _sysMail = "BRZ - SmartLibrary@smartm.com";
+            _sysMail = "no-reply@smartm.com";
+            _groupMail = "BRZ-SmartLibrary@smartm.com";
             _mailClient = new SmtpClient();
-            _mailClient.Port = 587;
-            _mailClient.EnableSsl = true;
+            _mailClient.Port = 465;
+            _mailClient.EnableSsl = false;
             _mailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            _mailClient.UseDefaultCredentials = false;
-            _mailClient.Credentials = new System.Net.NetworkCredential(_sysMail, "Biblioteca2017");
+            _mailClient.UseDefaultCredentials = true;
             _mailClient.Host = "smtpint.smartm.internal";
         }
         public void CheckForLateDeliveries()
         {
-            MailMessage AboutToExpiremail = new MailMessage(_sysMail, _sysMail);
-            MailMessage Expiredmail = new MailMessage(_sysMail, _sysMail);
+            MailMessage AboutToExpiremail = new MailMessage(_sysMail, _groupMail);
+            MailMessage Expiredmail = new MailMessage(_sysMail, _groupMail);
+
             ICollection<Loan> loanList = new List<Loan>();
             using (POC_Database db = new POC_Database())
             {
-                foreach (var item in db.Loan)
+                loanList = db.Loan.ToList();
+                foreach (var item in loanList)
                 {
                     User user = db.Users.Find(item.Id_User);
                     if (user != null)
@@ -69,7 +72,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 catch (Exception)
                 {
-                    return;
+                    throw;
                 }
                 try
                 {
@@ -82,7 +85,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 catch (Exception)
                 {
-                    return;
+                    throw;
                 }
             }
         }
@@ -105,6 +108,11 @@ namespace POC_MVC_Biblioteca.Services
             {
                 return false;
             }
+        }
+
+        internal void MailSender(object reservedBook, string msg, string subject)
+        {
+            throw new NotImplementedException();
         }
     }
 }

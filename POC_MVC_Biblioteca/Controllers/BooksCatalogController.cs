@@ -15,11 +15,13 @@ namespace POC_MVC_Biblioteca.Controllers
         private readonly MailService _mservice;
         private readonly BooksCatalogManager _bcm;
         private readonly LoanManager _lm;
+        private readonly Reserve _rm;
         public BooksCatalogController()
         {
             _bcm = new BooksCatalogManager();
             _lm = new LoanManager();
             _mservice = new MailService();
+            _rm = new Reserve();
         }
 
         // GET: Acervo
@@ -194,7 +196,24 @@ namespace POC_MVC_Biblioteca.Controllers
             return PartialView("_EmprestimoLivros", result);
         }
 
-
         #endregion
+
+        #region Reservation
+        //métodos para a reserva de livros
+        [HttpGet]
+        public ActionResult ReservaLivros(int Id_Book)
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var reservedBook = _rm.reserved(Id_Book, userName);
+            BooksViewModel result = new BooksViewModel();
+            result.BookCategories = _bcm.GetBookCategories();
+            result.BooksList = _bcm.GetBooks();
+            string subject = "[SmartBooks] Reserva de livro";
+            string msg = string.Format("Olá, você reservou o livro {0} com sucesso data: {1}. Você será notificado quando o livro estiver disponível.", reservedBook.BookName, DateTime.Now);
+            _mservice.MailSender(reservedBook, msg, subject);
+            return PartialView("_ConsultaLivros", result);
+
+        }
     }
 }
+    #endregion

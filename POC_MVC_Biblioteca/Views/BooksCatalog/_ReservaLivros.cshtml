@@ -1,5 +1,26 @@
-﻿<div class="book-reserve-partial">
+﻿@using POC_MVC_Biblioteca.ExtensionMethods
+@model POC_MVC_Biblioteca.ViewModels.BooksViewModel
+<div id="book-reserve-partial" class="book-reserve-partial">
 <h3>Reserva de livros</h3>
 
-<h1>Em Construção</h1>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Livro</th>
+             </tr>
+         </thead>
+        <tbody>
+            @foreach (var reservedBook in Model.BookReserveList)
+            {
+                <tr>
+                    <td>@reservedBook.UserName</td>
+                    <td>@reservedBook.BookName</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 </div>

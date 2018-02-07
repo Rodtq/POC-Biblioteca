@@ -14,7 +14,7 @@ namespace SmartBooksTaskScheduler
             using (CookieWebClient urlTrigger = new CookieWebClient())
             {
                 //string authUrl = "http://localhost:85/Login/Index";
-                string mailServiceUrl = "http://localhost:85/Mail";
+                string mailServiceUrl = "http://localhost:85/SmartBooks/Mail";
                 //string credentials = "UserName=rodtq&Password=asdfg";
                 urlTrigger.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
                 //urlTrigger.UploadString(authUrl, credentials);

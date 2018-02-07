@@ -40,7 +40,26 @@
                 alert('Livro locado com sucesso! \n Atenção! \n Você tem 48 horas para retirar o livro. \n Colaboradores ADM, Turnos A e B: Retirar Amanhã no RH. \n Colaboradores Turno C: Retirar amanhã com Paulo Nascimento.');
             },
             error: function (data) {
-                alert('Erro ao locar Livro!');
+                alert('Erro ao locar o Livro!');
+            }
+        });
+    });
+
+    //reserve-cmd
+    $("button[id^='reserveBook-']").on("click", function () {
+        var btn = $(this);
+        var cmdUrl = btndata("cmd");
+        var htmlReplacementElement = $("#conteudoDireita");
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: cmdUrl,
+            success: function (data) {
+                htmlReplacementElement.html(data);
+                alert('Livro reservado com sucesso! \n Atenção!!! \n Você será notificado quando o livro \n estiver disponível para locação!');
+            },
+            error: function (data) {
+                alert(' Erro ao reservar o livro!');
             }
         });
     });
