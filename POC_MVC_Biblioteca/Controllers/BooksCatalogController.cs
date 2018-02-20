@@ -209,7 +209,7 @@ namespace POC_MVC_Biblioteca.Controllers
             result.BookCategories = _bcm.GetBookCategories();
             result.BooksList = _bcm.GetBooks();
             string subject = "[SmartBooks] Reserva de livro";
-            string msg = string.Format("Olá, você reservou o livro {0} com sucesso data: {1}. Você será notificado quando o livro estiver disponível.", reservedBook.BookName, DateTime.Now);
+            string msg = string.Format("Olá, você reservou o livro {0} com sucesso data: {1}. Você será notificado quando o livro estiver disponível.", reservedBook, DateTime.Now);
             _mservice.MailSender(reservedBook, msg, subject);
             return PartialView("_ConsultaLivros", result);
 

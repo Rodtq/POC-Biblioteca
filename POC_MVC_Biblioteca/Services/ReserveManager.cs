@@ -12,9 +12,6 @@ namespace POC_MVC_Biblioteca.Services
 {
     public class ReserveManager
     {
-        public BooksReserveViewModel Reservation(int Id_User, Id_Book)
-        {
-
-        }  
+        //public BooksReserveViewModel Reserve(int Id_User, Id_Book)
+       }  
     }
-}
