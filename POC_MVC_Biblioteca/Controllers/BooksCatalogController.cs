@@ -207,6 +207,7 @@ namespace POC_MVC_Biblioteca.Controllers
             var bookToReserve = _rm.BookReserver(bookId, userName);
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
+            result.BooksList = _bcm.GetBooks();
             var book = _bcm.GetBookPerId(bookId);
             if (bookToReserve)
             {
