@@ -52,7 +52,7 @@
                             <button id="locateBook-@item.Id" data-cmd="@Url.Action("BookLocator", "BooksCatalog", new { bookId = item.Id })" class="btn btn-default btn-xs">Locar</button>
                       }
 
-                        <button id="reserveBook-@item.Id" data-cmd="reserve" class="btn btn-default btn-xs">Reservar</button>
+                        <button id="reserveBook-@item.Id" data-cmd="@Url.Action("ReservaLivros", "BooksCatalog", new { bookId = item.Id })" class="btn btn-default btn-xs">Reservar</button>
                     }
                     @if (User.IsInRole("Administrator"))
                     {

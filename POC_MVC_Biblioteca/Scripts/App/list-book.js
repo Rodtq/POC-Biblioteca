@@ -48,7 +48,8 @@
     //reserve-cmd
     $("button[id^='reserveBook-']").on("click", function () {
         var btn = $(this);
-        var cmdUrl = btndata("cmd");
+        var cmdUrl = btn.data("cmd");
+        console.log(cmdUrl);
         var htmlReplacementElement = $("#conteudoDireita");
         $.ajax({
             cache: false,

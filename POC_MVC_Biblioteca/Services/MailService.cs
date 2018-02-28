@@ -54,7 +54,7 @@ namespace POC_MVC_Biblioteca.Services
                         {
                             LoanManager loanManager = new LoanManager();
                             var loan = loanManager.GetLoans().First(x => x.Id == item.Id);
-                            var msg = string.Format("Olá, você deixou de retirar o livro {0} dentro do prazo estipulado de 48 horas. Sua locação foi automaticamente cancelada",loan.BookName);
+                            var msg = string.Format("Olá, você deixou de retirar o livro {0} dentro do prazo estipulado de 48 horas. Sua locação foi automaticamente cancelada", loan.BookName);
                             var subject = "[SmartBooks] Locação de livros cancelada";
                             MailSender(loan, msg, subject);
                             loanManager.CancelLoan(item.Id);
@@ -91,7 +91,7 @@ namespace POC_MVC_Biblioteca.Services
         }
 
 
-        public bool MailSender(BooksLoanViewModel loan, string msg , string subject)
+        public bool MailSender(BooksLoanViewModel loan, string msg, string subject)
         {
             User usman = new User();
             using (POC_Database db = new POC_Database())
@@ -110,9 +110,23 @@ namespace POC_MVC_Biblioteca.Services
             }
         }
 
-        internal void MailSender(object reservedBook, string msg, string subject)
+        public bool MailSender(string user, string msg, string subject)
         {
-            throw new NotImplementedException();
+            User usman = new User();
+            using (POC_Database db = new POC_Database())
+            { usman = db.Users.First(u => u.SamAccountName == user); }
+            MailMessage mail = new MailMessage(_sysMail, usman.eMail);
+            mail.Subject = subject;
+            mail.Body = msg;
+            try
+            {
+                _mailClient.Send(mail);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

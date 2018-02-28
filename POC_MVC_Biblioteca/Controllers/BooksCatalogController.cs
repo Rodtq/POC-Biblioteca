@@ -15,13 +15,13 @@ namespace POC_MVC_Biblioteca.Controllers
         private readonly MailService _mservice;
         private readonly BooksCatalogManager _bcm;
         private readonly LoanManager _lm;
-        private readonly Reserve _rm;
+        private readonly ReserveManager _rm;
         public BooksCatalogController()
         {
             _bcm = new BooksCatalogManager();
             _lm = new LoanManager();
             _mservice = new MailService();
-            _rm = new Reserve();
+            _rm = new ReserveManager();
         }
 
         // GET: Acervo
@@ -201,19 +201,22 @@ namespace POC_MVC_Biblioteca.Controllers
         #region Reservation
         //métodos para a reserva de livros
         [HttpGet]
-        public ActionResult ReservaLivros(int Id_Book)
+        public ActionResult ReservaLivros(int bookId)
         {
             string userName = HttpContext.User.Identity.Name;
-            var reservedBook = _rm.reserved(Id_Book, userName);
+            var bookToReserve = _rm.BookReserver(bookId, userName);
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
-            result.BooksList = _bcm.GetBooks();
-            string subject = "[SmartBooks] Reserva de livro";
-            string msg = string.Format("Olá, você reservou o livro {0} com sucesso data: {1}. Você será notificado quando o livro estiver disponível.", reservedBook, DateTime.Now);
-            _mservice.MailSender(reservedBook, msg, subject);
+            var book = _bcm.GetBookPerId(bookId);
+            if (bookToReserve)
+            {
+                string subject = "[SmartBooks] Reserva de livro";
+                string msg = string.Format("Olá, você reservou o livro {0} com sucesso data: {1}. Você será notificado quando o livro estiver disponível.", book.Title, DateTime.Now);
+                _mservice.MailSender(userName, msg, subject);
+            }
             return PartialView("_ConsultaLivros", result);
 
         }
     }
 }
-    #endregion
+#endregion
