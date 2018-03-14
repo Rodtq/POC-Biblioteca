@@ -220,6 +220,7 @@
     <Content Include="Scripts\App\BookScripts.js" />
     <Content Include="Scripts\App\Common.js" />
     <Content Include="Scripts\App\edit-book.js" />
+    <Content Include="Scripts\App\sugestion.js" />
     <Content Include="Scripts\App\list-book.js" />
     <Content Include="Scripts\App\list-user.js" />
     <Content Include="Scripts\App\register-book.js" />
@@ -430,6 +431,7 @@
     <Folder Include="Views\BookLoans\" />
     <Folder Include="Views\BooksLoanModel\" />
     <Folder Include="Views\Mail\" />
+    <Folder Include="Views\Sugestion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
