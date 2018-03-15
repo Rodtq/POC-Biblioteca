@@ -15,14 +15,22 @@
                         <h3>Deixe sua opinião:</h3>
                     </div>
                     <div class="col-lg-8">
-                        <textarea width="500px" name="opiniao" class="form-control" id="opinion" data-val-required="Deixe sua opiniao." data-val-length-max="300" data-val-length="The field Opinion must be a string with maximum length of 300." data-val="true" value=""> </textarea>
+                        <textarea name="opiniao" class="form-control sugestion" id="opinion" data-val-required="Deixe sua opiniao." data-val-length-max="500" data-val-length="The field Opinion must be a string with maximum length of 300." data-val="true" value=""> </textarea>
                         <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Opinion"></span>
                     </div>
                 </div>
+                <div style="margin-top:15px">
+                    @if (TempData["sugestionMessage"] != null)
+                    {
+                        <input type="submit" class="btn btn-default" id="sugestionAction" value="Temp[]" />
+                    }
+                    else
+                    {
+
+                        <input type="submit" class="btn btn-default" id="sugestionAction" value="Enviar" />
+                    }
+                </div>
             }
-        </div>
-        <div style="margin-top:15px">
-            <button class="btn btn-default" id="sugestionAction">Enviar</button>
         </div>
     </div>
 </div>
@@ -35,8 +43,5 @@
         11-4417-7200 - Ramal: 7221
 
     </div>
-    @Html.Hidden("htmlReplacement", null, new { Id = "htmlReplacement" })
 </div>
 @Scripts.Render("~/bundles/jquery")
-<script src="~/Scripts/App/Common.js"></script>
-<script src="~/Scripts/App/sugestion.js"></script>

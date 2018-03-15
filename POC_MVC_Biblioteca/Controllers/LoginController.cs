@@ -19,7 +19,7 @@ namespace POC_MVC_Biblioteca.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public virtual ActionResult Index(LoginViewModel model, string returnUrl)
+        public virtual ActionResult Index(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -43,6 +43,11 @@ namespace POC_MVC_Biblioteca.Controllers
             var authenticationResult = authService.SignIn(model.UserName, model.Password);
             if (authenticationResult.IsSuccess)
             {
+                string returnUrl = string.Empty;
+                if (TempData["returnUrl"] != null)
+                {
+                    returnUrl = TempData["returnUrl"] as string;
+                }
                 return RedirectToLocal(returnUrl);
             }
             ModelState.AddModelError("", authenticationResult.ErrorMessage);
@@ -51,7 +56,7 @@ namespace POC_MVC_Biblioteca.Controllers
         }
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
             }

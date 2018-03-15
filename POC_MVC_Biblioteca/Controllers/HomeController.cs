@@ -29,11 +29,24 @@ namespace POC_MVC_Biblioteca.Controllers
             return View();
         }
 
-        public bool SendSugestion(string opiniao)
+        public ActionResult SendSugestion(string opiniao)
         {
             string userName = HttpContext.User.Identity.Name;
-            MailService sm = new MailService();
-            return sm.MailSender(userName, opiniao, "[SmartBooks] Nova Sugestão");
+            if (!string.IsNullOrEmpty(userName))
+            {
+                MailService sm = new MailService();
+                sm.MailSender(userName, opiniao, "[SmartBooks] Nova Sugestão");
+                return RedirectToAction("Index", "BooksCatalog");
+            }
+            else
+            {
+                var fullUrl = this.Url.Action("Contact", "Home", this.Request.Url.Scheme);
+                TempData["returnUrl"] = fullUrl;
+                TempData["SugestionMessage"] = opiniao;
+
+
+                return RedirectToAction("Index", "Login");
+            }
         }
     }
 }
