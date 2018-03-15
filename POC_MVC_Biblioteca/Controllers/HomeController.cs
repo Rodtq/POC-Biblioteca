@@ -36,6 +36,7 @@ namespace POC_MVC_Biblioteca.Controllers
             {
                 MailService sm = new MailService();
                 sm.MailSender(userName, opiniao, "[SmartBooks] Nova Sugestão");
+                TempData.Clear();
                 return RedirectToAction("Index", "BooksCatalog");
             }
             else
@@ -43,8 +44,6 @@ namespace POC_MVC_Biblioteca.Controllers
                 var fullUrl = this.Url.Action("Contact", "Home", this.Request.Url.Scheme);
                 TempData["returnUrl"] = fullUrl;
                 TempData["SugestionMessage"] = opiniao;
-
-
                 return RedirectToAction("Index", "Login");
             }
         }
