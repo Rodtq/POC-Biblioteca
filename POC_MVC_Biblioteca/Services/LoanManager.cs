@@ -27,9 +27,13 @@ namespace POC_MVC_Biblioteca.Services
             {
                 bookModel = db.Books.FirstOrDefault(b => b.Id == bookId);
                 bookModel.Status = (int)BookStatus.Located;
-                bookModel.Quantity -= 1;
+                bookModel.Quantity = bookModel.Quantity == 0 ? bookModel.Quantity : bookModel.Quantity - 1;
 
                 userModel = db.Users.FirstOrDefault(u => string.Compare(u.SamAccountName, samAccName, StringComparison.OrdinalIgnoreCase) == 0);
+
+                //check if the loan was already made
+
+                var isLoaned = db.Loan.Any(x => x.Id_Book == bookId && x.Id_User == userModel.Id);
 
                 loan = new Loan()
                 {
@@ -53,7 +57,24 @@ namespace POC_MVC_Biblioteca.Services
 
                 dbEntityEntry = db.Entry(bookModel);
                 dbEntityEntry.State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    if (!isLoaned)
+                    {
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    if (ex.HResult == -2146233087)
+                    {
+                        return null;
+                    }
+                }
             }
             BooksLoanViewModel result = ParseLoanModelToParseBookLoanViewModel(loan);
             return result;

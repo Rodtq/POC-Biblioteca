@@ -149,12 +149,16 @@ namespace POC_MVC_Biblioteca.Controllers
         {
             string userName = HttpContext.User.Identity.Name;
             var bookLocated = _lm.Locator(bookId, userName);
+
             BooksViewModel result = new BooksViewModel();
             result.BookCategories = _bcm.GetBookCategories();
             result.BooksList = _bcm.GetBooks();
-            string subject = "[SmartBooks] Locação de livro";
-            string msg = string.Format("Olá, você locou o livro {0} com sucesso data: {1}. Você tem 48 horas para retirá-lo.", bookLocated.BookName, DateTime.Now);
-            _mservice.MailSender(bookLocated, msg, subject);
+            if (bookLocated != null)
+            {
+                string subject = "[SmartBooks] Locação de livro";
+                string msg = string.Format("Olá, você locou o livro {0} com sucesso data: {1}. Você tem 48 horas para retirá-lo.", bookLocated.BookName, DateTime.Now);
+                _mservice.MailSender(bookLocated, msg, subject);
+            }
             return PartialView("_ConsultaLivros", result);
 
         }

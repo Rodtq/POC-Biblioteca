@@ -109,7 +109,7 @@ namespace POC_MVC_Biblioteca.Services
                 }
                 catch (Exception)
                 {
-                    throw;
+                    return null;
                 }
             }
         }
@@ -146,6 +146,7 @@ namespace POC_MVC_Biblioteca.Services
                 Book bModel = db.Books.First(b => b.Id == parsedModel.Id);
                 bModel.Author = parsedModel.Author;
                 bModel.BookYear = parsedModel.BookYear;
+                db.BookCategory.Attach(parsedModel.Category);
                 bModel.Category = parsedModel.Category;
                 bModel.Cover = parsedModel.Cover;
                 bModel.Description = parsedModel.Description;

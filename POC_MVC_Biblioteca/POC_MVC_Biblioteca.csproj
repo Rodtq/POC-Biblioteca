@@ -431,7 +431,6 @@
     <Folder Include="Views\BookLoans\" />
     <Folder Include="Views\BooksLoanModel\" />
     <Folder Include="Views\Mail\" />
-    <Folder Include="Views\Sugestion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

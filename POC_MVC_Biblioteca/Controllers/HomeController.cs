@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POC_MVC_Biblioteca.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,9 +29,11 @@ namespace POC_MVC_Biblioteca.Controllers
             return View();
         }
 
-        public bool SendSugestion(string Nome, string Email, string Ramal, string Opiniao)
+        public bool SendSugestion(string opiniao)
         {
-            return true;
+            string userName = HttpContext.User.Identity.Name;
+            MailService sm = new MailService();
+            return sm.MailSender(userName, opiniao, "[SmartBooks] Nova Sugestão");
         }
     }
 }

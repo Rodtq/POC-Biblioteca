@@ -12,8 +12,10 @@ namespace POC_MVC_Biblioteca.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("Tenant")]
+        [Index("IX_LocationrRule", 1, IsUnique = true)]
         public int Id_User { get; set; }
         [ForeignKey("Book")]
+        [Index("IX_LocationRule", 2, IsUnique = true)]
         public int Id_Book { get; set; }
         public DateTime LocationlDate { get; set; }
         public DateTime? PullOutDate { get; set; }

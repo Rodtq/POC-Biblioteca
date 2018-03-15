@@ -5,55 +5,24 @@
 <h3>@ViewBag.Message</h3>
 
 <div id="container-partials">
-    <h3>Deixe seus dados</h3>
+
     <div class="contato-usuario-partial" id="contato-usuario-partial">
         <div class="container-fluid" id="contato-usuario-partial-container">
             @using (@Html.BeginForm("SendSugestion", "Home", FormMethod.Post, new { id = "contatoRegister-fmr", @class = "form-inline" }))
             {
-                <div class="form-group contatodiv">
-                    <div class="row" id="NomeDiv">
-                        <div class="col-lg-3">
-                            <label class="control-label" for="Name">Nome</label>
-                            <span>:</span>
-                        </div>
-                        <div class="col-lg-12">
-                            <input name="Nome" class="form-control" id="Name" type="text" data-val-required="Digite seu Nome." data-val-length-max="30" data-val-length="The field Nome must be a string with a maximum length of 30." data-val="true" value="">
-                            <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Name"></span>
-                        </div>
+                <div class="row" id="Opinion">
+                    <div class="col-lg-6">
+                        <h3>Deixe sua opinião:</h3>
                     </div>
-                    <div class="row" id="EmailDiv">
-                        <div class="col-lg-3">
-                            <label class="control-label" for="Email">E-mail</label>
-                            <span>:</span>
-                        </div>
-                        <div class="col-lg-12">
-                            <input name="Email" class="form-control" id="Email" type="email" data-val-required="Digite seu E-mail." data-val-length-max="60" data-val-length="The field E-mail must be a string with a maximum length of 60." data-val="true" value="">
-                            <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Email"></span>
-                        </div>
+                    <div class="col-lg-8">
+                        <textarea width="500px" name="opiniao" class="form-control" id="opinion" data-val-required="Deixe sua opiniao." data-val-length-max="300" data-val-length="The field Opinion must be a string with maximum length of 300." data-val="true" value=""> </textarea>
+                        <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Opinion"></span>
                     </div>
-                    <div class="row" id="RamalDiv">
-                        <div class="col-lg-3">
-                            <label class="control-label" for="ExtensionLine">Ramal</label>
-                            <span>:</span>
-                        </div>
-                        <div class="col-lg-12">
-                            <input name="Ramal" class="form-control" id="ExtensionLine" type="text" data-val-required="Digite seu Ramal." data-val-length-max="10" data-val-length="The field Ramal must be a string with a maximum length of 10." data-val="true" value="">
-                            <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="ExtensionLine"></span>
-                        </div>
-                    </div>
-                    <div class="row" id="Opinion">
-                        <div class="col-lg-6">
-                            <label class="control-label" for="Opinion">Deixe sua Opinião</label>
-                            <span>:</span>
-                        </div>
-                        <div class="col-lg-8">
-                            <input name="Opiniao" class="form-control" id="Opinion" type="text" data-val-required="Deixe sua opiniao." data-val-length-max="300" data-val-length="The field Opinion must be a string with maximum length of 300." data-val="true" value="">
-                            <span class="field-validation-valid validation" data-valmsg-replace="true" data-valmsg-for="Opinion"></span>
-                        </div>
-                    </div>
-                    <button class="btn btn-default" id="sugestionAction">Enviar</button>
                 </div>
             }
+        </div>
+        <div style="margin-top:15px">
+            <button class="btn btn-default" id="sugestionAction">Enviar</button>
         </div>
     </div>
 </div>

@@ -16,7 +16,8 @@ namespace POC_MVC_Biblioteca.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public DateTime BookYear { get; set; }
-        public BookCategory Category { get; set; }
+        
+        public virtual BookCategory Category { get; set; }
         public string Editor { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
